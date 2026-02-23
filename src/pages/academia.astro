@@ -1,0 +1,37 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/layout/Header.astro";
+import FloatingNav from "../components/layout/FloatingNav.astro";
+import Footer from "../components/layout/Footer.astro";
+import Hero from "../components/sections/Hero.astro";
+import Courses from "../components/sections/Courses.astro";
+import Benefits from "../components/sections/Benefits.astro";
+import Testimonials from "../components/sections/Testimonials.astro";
+import CEO from "../components/sections/CEO.astro";
+import FAQ from "../components/sections/FAQ.astro";
+import News from "../components/sections/News.astro";
+import Gallery from "../components/sections/Gallery.astro";
+
+// Page specific props
+const title = "Academia | ScienceBot";
+const description =
+	"Conoce nuestra academia de robótica y programación. Cursos de LEGO Robotics, Scratch, Python, Arduino y más para niños y adolescentes.";
+---
+
+<Layout title={title} description={description}>
+	<Header />
+	<FloatingNav />
+
+	<main>
+		<Hero />
+		<Gallery />
+		<Courses />
+		<Benefits />
+		<Testimonials />
+		<CEO />
+		<FAQ />
+		<News />
+	</main>
+
+	<Footer />
+</Layout>

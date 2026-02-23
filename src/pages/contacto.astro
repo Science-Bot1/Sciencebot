@@ -1,0 +1,111 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/layout/Header.astro";
+import FloatingNav from "../components/layout/FloatingNav.astro";
+import Footer from "../components/layout/Footer.astro";
+import Contact from "../components/sections/Contact.astro";
+
+// Page specific props
+const title = "Contacto | ScienceBot";
+const description = "Contacta con ScienceBot. Visítanos en nuestras instalaciones o envíanos un mensaje para saber más sobre nuestros cursos de robótica y programación.";
+---
+
+<Layout title={title} description={description}>
+	<Header />
+	<FloatingNav />
+
+	<main>
+		<!-- Hero Section -->
+		<section class="contact-hero section-padding">
+			<div class="container text-center">
+				<h1 class="text-5xl md:text-7xl font-bold gradient-text mb-6">
+					Contacta con nosotros
+				</h1>
+				<p class="text-xl text-neutral-600 max-w-3xl mx-auto">
+					Estamos aquí para responder tus preguntas y ayudarte a comenzar tu viaje en el mundo de la robótica y programación.
+				</p>
+			</div>
+		</section>
+
+		<!-- Contact Section -->
+		<Contact />
+
+		<!-- Additional Info -->
+		<section class="contact-info section-padding light-section">
+			<div class="container">
+				<div class="info-grid">
+					<div class="info-card reveal">
+						<h3>📍 Visítanos</h3>
+						<p>Nuestras instalaciones están equipadas con tecnología de última generación para ofrecer la mejor experiencia de aprendizaje.</p>
+						<a href="#map" class="btn btn-secondary">Ver Ubicación</a>
+					</div>
+					<div class="info-card reveal reveal-right">
+						<h3>⏰ Horario</h3>
+						<p>Lunes a Viernes: 9:00 AM - 7:00 PM<br>
+						Sábados: 9:00 AM - 2:00 PM<br>
+						Domingos: Cerrado</p>
+					</div>
+					<div class="info-card reveal reveal-left">
+						<h3>📞 Contacto Directo</h3>
+						<p>Teléfono: +1 (555) 123-4567<br>
+						WhatsApp: +1 (555) 123-4568<br>
+						Email: info@sciencebot.academy</p>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<Footer />
+</Layout>
+
+<style>
+	.contact-hero {
+		background: linear-gradient(135deg, var(--color-light) 0%, var(--color-light-secondary) 100%);
+	}
+
+	.info-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: var(--space-6);
+		margin-top: var(--space-12);
+	}
+
+	.info-card {
+		background: var(--color-light);
+		padding: var(--space-8);
+		border-radius: var(--radius-xl);
+		border: 1px solid var(--color-neutral-200);
+		text-align: center;
+		transition: all var(--transition-base);
+	}
+
+	.info-card:hover {
+		transform: translateY(-4px);
+		box-shadow: var(--shadow-lg);
+		border-color: var(--color-primary);
+	}
+
+	.info-card h3 {
+		font-size: var(--text-2xl);
+		margin-bottom: var(--space-4);
+		color: var(--color-primary);
+	}
+
+	.info-card p {
+		color: var(--color-neutral-600);
+		margin-bottom: var(--space-6);
+		line-height: 1.6;
+	}
+
+	@media (max-width: 768px) {
+		.info-grid {
+			grid-template-columns: 1fr;
+			gap: var(--space-4);
+		}
+
+		.info-card {
+			padding: var(--space-6);
+		}
+	}
+</style>

@@ -1,0 +1,810 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/layout/Header.astro";
+import Footer from "../../components/layout/Footer.astro";
+
+// Estilos compartidos se importan desde el Layout
+---
+
+<Layout
+    title="Arduino Masterclass - Electrónica y Robótica - ScienceBot"
+    description="Electrónica y programación de hardware con Arduino. Construyen proyectos IoT, robots autónomos y sistemas automatizados para niños de 14 a 17 años."
+>
+    <Header />
+
+    <!-- Hero Section -->
+    <section class="hero-course">
+        <div class="container">
+            <div class="hero-content">
+                <!-- Left Content -->
+                <div class="hero-text">
+                    <span
+                        class="badge badge-featured"
+                        style="background: rgba(16, 185, 129, 0.15); color: #10b981;"
+                        >Hardware + Software</span
+                    >
+
+                    <h1 class="hero-title">
+                        <span style="color: #10b981;">Arduino</span><br />
+                        <span class="gradient-text">Masterclass</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        Electrónica y programación de hardware. Construyen
+                        proyectos IoT reales, robots autónomos y sistemas
+                        automatizados mientras aprenden ingeniería y electrónica
+                        aplicada.
+                    </p>
+
+                    <div class="hero-badges">
+                        <span class="info-badge">👶 14-17 Años</span>
+                        <span class="info-badge">📊 Nivel Avanzado</span>
+                        <span class="info-badge">⭐ 4.9/5 (145 Reseñas)</span>
+                    </div>
+
+                    <div class="hero-cta">
+                        <button class="btn btn-secondary btn-lg">
+                            <span>▶</span>
+                            Ver Trailer
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Image -->
+                <div class="hero-image">
+                    <div
+                        class="image-container"
+                        style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(6, 182, 212, 0.1));"
+                    >
+                        <img
+                            src="https://images.unsplash.com/photo-1553406830-ef2513450d76?w=600&h=400&fit=crop"
+                            alt="Proyecto con Arduino"
+                        />
+                        <div class="status-card">
+                            <div class="status-icon">✓</div>
+                            <div>
+                                <p class="status-label">Cupos Disponibles</p>
+                                <p class="status-value">Inscripción Abierta</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="course-main section-padding">
+        <div class="container">
+            <div class="course-layout">
+                <!-- Left Column -->
+                <div class="course-content">
+                    <!-- Lo que aprenderás -->
+                    <section class="reveal">
+                        <div class="section-header">
+                            <div class="icon-badge">✨</div>
+                            <h2>Lo que aprenderás</h2>
+                        </div>
+
+                        <div class="learning-grid">
+                            <div class="learning-card">
+                                <div
+                                    class="learning-icon"
+                                    style="background: rgba(59, 130, 246, 0.1);"
+                                >
+                                    <span>⚡</span>
+                                </div>
+                                <h3>Circuitos Electrónicos</h3>
+                                <p>
+                                    Aprenderán a diseñar y construir circuitos
+                                    con LEDs, sensores, motores y componentes
+                                    electrónicos.
+                                </p>
+                            </div>
+
+                            <div class="learning-card">
+                                <div
+                                    class="learning-icon"
+                                    style="background: rgba(251, 191, 36, 0.1);"
+                                >
+                                    <span>🤖</span>
+                                </div>
+                                <h3>Robótica Autónoma</h3>
+                                <p>
+                                    Construirán robots que evitan obstáculos,
+                                    siguen líneas y toman decisiones autónomas.
+                                </p>
+                            </div>
+
+                            <div class="learning-card">
+                                <div
+                                    class="learning-icon"
+                                    style="background: rgba(34, 197, 94, 0.1);"
+                                >
+                                    <span>🌐</span>
+                                </div>
+                                <h3>Proyectos IoT</h3>
+                                <p>
+                                    Crearán dispositivos conectados a internet
+                                    que envían y reciben datos en tiempo real.
+                                </p>
+                            </div>
+
+                            <div class="learning-card">
+                                <div
+                                    class="learning-icon"
+                                    style="background: rgba(236, 72, 153, 0.1);"
+                                >
+                                    <span>🛠️</span>
+                                </div>
+                                <h3>Ingeniería Aplicada</h3>
+                                <p>
+                                    Resolverán problemas del mundo real usando
+                                    electrónica y programación embedded.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Metodología -->
+                    <section class="reveal">
+                        <div class="section-header">
+                            <div
+                                class="icon-badge"
+                                style="background: rgba(251, 191, 36, 0.2);"
+                            >
+                                🛠️
+                            </div>
+                            <h2>Metodología "Hands-on Engineering"</h2>
+                        </div>
+
+                        <div class="methodology-box">
+                            <p class="methodology-intro">
+                                Aprender haciendo proyectos reales de
+                                ingeniería. Cada estudiante trabaja con su
+                                propio kit de Arduino:
+                            </p>
+                            <ul class="methodology-list">
+                                <li>
+                                    <span class="check">✓</span> Proyectos incrementales
+                                    desde LED simple hasta robots complejos.
+                                </li>
+                                <li>
+                                    <span class="check">✓</span> Troubleshooting real
+                                    de hardware y software.
+                                </li>
+                                <li>
+                                    <span class="check">✓</span> Documentación profesional
+                                    de cada proyecto.
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- Plan de Estudios -->
+                    <section class="reveal">
+                        <div class="section-header">
+                            <div
+                                class="icon-badge"
+                                style="background: rgba(239, 68, 68, 0.2);"
+                            >
+                                📋
+                            </div>
+                            <h2>Plan de Estudios</h2>
+                        </div>
+
+                        <div class="curriculum-list">
+                            <div class="curriculum-item">
+                                <span
+                                    class="month-badge"
+                                    style="background: #10b981;">Mes 1</span
+                                >
+                                <span class="curriculum-title"
+                                    >Fundamentos de Electrónica y Arduino</span
+                                >
+                            </div>
+
+                            <div class="curriculum-item">
+                                <span
+                                    class="month-badge"
+                                    style="background: #10b981;">Mes 2</span
+                                >
+                                <span class="curriculum-title"
+                                    >Robótica y Sensores Avanzados</span
+                                >
+                            </div>
+
+                            <div class="curriculum-item">
+                                <span
+                                    class="month-badge"
+                                    style="background: #10b981;">Mes 3</span
+                                >
+                                <span class="curriculum-title"
+                                    >Proyecto Final: Sistema IoT Completo</span
+                                >
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Right Sidebar -->
+                <aside class="course-sidebar">
+                    <div class="sidebar-sticky">
+                        <!-- Detalles del Curso -->
+                        <div class="course-details-card">
+                            <h3>Detalles del Curso</h3>
+
+                            <div class="details-list">
+                                <div class="detail-item">
+                                    <div class="detail-icon">⏰</div>
+                                    <div>
+                                        <p class="detail-label">Duración</p>
+                                        <p class="detail-value">
+                                            3 Meses (30 horas)
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="detail-item">
+                                    <div class="detail-icon">🎥</div>
+                                    <div>
+                                        <p class="detail-label">Modalidad</p>
+                                        <p class="detail-value">
+                                            Online / En Vivo
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="detail-item">
+                                    <div class="detail-icon">🏆</div>
+                                    <div>
+                                        <p class="detail-label">
+                                            Certificación
+                                        </p>
+                                        <p class="detail-value">
+                                            Diploma ScienceBot
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="detail-item">
+                                    <div class="detail-icon">📅</div>
+                                    <div>
+                                        <p class="detail-label">
+                                            Próximo Inicio
+                                        </p>
+                                        <p class="detail-value">
+                                            28 de Marzo, 2025
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Instructor -->
+                        <div class="instructor-card">
+                            <img
+                                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop"
+                                alt="Foto de instructor"
+                                class="instructor-photo"
+                                style="border-color: #10b981;"
+                            />
+                            <div>
+                                <p class="instructor-label">
+                                    Instructor Principal
+                                </p>
+                                <h4 class="instructor-name">Luis Vargas</h4>
+                                <p class="instructor-role">
+                                    Ingeniero Electrónico
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Contacto -->
+                        <div class="contact-card">
+                            <h4>¿Tienes dudas?</h4>
+                            <p>
+                                Habla con uno de nuestros asesores educativos.
+                            </p>
+                            <a href="#" class="whatsapp-link">
+                                <span>💬</span>
+                                Chat en WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <Footer />
+</Layout>
+
+<style>
+    /* Reuse same styles from robotica-lego.astro */
+    /* Hero Section */
+    .hero-course {
+        padding: calc(var(--space-32) + var(--space-8)) 0 var(--space-20) 0;
+        background: var(--color-light);
+        overflow: hidden;
+        position: relative;
+    }
+
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-12);
+    }
+
+    @media (min-width: 1024px) {
+        .hero-content {
+            flex-direction: row;
+            align-items: center;
+        }
+    }
+
+    .hero-text {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-6);
+    }
+
+    .badge-featured {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        padding: var(--space-2) var(--space-4);
+        border-radius: var(--radius-full);
+        font-size: var(--text-sm);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        width: fit-content;
+    }
+
+    .hero-title {
+        font-size: clamp(var(--text-4xl), 5vw, var(--text-6xl));
+        font-weight: 800;
+        line-height: 1.1;
+        color: var(--color-dark);
+    }
+
+    .hero-description {
+        font-size: var(--text-lg);
+        color: var(--color-neutral-600);
+        max-width: 600px;
+        line-height: 1.6;
+    }
+
+    .hero-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-4);
+    }
+
+    .info-badge {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        background: white;
+        padding: var(--space-2) var(--space-3);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--color-neutral-200);
+        font-size: var(--text-sm);
+        font-weight: 500;
+        color: var(--color-neutral-600);
+        box-shadow: var(--shadow-sm);
+    }
+
+    .hero-cta {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+        padding-top: var(--space-4);
+    }
+
+    @media (min-width: 640px) {
+        .hero-cta {
+            flex-direction: row;
+        }
+    }
+
+    .hero-image {
+        flex: 1;
+        position: relative;
+    }
+
+    .image-container {
+        position: relative;
+        border-radius: var(--radius-2xl);
+        padding: var(--space-8) var(--space-12);
+        box-shadow: var(--shadow-xl);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+
+    .image-container img {
+        width: 100%;
+        height: auto;
+        border-radius: var(--radius-xl);
+        object-fit: cover;
+        transform: rotate(-5deg);
+        transition: transform 0.5s ease;
+    }
+
+    .image-container:hover img {
+        transform: rotate(0deg);
+    }
+
+    .status-card {
+        position: absolute;
+        bottom: -24px;
+        right: -24px;
+        background: white;
+        padding: var(--space-4);
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow-xl);
+        border: 1px solid var(--color-neutral-200);
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+    }
+
+    .status-icon {
+        background: rgba(34, 197, 94, 0.15);
+        color: #16a34a;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--radius-lg);
+        font-weight: bold;
+    }
+
+    .status-label {
+        font-size: var(--text-xs);
+        color: var(--color-neutral-500);
+        margin: 0;
+    }
+
+    .status-value {
+        font-size: var(--text-sm);
+        font-weight: 700;
+        color: var(--color-dark);
+        margin: 0;
+    }
+
+    /* Main Content */
+    .course-main {
+        background: white;
+    }
+
+    .course-layout {
+        display: grid;
+        gap: var(--space-12);
+    }
+
+    @media (min-width: 1024px) {
+        .course-layout {
+            grid-template-columns: 2fr 1fr;
+        }
+    }
+
+    .course-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-16);
+    }
+
+    .section-header {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        margin-bottom: var(--space-8);
+    }
+
+    .icon-badge {
+        width: 48px;
+        height: 48px;
+        background: rgba(139, 92, 246, 0.15);
+        border-radius: var(--radius-lg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: var(--text-2xl);
+    }
+
+    .section-header h2 {
+        font-size: var(--text-3xl);
+        font-weight: 700;
+        color: var(--color-dark);
+        margin: 0;
+    }
+
+    /* Learning Grid */
+    .learning-grid {
+        display: grid;
+        gap: var(--space-6);
+    }
+
+    @media (min-width: 768px) {
+        .learning-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    .learning-card {
+        background: white;
+        padding: var(--space-6);
+        border-radius: var(--radius-xl);
+        border: 1px solid var(--color-neutral-200);
+        box-shadow: var(--shadow-sm);
+        transition: all var(--transition-base);
+    }
+
+    .learning-card:hover {
+        box-shadow: var(--shadow-lg);
+        transform: translateY(-4px);
+    }
+
+    .learning-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: var(--radius-xl);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: var(--text-2xl);
+        margin-bottom: var(--space-4);
+    }
+
+    .learning-card h3 {
+        font-size: var(--text-xl);
+        font-weight: 700;
+        color: var(--color-dark);
+        margin-bottom: var(--space-2);
+    }
+
+    .learning-card p {
+        font-size: var(--text-sm);
+        color: var(--color-neutral-600);
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    /* Methodology */
+    .methodology-box {
+        background: var(--color-light-secondary);
+        border-radius: var(--radius-2xl);
+        padding: var(--space-8);
+        border: 1px solid var(--color-neutral-200);
+    }
+
+    .methodology-intro {
+        font-size: var(--text-lg);
+        color: var(--color-neutral-700);
+        margin-bottom: var(--space-6);
+    }
+
+    .methodology-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+    }
+
+    .methodology-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: var(--space-3);
+        color: var(--color-neutral-600);
+    }
+
+    .check {
+        color: var(--color-accent-green);
+        font-weight: bold;
+    }
+
+    /* Curriculum */
+    .curriculum-list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+    }
+
+    .curriculum-item {
+        background: white;
+        border: 1px solid var(--color-neutral-200);
+        border-radius: var(--radius-xl);
+        padding: var(--space-4) var(--space-6);
+        display: flex;
+        align-items: center;
+        gap: var(--space-4);
+    }
+
+    .month-badge {
+        color: white;
+        padding: var(--space-1) var(--space-2);
+        border-radius: var(--radius-sm);
+        font-size: var(--text-xs);
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .curriculum-title {
+        font-weight: 700;
+        color: var(--color-dark);
+        font-size: var(--text-base);
+    }
+
+    /* Sidebar */
+    .sidebar-sticky {
+        position: sticky;
+        top: calc(var(--space-24) + var(--space-4));
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-6);
+    }
+
+    .course-details-card {
+        background: white;
+        border-radius: var(--radius-2xl);
+        padding: var(--space-8);
+        box-shadow: var(--shadow-xl);
+        border: 1px solid var(--color-neutral-200);
+    }
+
+    .course-details-card h3 {
+        font-size: var(--text-xl);
+        font-weight: 700;
+        color: var(--color-dark);
+        margin-bottom: var(--space-6);
+    }
+
+    .details-list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-6);
+    }
+
+    .detail-item {
+        display: flex;
+        align-items: flex-start;
+        gap: var(--space-4);
+    }
+
+    .detail-icon {
+        background: var(--color-neutral-100);
+        padding: var(--space-2);
+        border-radius: var(--radius-lg);
+        font-size: var(--text-lg);
+    }
+
+    .detail-label {
+        font-size: var(--text-sm);
+        color: var(--color-neutral-500);
+        margin: 0;
+    }
+
+    .detail-value {
+        font-weight: 700;
+        color: var(--color-dark);
+        margin: 0;
+    }
+
+    .pricing-section {
+        margin-top: var(--space-8);
+        padding-top: var(--space-6);
+        border-top: 1px solid var(--color-neutral-200);
+    }
+
+    .price-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: var(--space-4);
+    }
+
+    .price-label {
+        font-size: var(--text-sm);
+        color: var(--color-neutral-500);
+    }
+
+    .price-value {
+        font-size: var(--text-3xl);
+        font-weight: 800;
+        color: var(--color-dark);
+    }
+
+    .price-period {
+        font-size: var(--text-sm);
+        font-weight: 400;
+        color: var(--color-neutral-500);
+    }
+
+    .btn-full {
+        width: 100%;
+    }
+
+    .guarantee-text {
+        text-align: center;
+        font-size: var(--text-xs);
+        color: var(--color-neutral-500);
+        margin-top: var(--space-3);
+    }
+
+    /* Instructor Card */
+    .instructor-card {
+        background: white;
+        border-radius: var(--radius-2xl);
+        padding: var(--space-6);
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--color-neutral-200);
+        display: flex;
+        align-items: center;
+        gap: var(--space-4);
+    }
+
+    .instructor-photo {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid var(--color-primary);
+    }
+
+    .instructor-label {
+        font-size: var(--text-xs);
+        color: var(--color-secondary);
+        font-weight: 700;
+        text-transform: uppercase;
+        margin: 0;
+    }
+
+    .instructor-name {
+        font-weight: 700;
+        color: var(--color-dark);
+        margin: var(--space-1) 0;
+    }
+
+    .instructor-role {
+        font-size: var(--text-xs);
+        color: var(--color-neutral-500);
+        margin: 0;
+    }
+
+    /* Contact Card */
+    .contact-card {
+        background: rgba(59, 130, 246, 0.05);
+        border: 1px solid rgba(59, 130, 246, 0.2);
+        border-radius: var(--radius-2xl);
+        padding: var(--space-6);
+    }
+
+    .contact-card h4 {
+        font-weight: 700;
+        color: #1e40af;
+        margin-bottom: var(--space-2);
+    }
+
+    .contact-card p {
+        font-size: var(--text-sm);
+        color: #3b82f6;
+        margin-bottom: var(--space-4);
+    }
+
+    .whatsapp-link {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        color: #2563eb;
+        font-weight: 700;
+        font-size: var(--text-sm);
+        text-decoration: none;
+    }
+
+    .whatsapp-link:hover {
+        text-decoration: underline;
+    }
+</style>

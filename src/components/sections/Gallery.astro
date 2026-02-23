@@ -1,0 +1,277 @@
+---
+import SectionHeader from "../ui/SectionHeader.astro";
+import { InfiniteCarousel } from "../carousel/InfiniteCarousel";
+
+// Gallery data
+const galleryItems = [
+    {
+        id: 2,
+        image: "/images/Foto2.jpeg",
+        alt: "Clase de programación con Arduino",
+        category: "Programación",
+    },
+    {
+        id: 3,
+        image: "/images/Foto3.jpeg",
+        alt: "Proyecto de LEGO Robotics en acción",
+        category: "LEGO Robotics",
+    },
+    {
+        id: 4,
+        image: "/images/Foto4.jpeg",
+        alt: "Estudiantes colaborando en equipo",
+        category: "Trabajo en Equipo",
+    },
+    {
+        id: 5,
+        image: "/images/Foto5.jpeg",
+        alt: "Experimentos de robótica avanzada",
+        category: "Pensamiento Lógico",
+    },
+    {
+        id: 6,
+        image: "/images/Foto6.jpeg",
+        alt: "Clase interactiva de robotica",
+        category: "Robotica",
+    },
+    {
+        id: 7,
+        image: "/images/Foto7.jpeg",
+        alt: "Proyecto final de robótica",
+        category: "Proyectos",
+    },
+    {
+        id: 8,
+        image: "/images/Foto8.jpeg",
+        alt: "Lapiz 3d",
+        category: "Innovación 3D",
+    },
+    {
+        id: 9,
+        image: "/images/Foto9.jpeg",
+        alt: "Competencia de robótica entre estudiantes",
+        category: "Competencias",
+    },
+    {
+        id: 10,
+        image: "/images/Foto10.jpeg",
+        alt: "Estudiantes orgullosos de sus logros",
+        category: "Logros",
+    },
+    {
+        id: 11,
+        image: "/images/Foto11.jpeg",
+        alt: "Sesión de aprendizaje interactivo",
+        category: "Innovación",
+    },
+    {
+        id: 12,
+        image: "/images/Foto12.jpeg",
+        alt: "Desarrollo de habilidades tecnológicas",
+        category: "Futuro Digital",
+    },
+    {
+        id: 13,
+        image: "/images/Foto13.jpeg",
+        alt: "Estudiantes ensamblando robot",
+        category: "Robótica",
+    },
+    {
+        id: 14,
+        image: "/images/Foto14.jpeg",
+        alt: "Clase de electrónica básica",
+        category: "Electrónica",
+    },
+    {
+        id: 15,
+        image: "/images/Foto15.jpeg",
+        alt: "Taller creativo de tecnología",
+        category: "Creatividad",
+    },
+    {
+        id: 16,
+        image: "/images/Foto16.jpeg",
+        alt: "Diseño y modelado 3D",
+        category: "Diseño 3D",
+    },
+    {
+        id: 17,
+        image: "/images/Foto17.jpeg",
+        alt: "Programación avanzada de robots",
+        category: "Programación",
+    },
+    {
+        id: 18,
+        image: "/images/Foto18.jpeg",
+        alt: "Trabajo colaborativo en clase",
+        category: "Colaboración",
+    },
+    {
+        id: 19,
+        image: "/images/Foto19.jpeg",
+        alt: "Presentación de proyecto final",
+        category: "Liderazgo",
+    },
+    {
+        id: 20,
+        image: "/images/Foto20.jpeg",
+        alt: "Uso de tablets para coding",
+        category: "Tecnología",
+    },
+    {
+        id: 21,
+        image: "/images/Foto21.jpeg",
+        alt: "Mentoria personalizada",
+        category: "Desarrollo",
+    },
+    {
+        id: 22,
+        image: "/images/Foto22.jpeg",
+        alt: "Estudiantes explorando kits",
+        category: "Exploración",
+    },
+    {
+        id: 23,
+        image: "/images/Foto23.jpeg",
+        alt: "Clase grupal de robótica",
+        category: "Aprendizaje",
+    },
+    {
+        id: 24,
+        image: "/images/Foto24.jpeg",
+        alt: "Experimento de ciencia divertido",
+        category: "Ciencia",
+    },
+    {
+        id: 25,
+        image: "/images/Foto25.jpeg",
+        alt: "Grupo de estudiantes felices",
+        category: "Comunidad",
+    },
+];
+---
+
+<section id="gallery" class="gallery section-padding">
+    <div class="container">
+        <SectionHeader
+            label="Nuestra Comunidad"
+            title="<span class='gradient-text'>Aprendizaje</span> en acción"
+            subtitle="Descubre cómo nuestros estudiantes dan vida a la tecnología"
+            align="center"
+        />
+
+        <!-- Infinite Carousel -->
+        <InfiniteCarousel
+            images={galleryItems}
+            speed={60}
+            itemHeight={320}
+            gap={12}
+            client:load
+        />
+
+        <!-- Inspirational CTA -->
+        <div class="gallery__cta reveal-scale">
+            <h3 class="gallery__cta-title">
+                Cada <span class="gradient-text">proyecto</span> es una nueva aventura
+            </h3>
+            <p class="gallery__cta-text">
+                Únete a nuestra comunidad de jóvenes innovadores y transforma tu
+                curiosidad en creación
+            </p>
+        </div>
+    </div>
+
+    <!-- Decorative Elements -->
+    <div class="gallery__decoration gallery__decoration--1" aria-hidden="true">
+        <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+            <circle
+                cx="60"
+                cy="60"
+                r="40"
+                stroke="currentColor"
+                stroke-width="1"
+                opacity="0.1"></circle>
+            <circle
+                cx="60"
+                cy="60"
+                r="55"
+                stroke="currentColor"
+                stroke-width="1"
+                opacity="0.05"></circle>
+        </svg>
+    </div>
+    <div class="gallery__decoration gallery__decoration--2" aria-hidden="true">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+            <rect
+                x="20"
+                y="20"
+                width="40"
+                height="40"
+                stroke="currentColor"
+                stroke-width="1"
+                opacity="0.08"
+                transform="rotate(45 40 40)"></rect>
+        </svg>
+    </div>
+</section>
+
+<style>
+    .gallery {
+        background: var(--color-light);
+        position: relative;
+        overflow: hidden;
+        padding-bottom: var(--space-4);
+    }
+
+    /* Decorative Elements */
+    .gallery__decoration {
+        position: absolute;
+        pointer-events: none;
+        color: var(--color-primary);
+    }
+
+    .gallery__decoration--1 {
+        top: 10%;
+        right: 5%;
+        animation: float 6s ease-in-out infinite;
+    }
+
+    .gallery__decoration--2 {
+        bottom: 15%;
+        left: 8%;
+        animation: float 8s ease-in-out infinite reverse;
+    }
+
+    /* CTA Section */
+    .gallery__cta {
+        margin-top: var(--space-2);
+        margin-bottom: var(--space-2);
+        text-align: center;
+        padding: var(--space-3) var(--space-6);
+        background: white;
+        border-radius: var(--radius-2xl);
+        box-shadow: var(--shadow-lg);
+        border: 1px solid var(--color-neutral-200);
+    }
+
+    .gallery__cta-title {
+        font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+        font-weight: 700;
+        margin-bottom: var(--space-4);
+        color: var(--color-dark);
+    }
+
+    .gallery__cta-text {
+        font-size: var(--text-lg);
+        color: var(--color-neutral-600);
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    /* Accessibility - Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+        .gallery__decoration {
+            animation: none;
+        }
+    }
+</style>

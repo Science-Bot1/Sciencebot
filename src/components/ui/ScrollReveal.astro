@@ -1,0 +1,74 @@
+---
+/**
+ * ScrollReveal Component
+ *
+ * Handles scroll-triggered animations using native Intersection Observer API.
+ * Supports individual elements (.reveal) and staggered children (.stagger-children).
+ * Animations play only once when elements enter the viewport.
+ */
+---
+
+<script>
+    // Configuration
+    const REVEAL_THRESHOLD = 0.15; // Trigger when 15% visible
+    const STAGGER_THRESHOLD = 0.1; // Trigger stagger slightly earlier
+
+    /**
+     * Initialize scroll reveal animations
+     */
+    function initScrollReveal() {
+        // Observer for individual reveal elements
+        const revealObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                        // Unobserve after animation (one-time only)
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            },
+            {
+                threshold: REVEAL_THRESHOLD,
+                rootMargin: "0px 0px -50px 0px", // Trigger slightly before fully in view
+            },
+        );
+
+        // Observer for stagger containers
+        const staggerObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                        // Unobserve after animation (one-time only)
+                        staggerObserver.unobserve(entry.target);
+                    }
+                });
+            },
+            {
+                threshold: STAGGER_THRESHOLD,
+                rootMargin: "0px 0px -30px 0px",
+            },
+        );
+
+        // Observe all reveal elements
+        document.querySelectorAll(".reveal").forEach((el) => {
+            revealObserver.observe(el);
+        });
+
+        // Observe all stagger containers
+        document.querySelectorAll(".stagger-children").forEach((el) => {
+            staggerObserver.observe(el);
+        });
+    }
+
+    // Initialize on DOM ready
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initScrollReveal);
+    } else {
+        initScrollReveal();
+    }
+
+    // Re-initialize on Astro page transitions (if using View Transitions)
+    document.addEventListener("astro:page-load", initScrollReveal);
+</script>

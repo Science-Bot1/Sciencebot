@@ -1,0 +1,86 @@
+---
+import "../styles/global.css";
+import ScrollReveal from "../components/ui/ScrollReveal.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "ScienceBot | Robótica y Programación para Jóvenes",
+  description = "Academia online de robótica y programación para niños y adolescentes de 6 a 17 años. Aprende LEGO Robotics, Scratch, Python, Arduino y más.",
+} = Astro.props;
+
+const siteUrl = "https://sciencebot.academy";
+const ogImage = "/og-image.jpg";
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="robótica para niños, programación para jóvenes, LEGO robotics, Scratch, Python, Arduino, academia de robótica, cursos de programación"
+    />
+    <meta name="author" content="ScienceBot" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="es_ES" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={siteUrl} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImage} />
+
+    <!-- Schema.org -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        name: "ScienceBot",
+        description: description,
+        url: siteUrl,
+        logo: `${siteUrl}/logo.svg`,
+        sameAs: [],
+        offers: {
+          "@type": "Offer",
+          category: "Cursos de Robótica y Programación",
+        },
+        audience: {
+          "@type": "EducationalAudience",
+          educationalRole: "student",
+          audienceType: "Niños y Adolescentes 6-17 años",
+        },
+      })}
+    />
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body>
+    <slot />
+
+    <!-- Scroll Reveal Animations -->
+    <ScrollReveal />
+  </body>
+</html>

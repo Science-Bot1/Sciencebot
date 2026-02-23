@@ -1,0 +1,401 @@
+---
+import type { TimelineEvent, TimelineCategory } from "../../data/timeline.ts";
+import { groupEventsByYear } from "../../data/timeline.ts";
+import TimelineEventComponent from "./TimelineEvent.astro";
+
+interface Props {
+    events: TimelineEvent[];
+    categories: TimelineCategory[];
+    title?: string;
+    subtitle?: string;
+    showCategoryFilter?: boolean;
+}
+
+const {
+    events,
+    categories,
+    title = "Nuestra Historia",
+    subtitle = "El viaje de ScienceBot a través del tiempo",
+    showCategoryFilter = true,
+} = Astro.props;
+
+// Group events by year for organized display
+const eventsByYear = groupEventsByYear();
+const years = Array.from(eventsByYear.keys()).sort((a, b) => a - b);
+
+// Helper to find category by id
+const getCategoryById = (categoryId: string) =>
+    categories.find((cat) => cat.id === categoryId) || categories[0];
+---
+
+<section id="timeline" class="timeline-section section-padding">
+    <div class="container">
+        <!-- Section Header -->
+        <div class="timeline-header reveal">
+            <h2 class="timeline-heading">{title}</h2>
+            <p class="timeline-subheading">{subtitle}</p>
+        </div>
+
+        <!-- Category Filters -->
+        {
+            showCategoryFilter && (
+                <div
+                    class="timeline-filters reveal"
+                    style="animation-delay: 200ms;"
+                >
+                    <button
+                        class="filter-btn active"
+                        data-category="all"
+                        aria-label="Mostrar todos los eventos"
+                    >
+                        <span class="filter-icon">🎯</span>
+                        <span class="filter-text">Todos</span>
+                    </button>
+                    {categories.map((category) => (
+                        <button
+                            class="filter-btn"
+                            data-category={category.id}
+                            style={`--filter-color: ${category.color};`}
+                            aria-label={`Filtrar por ${category.name}`}
+                        >
+                            <span class="filter-icon">{category.icon}</span>
+                            <span class="filter-text">{category.name}</span>
+                        </button>
+                    ))}
+                </div>
+            )
+        }
+
+        <!-- Timeline Container -->
+        <div class="timeline-container">
+            <!-- Central Timeline Line -->
+            <div class="timeline-line"></div>
+
+            <!-- Timeline Events -->
+            <div class="timeline-events stagger-children">
+                {
+                    events.map((event, index) => {
+                        const category = getCategoryById(event.category);
+                        const isLeft = index % 2 === 0;
+                        return (
+                            <TimelineEventComponent
+                                event={event}
+                                category={category}
+                                index={index}
+                                isLeft={isLeft}
+                            />
+                        );
+                    })
+                }
+            </div>
+        </div>
+
+        <!-- End Marker -->
+        <div class="timeline-end reveal">
+            <div class="timeline-end-icon">🚀</div>
+            <p class="timeline-end-text">El futuro continúa escribiéndose...</p>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Category filter functionality
+    function initTimelineFilters() {
+        const filterBtns = document.querySelectorAll(".filter-btn");
+        const timelineEvents = document.querySelectorAll(".timeline-event");
+
+        filterBtns.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                const category = btn.getAttribute("data-category");
+
+                // Update active state
+                filterBtns.forEach((b) => b.classList.remove("active"));
+                btn.classList.add("active");
+
+                // Filter events with smooth transition
+                timelineEvents.forEach((event, index) => {
+                    const htmlEvent = event as HTMLElement;
+                    const eventCategory =
+                        htmlEvent.getAttribute("data-category");
+                    const shouldShow =
+                        category === "all" || eventCategory === category;
+
+                    if (shouldShow) {
+                        htmlEvent.style.display = "grid";
+                        // Re-trigger animation
+                        setTimeout(() => {
+                            htmlEvent.classList.add("active");
+                        }, index * 50);
+                    } else {
+                        htmlEvent.classList.remove("active");
+                        setTimeout(() => {
+                            htmlEvent.style.display = "none";
+                        }, 300);
+                    }
+                });
+            });
+        });
+    }
+
+    // Initialize on page load
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initTimelineFilters);
+    } else {
+        initTimelineFilters();
+    }
+
+    // Re-initialize on Astro page transitions
+    document.addEventListener("astro:page-load", initTimelineFilters);
+</script>
+
+<style>
+    .timeline-section {
+        position: relative;
+        background: linear-gradient(
+            180deg,
+            var(--color-light) 0%,
+            var(--color-neutral-100) 50%,
+            var(--color-light) 100%
+        );
+        overflow: hidden;
+    }
+
+    .timeline-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 200%;
+        height: 100%;
+        background: radial-gradient(
+            ellipse at center,
+            rgba(139, 92, 246, 0.05) 0%,
+            transparent 60%
+        );
+        pointer-events: none;
+    }
+
+    /* Section Header */
+    .timeline-header {
+        text-align: center;
+        margin-bottom: var(--space-16);
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .timeline-heading {
+        font-size: clamp(var(--text-4xl), 5vw, var(--text-6xl));
+        font-weight: 800;
+        background: var(--gradient-text);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: var(--space-4);
+    }
+
+    .timeline-subheading {
+        font-size: var(--text-lg);
+        color: var(--color-neutral-600);
+        line-height: 1.6;
+    }
+
+    /* Category Filters */
+    .timeline-filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-3);
+        justify-content: center;
+        margin-bottom: var(--space-16);
+        padding: var(--space-4);
+    }
+
+    .filter-btn {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        padding: var(--space-3) var(--space-6);
+        background: white;
+        border: 2px solid var(--color-neutral-200);
+        border-radius: var(--radius-full);
+        font-family: var(--font-sans);
+        font-size: var(--text-sm);
+        font-weight: 600;
+        color: var(--color-neutral-700);
+        cursor: pointer;
+        transition: all var(--transition-base);
+        box-shadow: var(--shadow-sm);
+    }
+
+    .filter-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+        border-color: var(--filter-color, var(--color-primary));
+        background: var(--color-light);
+    }
+
+    .filter-btn.active {
+        background: var(--filter-color, var(--color-primary));
+        border-color: var(--filter-color, var(--color-primary));
+        color: white;
+        box-shadow:
+            var(--shadow-lg),
+            0 0 20px rgba(139, 92, 246, 0.3);
+    }
+
+    .filter-icon {
+        font-size: 1.25rem;
+        transition: transform var(--transition-base);
+    }
+
+    .filter-btn:hover .filter-icon,
+    .filter-btn.active .filter-icon {
+        transform: scale(1.2) rotate(-5deg);
+    }
+
+    .filter-text {
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    /* Timeline Container */
+    .timeline-container {
+        position: relative;
+        padding: var(--space-8) 0;
+        min-height: 200px;
+    }
+
+    /* Central Timeline Line */
+    .timeline-line {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(
+            180deg,
+            transparent 0%,
+            var(--color-neutral-300) 5%,
+            var(--color-primary) 20%,
+            var(--color-secondary) 50%,
+            var(--color-accent-cyan) 80%,
+            var(--color-neutral-300) 95%,
+            transparent 100%
+        );
+        transform: translateX(-50%);
+        border-radius: var(--radius-full);
+        opacity: 0.6;
+        z-index: 1;
+    }
+
+    /* Timeline Events Container */
+    .timeline-events {
+        position: relative;
+        z-index: 2;
+    }
+
+    /* Timeline End Marker */
+    .timeline-end {
+        text-align: center;
+        margin-top: var(--space-16);
+        padding: var(--space-8);
+    }
+
+    .timeline-end-icon {
+        font-size: 4rem;
+        margin-bottom: var(--space-4);
+        animation: float 3s ease-in-out infinite;
+    }
+
+    .timeline-end-text {
+        font-size: var(--text-xl);
+        font-weight: 600;
+        color: var(--color-neutral-600);
+        font-style: italic;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+        .timeline-header {
+            margin-bottom: var(--space-12);
+        }
+
+        .timeline-filters {
+            margin-bottom: var(--space-12);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .timeline-line {
+            left: 16px;
+        }
+
+        .timeline-header {
+            margin-bottom: var(--space-10);
+        }
+
+        .timeline-filters {
+            gap: var(--space-2);
+            margin-bottom: var(--space-10);
+        }
+
+        .filter-btn {
+            padding: var(--space-2) var(--space-4);
+            font-size: var(--text-xs);
+        }
+
+        .filter-icon {
+            font-size: 1rem;
+        }
+
+        .timeline-container {
+            padding: var(--space-8) 0;
+        }
+
+        .timeline-end {
+            margin-top: var(--space-12);
+            padding: var(--space-6);
+        }
+
+        .timeline-end-icon {
+            font-size: 3rem;
+        }
+
+        .timeline-end-text {
+            font-size: var(--text-lg);
+        }
+    }
+
+    @media (max-width: 480px) {
+        .timeline-filters {
+            padding: var(--space-2);
+        }
+
+        .filter-btn {
+            flex: 1 1 calc(50% - var(--space-2));
+            min-width: 120px;
+            justify-content: center;
+        }
+
+        .timeline-heading {
+            font-size: var(--text-3xl);
+        }
+
+        .timeline-subheading {
+            font-size: var(--text-base);
+        }
+    }
+
+    /* Print Styles */
+    @media print {
+        .timeline-filters {
+            display: none;
+        }
+
+        .timeline-line {
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+    }
+</style>

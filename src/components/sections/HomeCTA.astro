@@ -1,0 +1,415 @@
+---
+// HomeCTA.astro - Call-to-action section for Home page
+import Button from "../ui/Button.astro";
+
+const stats = [
+    { value: "500+", label: "Estudiantes", icon: "users" },
+    { value: "15+", label: "Cursos", icon: "book" },
+    { value: "98%", label: "Satisfacción", icon: "star" },
+    { value: "10+", label: "Años", icon: "award" },
+];
+---
+
+<section id="home-cta" class="home-cta section-padding">
+    <div class="home-cta__background">
+        <div class="home-cta__gradient"></div>
+        <div class="home-cta__pattern"></div>
+    </div>
+
+    <div class="container">
+        <div class="home-cta__content reveal">
+            <!-- Main CTA Text -->
+            <div class="home-cta__text">
+                <h2 class="home-cta__title">
+                    Únete a la próxima generación de <span class="gradient-text"
+                        >innovadores</span
+                    >
+                </h2>
+                <p class="home-cta__description">
+                    Forma parte de una comunidad donde la creatividad se combina
+                    con la tecnología. Nuestros programas están diseñados para
+                    transformar la curiosidad en habilidades que preparan a tus
+                    hijos para el futuro.
+                </p>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="home-cta__stats stagger-children">
+                {
+                    stats.map((stat) => (
+                        <div class="stat-item">
+                            <div class="stat-item__icon">
+                                {stat.icon === "users" && (
+                                    <svg
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                    >
+                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                        <circle cx="9" cy="7" r="4" />
+                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                                    </svg>
+                                )}
+                                {stat.icon === "book" && (
+                                    <svg
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                    >
+                                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                                    </svg>
+                                )}
+                                {stat.icon === "star" && (
+                                    <svg
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                    >
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                    </svg>
+                                )}
+                                {stat.icon === "award" && (
+                                    <svg
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                    >
+                                        <circle cx="12" cy="8" r="7" />
+                                        <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+                                    </svg>
+                                )}
+                            </div>
+                            <div class="stat-item__content">
+                                <span class="stat-item__value">
+                                    {stat.value}
+                                </span>
+                                <span class="stat-item__label">
+                                    {stat.label}
+                                </span>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="home-cta__buttons">
+                <Button href="/academia" variant="primary" size="lg">
+                    <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                        <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                    </svg>
+                    Visitar Academia
+                </Button>
+                <Button href="#" variant="outline" size="lg" data-inscribe-btn>
+                    Inscríbete Ahora
+                </Button>
+                <Button href="/contacto" variant="secondary" size="lg">
+                    Conocer Más
+                </Button>
+            </div>
+
+            <!-- Trust Indicators -->
+            <div class="home-cta__trust">
+                <div class="trust-badge">
+                    <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    <span>Certificado de Calidad</span>
+                </div>
+                <div class="trust-badge">
+                    <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+                        ></path>
+                    </svg>
+                    <span>Educación Garantizada</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Home CTA Section */
+    .home-cta {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .home-cta__background {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+    }
+
+    .home-cta__gradient {
+        position: absolute;
+        inset: 0;
+        background:
+            radial-gradient(
+                ellipse 100% 70% at 50% 50%,
+                rgba(139, 92, 246, 0.15) 0%,
+                transparent 70%
+            ),
+            radial-gradient(
+                ellipse 80% 60% at 20% 30%,
+                rgba(163, 230, 53, 0.1) 0%,
+                transparent 60%
+            );
+    }
+
+    .home-cta__pattern {
+        position: absolute;
+        inset: 0;
+        background-image:
+            linear-gradient(rgba(139, 92, 246, 0.04) 1px, transparent 1px),
+            linear-gradient(
+                90deg,
+                rgba(139, 92, 246, 0.04) 1px,
+                transparent 1px
+            );
+        background-size: 40px 40px;
+        mask-image: radial-gradient(
+            ellipse 80% 60% at 50% 50%,
+            black 30%,
+            transparent 80%
+        );
+    }
+
+    /* Content */
+    .home-cta__content {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-10);
+    }
+
+    .home-cta__text {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+    }
+
+    .home-cta__title {
+        font-size: clamp(var(--text-3xl), 5vw, var(--text-5xl));
+        font-weight: 800;
+        line-height: 1.2;
+        color: var(--color-dark);
+    }
+
+    .home-cta__description {
+        font-size: var(--text-lg);
+        color: var(--color-neutral-600);
+        line-height: 1.7;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    /* Stats */
+    .home-cta__stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-6);
+        padding: var(--space-8) 0;
+    }
+
+    @media (min-width: 768px) {
+        .home-cta__stats {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    .stat-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-3);
+        padding: var(--space-5);
+        background: white;
+        border: 1px solid var(--color-neutral-200);
+        border-radius: var(--radius-xl);
+        transition: all var(--transition-base);
+    }
+
+    .stat-item:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--color-primary);
+    }
+
+    .stat-item__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        background: var(--gradient-primary);
+        border-radius: 50%;
+        color: white;
+    }
+
+    .stat-item__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-1);
+    }
+
+    .stat-item__value {
+        font-size: var(--text-3xl);
+        font-weight: 800;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1;
+    }
+
+    .stat-item__label {
+        font-size: var(--text-sm);
+        color: var(--color-neutral-600);
+        font-weight: 600;
+    }
+
+    /* Buttons */
+    .home-cta__buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-4);
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Trust Indicators */
+    .home-cta__trust {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-6);
+        justify-content: center;
+        padding-top: var(--space-6);
+        border-top: 1px solid var(--color-neutral-200);
+    }
+
+    .trust-badge {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        font-size: var(--text-sm);
+        font-weight: 600;
+        color: var(--color-neutral-600);
+    }
+
+    .trust-badge svg {
+        color: var(--color-accent-green);
+        flex-shrink: 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+        .home-cta__content {
+            gap: var(--space-8);
+        }
+
+        .home-cta__stats {
+            gap: var(--space-4);
+        }
+
+        .stat-item {
+            padding: var(--space-4);
+        }
+
+        .stat-item__icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        .stat-item__icon svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .stat-item__value {
+            font-size: var(--text-2xl);
+        }
+
+        .home-cta__buttons {
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .home-cta__buttons :global(.btn) {
+            width: 100%;
+        }
+    }
+</style>
+
+<script>
+    // Handle "Inscríbete Ahora" button click
+    document.addEventListener("DOMContentLoaded", () => {
+        const inscribeBtn = document.querySelector("[data-inscribe-btn]");
+
+        inscribeBtn?.addEventListener("click", (e) => {
+            e.preventDefault();
+            alert(
+                "La inscripción estará disponible próximamente. ¡Mantente atento!",
+            );
+        });
+
+        // Scroll reveal animations
+        const reveals = document.querySelectorAll(".reveal");
+        const staggerContainers =
+            document.querySelectorAll(".stagger-children");
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                    }
+                });
+            },
+            { threshold: 0.1 },
+        );
+
+        reveals.forEach((el) => observer.observe(el));
+        staggerContainers.forEach((el) => observer.observe(el));
+    });
+</script>

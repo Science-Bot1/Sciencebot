@@ -1,0 +1,465 @@
+---
+import SectionHeader from "../ui/SectionHeader.astro";
+
+const benefits = [
+    {
+        id: 1,
+        title: "Pensamiento lógico y resolución de problemas",
+        description:
+            "Los estudiantes aprenden a descomponer problemas complejos en pasos simples, desarrollando habilidades de análisis que les servirán en cualquier área de su vida.",
+        icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>`,
+    },
+    {
+        id: 2,
+        title: "Creatividad y diseño",
+        description:
+            "Cada proyecto es una oportunidad para crear. Desde diseñar robots hasta desarrollar videojuegos, los estudiantes expresan su creatividad mientras aprenden.",
+        icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>`,
+    },
+    {
+        id: 3,
+        title: "Trabajo en equipo",
+        description:
+            "Muchos proyectos se realizan en grupos, donde aprenden a colaborar, comunicar ideas y resolver conflictos de manera constructiva.",
+        icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+    },
+    {
+        id: 4,
+        title: "Preparación para el futuro digital",
+        description:
+            "Las habilidades tecnológicas son esenciales en el mundo actual. Preparamos a los estudiantes para las carreras del futuro con fundamentos sólidos.",
+        icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>`,
+    },
+    {
+        id: 5,
+        title: "Metodología práctica y divertida",
+        description:
+            "Aprender haciendo es nuestra filosofía. Cada clase incluye proyectos prácticos que mantienen a los estudiantes motivados y comprometidos.",
+        icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+    },
+    {
+        id: 6,
+        title: "Grupos reducidos y atención personalizada",
+        description:
+            "Máximo 8 estudiantes por grupo garantiza que cada niño reciba la atención que necesita para avanzar a su propio ritmo.",
+        icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`,
+    },
+];
+---
+
+<section id="benefits" class="benefits dark-section section-padding">
+    <div class="container">
+        <SectionHeader
+            label="¿Por qué elegirnos?"
+            title="Beneficios que <span class='gradient-text'>transforman</span> el aprendizaje"
+            subtitle="Más que programación: formamos habilidades para toda la vida"
+            align="center"
+            dark={true}
+        />
+
+        <!-- Accordion Grid -->
+        <div class="benefits__grid">
+            {
+                benefits.map((benefit) => (
+                    <div
+                        class="benefit-accordion"
+                        data-accordion-id={benefit.id}
+                    >
+                        <button
+                            class="benefit-accordion__trigger"
+                            aria-expanded="false"
+                        >
+                            <div
+                                class="benefit-accordion__icon"
+                                aria-hidden="true"
+                            >
+                                <Fragment set:html={benefit.icon} />
+                            </div>
+                            <h3 class="benefit-accordion__title">
+                                {benefit.title}
+                            </h3>
+                            <svg
+                                class="benefit-accordion__chevron"
+                                width="20"
+                                height="20"
+                                viewBox="0 0 20 20"
+                                fill="none"
+                            >
+                                <path
+                                    d="M5 7.5L10 12.5L15 7.5"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                            </svg>
+                        </button>
+                        <div class="benefit-accordion__content">
+                            <p class="benefit-accordion__description">
+                                {benefit.description}
+                            </p>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+
+        <!-- Visual Stats -->
+        <div class="benefits__visual">
+            <div class="benefits__stat-card">
+                <div class="benefits__stat-icon">
+                    <svg
+                        width="32"
+                        height="32"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"
+                        ></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                </div>
+                <span class="benefits__stat-value" data-target="500">0</span>
+                <span class="benefits__stat-label">Estudiantes graduados</span>
+            </div>
+
+            <div class="benefits__stat-card">
+                <div class="benefits__stat-icon">
+                    <svg
+                        width="32"
+                        height="32"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <polygon
+                            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                        ></polygon>
+                    </svg>
+                </div>
+                <span class="benefits__stat-value" data-target="98">0</span>
+                <span class="benefits__stat-label">% Satisfacción</span>
+            </div>
+
+            <div class="benefits__stat-card">
+                <div class="benefits__stat-icon">
+                    <svg
+                        width="32"
+                        height="32"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <path
+                            d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                        ></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                </div>
+                <span class="benefits__stat-value" data-target="15">0</span>
+                <span class="benefits__stat-label">Cursos disponibles</span>
+            </div>
+
+            <div class="benefits__stat-card">
+                <div class="benefits__stat-icon">
+                    <svg
+                        width="32"
+                        height="32"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                </div>
+                <span class="benefits__stat-value" data-target="5">0</span>
+                <span class="benefits__stat-label">Años de experiencia</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Section Background */
+    .benefits {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .benefits::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+            radial-gradient(
+                ellipse 50% 50% at 20% 20%,
+                rgba(139, 92, 246, 0.08) 0%,
+                transparent 50%
+            ),
+            radial-gradient(
+                ellipse 40% 40% at 80% 80%,
+                rgba(163, 230, 53, 0.06) 0%,
+                transparent 50%
+            );
+        pointer-events: none;
+    }
+
+    /* Accordion Grid - Responsive */
+    .benefits__grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+        margin-top: var(--space-12);
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+        align-items: start; /* Each accordion independent height */
+    }
+
+    @media (min-width: 1024px) {
+        .benefits__grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-6);
+        }
+    }
+
+    /* Accordion Item */
+    .benefit-accordion {
+        background: #0f1115;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        transition: all var(--transition-base);
+    }
+
+    .benefit-accordion:hover {
+        border-color: rgba(163, 230, 53, 0.3);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Accordion Trigger (Button) */
+    .benefit-accordion__trigger {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: var(--space-4);
+        padding: var(--space-6);
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        text-align: left;
+        transition: background var(--transition-base);
+    }
+
+    .benefit-accordion__trigger:hover {
+        background: rgba(163, 230, 53, 0.05);
+    }
+
+    /* Icon Container */
+    .benefit-accordion__icon {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        background: var(--color-accent-lime);
+        color: var(--color-dark);
+        border-radius: var(--radius-lg);
+        transition: transform var(--transition-base);
+    }
+
+    .benefit-accordion__trigger:hover .benefit-accordion__icon {
+        transform: scale(1.05);
+    }
+
+    .benefit-accordion__icon :global(svg) {
+        width: 24px;
+        height: 24px;
+    }
+
+    /* Title */
+    .benefit-accordion__title {
+        flex: 1;
+        font-size: var(--text-lg);
+        font-weight: 600;
+        color: #f1f5f9;
+        margin: 0;
+        line-height: 1.4;
+    }
+
+    /* Chevron */
+    .benefit-accordion__chevron {
+        flex-shrink: 0;
+        color: #94a3b8;
+        transition: transform var(--transition-base);
+    }
+
+    .benefit-accordion.is-open .benefit-accordion__chevron {
+        transform: rotate(180deg);
+    }
+
+    /* Accordion Content (Expandable) */
+    .benefit-accordion__content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height var(--transition-slow);
+    }
+
+    .benefit-accordion.is-open .benefit-accordion__content {
+        max-height: 500px;
+    }
+
+    /* Description */
+    .benefit-accordion__description {
+        padding: 0 var(--space-6) var(--space-6)
+            calc(48px + var(--space-6) + var(--space-4));
+        font-size: var(--text-base);
+        color: #cbd5e1;
+        line-height: 1.7;
+        margin: 0;
+    }
+
+    @media (max-width: 768px) {
+        .benefit-accordion__description {
+            padding-left: var(--space-6);
+        }
+    }
+
+    /* Visual Stats Section */
+    .benefits__visual {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-4);
+        margin-top: var(--space-16);
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    @media (min-width: 768px) {
+        .benefits__visual {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    .benefits__stat-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-3);
+        padding: var(--space-6);
+        background: #0f1115;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: var(--radius-xl);
+        text-align: center;
+        transition: all var(--transition-base);
+        backdrop-filter: blur(10px);
+    }
+
+    .benefits__stat-card:hover {
+        background: #1a1d23;
+        transform: translateY(-4px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .benefits__stat-icon {
+        color: var(--color-accent-lime);
+    }
+
+    .benefits__stat-value {
+        font-size: var(--text-4xl);
+        font-weight: 700;
+        color: var(--color-accent-lime);
+        line-height: 1;
+    }
+
+    .benefits__stat-value::after {
+        content: "+";
+    }
+
+    .benefits__stat-label {
+        font-size: var(--text-sm);
+        color: #cbd5e1;
+        font-weight: 500;
+    }
+
+    /* Accessibility - Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+        .benefit-accordion,
+        .benefit-accordion__trigger,
+        .benefit-accordion__icon,
+        .benefit-accordion__chevron,
+        .benefit-accordion__content,
+        .benefits__stat-card {
+            transition: none;
+        }
+    }
+</style>
+
+<script>
+    // Accordion functionality - Independent toggle (multiple can be open)
+    const accordions = document.querySelectorAll(".benefit-accordion");
+
+    accordions.forEach((accordion) => {
+        const trigger = accordion.querySelector(".benefit-accordion__trigger");
+
+        trigger?.addEventListener("click", () => {
+            // Toggle only the clicked accordion
+            const isOpen = accordion.classList.contains("is-open");
+            accordion.classList.toggle("is-open");
+            trigger.setAttribute("aria-expanded", isOpen ? "false" : "true");
+        });
+    });
+
+    // Counter animation for stats
+    const counters = document.querySelectorAll(".benefits__stat-value");
+
+    const animateCounter = (counter: Element) => {
+        const target = parseInt(counter.getAttribute("data-target") || "0");
+        const duration = 2000;
+        const step = target / (duration / 16);
+        let current = 0;
+
+        const updateCounter = () => {
+            current += step;
+            if (current < target) {
+                counter.textContent = Math.floor(current).toString();
+                requestAnimationFrame(updateCounter);
+            } else {
+                counter.textContent = target.toString();
+            }
+        };
+
+        updateCounter();
+    };
+
+    // Intersection Observer for counter animation
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    counters.forEach(animateCounter);
+                    observer.disconnect();
+                }
+            });
+        },
+        { threshold: 0.5 },
+    );
+
+    const benefitsSection = document.getElementById("benefits");
+    if (benefitsSection) {
+        observer.observe(benefitsSection);
+    }
+</script>

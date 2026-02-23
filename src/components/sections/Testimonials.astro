@@ -1,0 +1,441 @@
+---
+import SectionHeader from "../ui/SectionHeader.astro";
+
+const testimonials = [
+    {
+        id: 1,
+        name: "María García",
+        role: "Madre de Sebastián, 9 años",
+        image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face",
+        quote: "Mi hijo llegaba frustrado de otras clases de tecnología. En ScienceBot encontró un espacio donde puede aprender a su ritmo. Ahora no para de hablar de sus proyectos de robótica.",
+        rating: 5,
+        course: "Robótica LEGO",
+    },
+    {
+        id: 2,
+        name: "Carlos Rodríguez",
+        role: "Padre de Valentina, 12 años",
+        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+        quote: "Valentina siempre mostró interés por la tecnología pero no sabíamos cómo canalizarlo. Los cursos de Python le abrieron un mundo nuevo. Ya está creando sus propios juegos.",
+        rating: 5,
+        course: "Python",
+    },
+    {
+        id: 3,
+        name: "Ana Martínez",
+        role: "Madre de Diego, 14 años",
+        image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+        quote: "La metodología práctica es excelente. Diego no solo aprende a programar, desarrolla habilidades de trabajo en equipo y resolución de problemas que le servirán para toda la vida.",
+        rating: 5,
+        course: "Arduino",
+    },
+    {
+        id: 4,
+        name: "Roberto Sánchez",
+        role: "Padre de Lucía y Mateo",
+        image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+        quote: "Tengo dos hijos en ScienceBot, cada uno en un nivel diferente. Me encanta ver cómo colaboran en casa en proyectos conjuntos. La inversión vale cada centavo.",
+        rating: 5,
+        course: "Scratch y Python",
+    },
+    {
+        id: 5,
+        name: "Laura Fernández",
+        role: "Madre de Sofía, 7 años",
+        image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face",
+        quote: "Sofía empezó con Scratch Jr a los 6 años. Ahora con 7 ya está creando sus propias historias animadas. Los profesores son increíblemente pacientes y motivadores.",
+        rating: 5,
+        course: "Scratch Jr",
+    },
+];
+---
+
+<section id="testimonials" class="testimonials section-padding">
+    <div class="container">
+        <SectionHeader
+            label="Testimonios"
+            title="Lo que dicen las <span class='gradient-text'>familias</span>"
+            subtitle="Padres satisfechos, niños felices aprendiendo"
+            align="center"
+        />
+
+        <div class="testimonials__carousel-wrapper reveal">
+            <div
+                class="testimonials__carousel stagger-children"
+                id="testimonials-carousel"
+            >
+                {
+                    testimonials.map((testimonial) => (
+                        <div class="testimonials__card">
+                            <div class="testimonials__card-header">
+                                <img
+                                    src={testimonial.image}
+                                    alt={testimonial.name}
+                                    class="testimonials__avatar"
+                                    loading="lazy"
+                                />
+                                <div class="testimonials__author">
+                                    <span class="testimonials__name">
+                                        {testimonial.name}
+                                    </span>
+                                    <span class="testimonials__role">
+                                        {testimonial.role}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div
+                                class="testimonials__rating"
+                                aria-label={`${testimonial.rating} de 5 estrellas`}
+                            >
+                                {Array.from({ length: 5 }).map((_, i) => (
+                                    <svg
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        fill={
+                                            i < testimonial.rating
+                                                ? "currentColor"
+                                                : "none"
+                                        }
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                        class="testimonials__star"
+                                    >
+                                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                                    </svg>
+                                ))}
+                            </div>
+
+                            <blockquote class="testimonials__quote">
+                                "{testimonial.quote}"
+                            </blockquote>
+
+                            <span class="testimonials__course">
+                                <svg
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                >
+                                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                                </svg>
+                                {testimonial.course}
+                            </span>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="testimonials__nav">
+            <button
+                class="testimonials__nav-btn"
+                id="testimonials-prev"
+                aria-label="Anterior testimonio"
+            >
+                <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                >
+                    <path d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </button>
+            <div class="testimonials__dots" id="testimonials-dots">
+                {
+                    testimonials
+                        .slice(0, 4)
+                        .map((_, index) => (
+                            <button
+                                class={`testimonials__dot ${index === 0 ? "active" : ""}`}
+                                data-index={index}
+                                aria-label={`Ir al testimonio ${index + 1}`}
+                            />
+                        ))
+                }
+            </div>
+            <button
+                class="testimonials__nav-btn"
+                id="testimonials-next"
+                aria-label="Siguiente testimonio"
+            >
+                <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                >
+                    <path d="M9 5l7 7-7 7"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Decorative quote marks -->
+    <div class="testimonials__decoration" aria-hidden="true">
+        <svg
+            width="120"
+            height="100"
+            viewBox="0 0 178 178"
+            fill="none"
+            opacity="0.03"
+        >
+            <path
+                d="M74.1667 0C33.2917 0 0 33.2917 0 74.1667V178H74.1667V74.1667H24.7222C24.7222 46.75 46.75 24.7222 74.1667 24.7222V0ZM178 0C137.125 0 103.833 33.2917 103.833 74.1667V178H178V74.1667H128.556C128.556 46.75 150.583 24.7222 178 24.7222V0Z"
+                fill="currentColor"></path>
+        </svg>
+    </div>
+</section>
+
+<style>
+    .testimonials {
+        background: var(--color-light);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .testimonials__decoration {
+        position: absolute;
+        top: var(--space-20);
+        left: var(--space-10);
+        color: var(--color-dark);
+    }
+
+    .testimonials__carousel-wrapper {
+        overflow: hidden;
+    }
+
+    .testimonials__carousel {
+        display: flex;
+        gap: var(--space-6);
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        padding: var(--space-4);
+        margin: 0 calc(-1 * var(--space-4));
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .testimonials__carousel::-webkit-scrollbar {
+        display: none;
+    }
+
+    .testimonials__card {
+        flex: 0 0 min(100%, 400px);
+        scroll-snap-align: center;
+        padding: var(--space-8);
+        background: white;
+        border: 1px solid var(--color-neutral-200);
+        border-radius: var(--radius-2xl);
+        box-shadow: var(--shadow-sm);
+        transition: all var(--transition-base);
+    }
+
+    @media (min-width: 1024px) {
+        .testimonials__card {
+            flex: 0 0 calc((100% - (2 * var(--space-6))) / 3);
+            max-width: none;
+        }
+    }
+
+    .testimonials__card:hover {
+        border-color: var(--color-primary);
+        box-shadow: var(--shadow-lg);
+        transform: translateY(-4px);
+    }
+
+    .testimonials__card-header {
+        display: flex;
+        align-items: center;
+        gap: var(--space-4);
+        margin-bottom: var(--space-4);
+    }
+
+    .testimonials__avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid var(--color-primary);
+    }
+
+    .testimonials__author {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-1);
+    }
+
+    .testimonials__name {
+        font-size: var(--text-lg);
+        font-weight: 600;
+        color: var(--color-dark);
+    }
+
+    .testimonials__role {
+        font-size: var(--text-sm);
+        color: var(--color-neutral-500);
+    }
+
+    .testimonials__rating {
+        display: flex;
+        gap: var(--space-1);
+        margin-bottom: var(--space-4);
+    }
+
+    .testimonials__star {
+        color: #f59e0b;
+    }
+
+    .testimonials__quote {
+        font-size: var(--text-base);
+        line-height: 1.7;
+        color: var(--color-neutral-600);
+        margin: 0 0 var(--space-4);
+        font-style: italic;
+    }
+
+    .testimonials__course {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        padding: var(--space-2) var(--space-3);
+        background: var(--color-neutral-100);
+        color: var(--color-neutral-600);
+        font-size: var(--text-sm);
+        font-weight: 500;
+        border-radius: var(--radius-full);
+    }
+
+    /* Navigation */
+    .testimonials__nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-6);
+        margin-top: var(--space-8);
+    }
+
+    .testimonials__nav-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        background: white;
+        border: 1px solid var(--color-neutral-200);
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all var(--transition-base);
+        color: var(--color-neutral-600);
+    }
+
+    .testimonials__nav-btn:hover {
+        background: var(--color-primary);
+        border-color: var(--color-primary);
+        color: white;
+    }
+
+    .testimonials__dots {
+        display: flex;
+        gap: var(--space-2);
+    }
+
+    .testimonials__dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--color-neutral-300);
+        border: none;
+        cursor: pointer;
+        transition: all var(--transition-base);
+    }
+
+    .testimonials__dot:hover,
+    .testimonials__dot.active {
+        background: var(--color-neutral-600);
+    }
+
+    .testimonials__dot.active {
+        width: 28px;
+        border-radius: var(--radius-full);
+    }
+</style>
+
+<script>
+    const carousel = document.getElementById("testimonials-carousel");
+    const prevBtn = document.getElementById("testimonials-prev");
+    const nextBtn = document.getElementById("testimonials-next");
+    const dots = document.querySelectorAll(".testimonials__dot");
+
+    let currentIndex = 0;
+
+    function getCardWidth() {
+        const card = carousel?.querySelector(
+            ".testimonials__card",
+        ) as HTMLElement;
+        return card ? card.offsetWidth + 24 : 400; // card width + gap
+    }
+
+    function updateDots() {
+        dots.forEach((dot, index) => {
+            dot.classList.toggle("active", index === currentIndex);
+        });
+    }
+
+    function scrollToCard(index: number) {
+        if (carousel) {
+            const cardWidth = getCardWidth();
+            carousel.scrollTo({
+                left: index * cardWidth,
+                behavior: "smooth",
+            });
+            currentIndex = index;
+            updateDots();
+        }
+    }
+
+    prevBtn?.addEventListener("click", () => {
+        if (currentIndex > 0) {
+            scrollToCard(currentIndex - 1);
+        }
+    });
+
+    nextBtn?.addEventListener("click", () => {
+        const maxIndex = dots.length - 1;
+        if (currentIndex < maxIndex) {
+            scrollToCard(currentIndex + 1);
+        }
+    });
+
+    dots.forEach((dot) => {
+        dot.addEventListener("click", () => {
+            const index = parseInt(dot.getAttribute("data-index") || "0");
+            scrollToCard(index);
+        });
+    });
+
+    carousel?.addEventListener("scroll", () => {
+        const cardWidth = getCardWidth();
+        const scrollLeft = carousel.scrollLeft;
+        const newIndex = Math.round(scrollLeft / cardWidth);
+        if (
+            newIndex !== currentIndex &&
+            newIndex >= 0 &&
+            newIndex < dots.length
+        ) {
+            currentIndex = newIndex;
+            updateDots();
+        }
+    });
+</script>

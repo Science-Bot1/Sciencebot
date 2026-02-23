@@ -1,0 +1,574 @@
+---
+import Button from "../ui/Button.astro";
+
+// Detectar la página actual para ajustar la navegación
+const currentPath = Astro.url.pathname;
+
+// Elementos de navegación - ahora incluyen Inicio e Historia
+const navItems = [
+    { label: "Inicio", href: "/" },
+    { label: "Historia", href: "/historia" },
+    { label: "Academia", href: "/academia" },
+    { label: "Contacto", href: "/contacto" },
+];
+const contactHref = "/contacto";
+---
+
+<header class="header" id="header">
+    <div class="header__container container">
+        <!-- Logo -->
+        <a href="/" class="header__logo" aria-label="ScienceBot - Inicio">
+            <span class="header__logo-text">ScienceBot</span>
+            <span class="header__logo-dot"></span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="header__nav" aria-label="Navegación principal">
+            <ul class="header__nav-list">
+                {
+                    navItems.map((item) => (
+                        <li>
+                            <a href={item.href} class="header__nav-link">
+                                {item.label}
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
+        </nav>
+
+        <!-- CTA Button -->
+        <div class="header__cta">
+            <button
+                id="cta-button-desktop"
+                class="btn btn-primary btn-sm btn-gradient"
+            >
+                Inscríbete Ahora
+            </button>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button
+            class="header__menu-toggle"
+            aria-label="Abrir menú"
+            aria-expanded="false"
+        >
+            <span class="header__menu-icon"></span>
+        </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="header__mobile-menu" aria-hidden="true">
+        <nav>
+            <ul class="header__mobile-nav-list">
+                {
+                    navItems.map((item) => (
+                        <li>
+                            <a href={item.href} class="header__mobile-nav-link">
+                                {item.label}
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
+        </nav>
+        <button
+            id="cta-button-mobile"
+            class="btn btn-primary btn-lg header__mobile-cta btn-gradient"
+        >
+            Inscríbete Ahora
+        </button>
+    </div>
+
+    <!-- Modal de Academia Pronto -->
+    <div id="academia-modal" class="modal" aria-hidden="true">
+        <div class="modal__overlay"></div>
+        <div class="modal__content">
+            <button class="modal__close" aria-label="Cerrar">
+                <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                >
+                    <path d="M18 6L6 18M6 6l12 12"></path>
+                </svg>
+            </button>
+            <div class="modal__icon">
+                <svg
+                    width="64"
+                    height="64"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                >
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 6v6l4 2"></path>
+                </svg>
+            </div>
+            <h2 class="modal__title">¡Muy Pronto!</h2>
+            <p class="modal__message">
+                La academia online estará disponible próximamente. Estamos
+                trabajando para ofrecerte la mejor experiencia de aprendizaje.
+            </p>
+            <button class="modal__button btn btn-primary btn-lg btn-gradient">
+                Entendido
+            </button>
+        </div>
+    </div>
+</header>
+
+<style>
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: var(--z-fixed);
+        background: rgba(248, 250, 252, 0.8);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        transition: all var(--transition-base);
+    }
+
+    .header.scrolled {
+        background: rgba(248, 250, 252, 0.95);
+        box-shadow: var(--shadow-md);
+    }
+
+    .header__container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 72px;
+    }
+
+    /* Logo */
+    .header__logo {
+        display: flex;
+        align-items: center;
+        gap: var(--space-1);
+        text-decoration: none;
+    }
+
+    .header__logo-text {
+        font-family: var(--font-display);
+        font-size: var(--text-xl);
+        font-weight: 800;
+        color: var(--color-dark);
+        letter-spacing: -0.02em;
+    }
+
+    .header__logo-dot {
+        width: 8px;
+        height: 8px;
+        background: var(--color-accent-lime);
+        border-radius: 50%;
+        margin-left: 2px;
+    }
+
+    /* Desktop Navigation */
+    .header__nav {
+        display: none;
+    }
+
+    @media (min-width: 1024px) {
+        .header__nav {
+            display: block;
+        }
+    }
+
+    .header__nav-list {
+        display: flex;
+        align-items: center;
+        gap: var(--space-1);
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .header__nav-link {
+        display: block;
+        padding: var(--space-2) var(--space-3);
+        font-size: var(--text-sm);
+        font-weight: 500;
+        color: var(--color-neutral-600);
+        text-decoration: none;
+        border-radius: var(--radius-md);
+        transition: all var(--transition-fast);
+    }
+
+    .header__nav-link:hover {
+        color: var(--color-secondary);
+        background: rgba(139, 92, 246, 0.08);
+    }
+
+    /* CTA */
+    .header__cta {
+        display: none;
+    }
+
+    @media (min-width: 1024px) {
+        .header__cta {
+            display: block;
+        }
+    }
+
+    /* Mobile Menu Toggle */
+    .header__menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+    @media (min-width: 1024px) {
+        .header__menu-toggle {
+            display: none;
+        }
+    }
+
+    .header__menu-icon {
+        position: relative;
+        width: 24px;
+        height: 2px;
+        background: var(--color-dark);
+        border-radius: 2px;
+        transition: all var(--transition-base);
+    }
+
+    .header__menu-icon::before,
+    .header__menu-icon::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: var(--color-dark);
+        border-radius: 2px;
+        transition: all var(--transition-base);
+    }
+
+    .header__menu-icon::before {
+        top: -8px;
+    }
+
+    .header__menu-icon::after {
+        bottom: -8px;
+    }
+
+    /* Menu open state */
+    .header__menu-toggle[aria-expanded="true"] .header__menu-icon {
+        background: transparent;
+    }
+
+    .header__menu-toggle[aria-expanded="true"] .header__menu-icon::before {
+        top: 0;
+        transform: rotate(45deg);
+    }
+
+    .header__menu-toggle[aria-expanded="true"] .header__menu-icon::after {
+        bottom: 0;
+        transform: rotate(-45deg);
+    }
+
+    /* Mobile Menu */
+    .header__mobile-menu {
+        position: fixed;
+        top: 72px;
+        left: 0;
+        right: 0;
+        height: calc(100vh - 72px);
+        background: #f8fafc !important; /* Force completely opaque background */
+        padding: var(--space-6);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-6);
+        transform: translateX(100%);
+        transition: transform var(--transition-slow);
+        z-index: 999 !important; /* Much higher z-index to stay above everything */
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.05);
+        opacity: 1 !important;
+        overflow-y: auto;
+        isolation: isolate; /* Create new stacking context */
+    }
+
+    /* Add a solid background layer using ::before */
+    .header__mobile-menu::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #f8fafc;
+        z-index: -1;
+    }
+
+    .header__mobile-menu.is-open {
+        transform: translateX(0);
+    }
+
+    @media (min-width: 1024px) {
+        .header__mobile-menu {
+            display: none;
+        }
+    }
+
+    /* Ensure nav inside mobile menu has proper background */
+    .header__mobile-menu nav {
+        background: transparent;
+        flex: 1;
+        width: 100%;
+    }
+
+    .header__mobile-nav-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        background: transparent;
+    }
+
+    .header__mobile-nav-link {
+        display: block;
+        padding: var(--space-4) 0;
+        font-size: var(--text-lg);
+        font-weight: 600; /* Increased weight for better readability */
+        color: var(--color-dark);
+        text-decoration: none;
+        border-bottom: 1px solid var(--color-neutral-200);
+        transition: color var(--transition-fast);
+        /* Ensure contrast */
+        background-color: transparent;
+    }
+
+    .header__mobile-nav-link:hover {
+        color: var(--color-primary);
+    }
+
+    .header__mobile-cta {
+        margin-top: auto;
+        width: 100%;
+    }
+
+    /* Gradient Button Override */
+    :global(.btn-gradient) {
+        background: var(--gradient-primary) !important;
+        border: none !important;
+        box-shadow: 0 4px 15px rgba(255, 76, 36, 0.3) !important;
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease !important;
+    }
+
+    :global(.btn-gradient:hover) {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 20px rgba(255, 76, 36, 0.4) !important;
+        opacity: 0.95;
+    }
+
+    /* Modal Styles */
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+
+    .modal.is-open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .modal__overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+    }
+
+    .modal__content {
+        position: relative;
+        background: white;
+        border-radius: var(--radius-2xl);
+        padding: var(--space-8);
+        max-width: 500px;
+        width: 90%;
+        text-align: center;
+        transform: scale(0.9) translateY(0);
+        transition: transform 0.3s ease;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        margin: auto;
+    }
+
+    .modal.is-open .modal__content {
+        transform: scale(1);
+    }
+
+    .modal__close {
+        position: absolute;
+        top: var(--space-4);
+        right: var(--space-4);
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: none;
+        color: var(--color-neutral-400);
+        cursor: pointer;
+        border-radius: var(--radius-full);
+        transition: all 0.2s ease;
+    }
+
+    .modal__close:hover {
+        background: var(--color-neutral-100);
+        color: var(--color-neutral-600);
+    }
+
+    .modal__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 80px;
+        height: 80px;
+        margin: 0 auto var(--space-6);
+        background: linear-gradient(
+            135deg,
+            rgba(139, 92, 246, 0.1),
+            rgba(163, 230, 53, 0.1)
+        );
+        border-radius: var(--radius-full);
+        color: var(--color-secondary);
+    }
+
+    .modal__title {
+        font-size: var(--text-3xl);
+        font-weight: 700;
+        color: var(--color-dark);
+        margin-bottom: var(--space-4);
+    }
+
+    .modal__message {
+        font-size: var(--text-lg);
+        color: var(--color-neutral-600);
+        line-height: 1.6;
+        margin-bottom: var(--space-6);
+    }
+
+    .modal__button {
+        width: 100%;
+    }
+</style>
+
+<script>
+    const header = document.getElementById("header");
+    const menuToggle = document.querySelector(".header__menu-toggle");
+    const mobileMenu = document.querySelector(".header__mobile-menu");
+    const mobileLinks = document.querySelectorAll(".header__mobile-nav-link");
+
+    // Scroll effect
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+            header?.classList.add("scrolled");
+        } else {
+            header?.classList.remove("scrolled");
+        }
+    });
+
+    // Mobile menu toggle
+    menuToggle?.addEventListener("click", () => {
+        const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
+        menuToggle.setAttribute("aria-expanded", (!isExpanded).toString());
+        mobileMenu?.classList.toggle("is-open");
+        mobileMenu?.setAttribute("aria-hidden", isExpanded.toString());
+        document.body.classList.toggle("no-scroll");
+    });
+
+    // Close mobile menu on link click
+    mobileLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+            menuToggle?.setAttribute("aria-expanded", "false");
+            mobileMenu?.classList.remove("is-open");
+            mobileMenu?.setAttribute("aria-hidden", "true");
+            document.body.classList.remove("no-scroll");
+        });
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", (e) => {
+            e.preventDefault();
+            const href = anchor.getAttribute("href");
+            if (href) {
+                const target = document.querySelector(href);
+                if (target) {
+                    const headerHeight = header?.offsetHeight || 72;
+                    const targetPosition =
+                        target.getBoundingClientRect().top +
+                        window.scrollY -
+                        headerHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: "smooth",
+                    });
+                }
+            }
+        });
+    });
+
+    // Modal functionality
+    const modal = document.getElementById("academia-modal");
+    const ctaButtonDesktop = document.getElementById("cta-button-desktop");
+    const ctaButtonMobile = document.getElementById("cta-button-mobile");
+    const modalClose = modal?.querySelector(".modal__close");
+    const modalButton = modal?.querySelector(".modal__button");
+    const modalOverlay = modal?.querySelector(".modal__overlay");
+
+    function openModal() {
+        modal?.classList.add("is-open");
+        modal?.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+        modal?.classList.remove("is-open");
+        modal?.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+    }
+
+    // Open modal when CTA buttons are clicked
+    ctaButtonDesktop?.addEventListener("click", openModal);
+    ctaButtonMobile?.addEventListener("click", openModal);
+
+    // Close modal
+    modalClose?.addEventListener("click", closeModal);
+    modalButton?.addEventListener("click", closeModal);
+    modalOverlay?.addEventListener("click", closeModal);
+
+    // Close modal with Escape key
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal?.classList.contains("is-open")) {
+            closeModal();
+        }
+    });
+</script>

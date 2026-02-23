@@ -1,0 +1,120 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/layout/Header.astro";
+import FloatingNav from "../components/layout/FloatingNav.astro";
+import Footer from "../components/layout/Footer.astro";
+import Timeline from "../components/timeline/Timeline.astro";
+import { timelineEvents, timelineCategories } from "../data/timeline.ts";
+import type { TimelineEvent, TimelineCategory } from "../data/timeline.ts";
+
+// Page specific props
+const title = "ScienceBot | Nuestra Historia";
+const description =
+    "Descubre la increíble historia de ScienceBot, desde nuestros inicios hasta convertirnos en la academia de robótica y programación líder en Latinoamérica.";
+---
+
+<Layout title={title} description={description}>
+    <Header />
+    <FloatingNav />
+
+    <main>
+        <!-- Hero Section para Timeline -->
+        <section class="timeline-hero relative overflow-hidden bg-slate-50">
+            <!-- Background Texture -->
+            <div class="absolute inset-0 z-0 opacity-40">
+                <div
+                    class="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]"
+                >
+                </div>
+            </div>
+
+            <!-- Timeline Principal -->
+            <Timeline
+                events={timelineEvents}
+                categories={timelineCategories}
+                title="Nuestra Historia"
+                subtitle="El viaje de ScienceBot a través del tiempo, desde un pequeño sueño hasta transformar miles de vidas"
+                showCategoryFilter={true}
+            />
+
+            <!-- Additional CTA Section -->
+            <section class="cta-section section-padding dark-section">
+                <div class="container">
+                    <div class="cta-content text-center">
+                        <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                            Sé parte de nuestro <span class="gradient-text"
+                                >futuro</span
+                            >
+                        </h2>
+                        <p class="text-xl mb-8 max-w-3xl mx-auto">
+                            Únete a la comunidad de estudiantes que están
+                            aprendiendo robótica, programación y tecnología de
+                            la mano de los mejores instructores. El futuro
+                            comienza hoy.
+                        </p>
+                        <div
+                            class="cta-buttons flex flex-col sm:flex-row gap-4 justify-center"
+                        >
+                            <a href="/academia" class="btn btn-primary btn-lg">
+                                Explorar Nuestra Academia
+                            </a>
+                            <a
+                                href="/contacto"
+                                class="btn btn-secondary btn-lg"
+                            >
+                                Agendar una Visita
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <Footer />
+    </main>
+
+    <style>
+        /* CTA Section */
+        .cta-section {
+            position: relative;
+        }
+
+        .cta-content h2 {
+            color: var(--color-light);
+        }
+
+        .cta-content p {
+            color: var(--color-neutral-300);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .timeline-hero {
+                padding: calc(var(--header-height) + var(--space-12)) 0
+                    var(--space-16);
+            }
+
+            .hero-stats {
+                gap: var(--space-4);
+            }
+
+            .stat-item {
+                min-width: 80px;
+            }
+
+            .stat-number {
+                font-size: var(--text-3xl);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stat-number {
+                font-size: var(--text-2xl);
+            }
+
+            .stat-item {
+                min-width: 60px;
+            }
+        }
+    </style>
+</Layout>

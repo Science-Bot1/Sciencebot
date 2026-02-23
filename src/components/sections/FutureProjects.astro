@@ -1,0 +1,271 @@
+---
+// FutureProjects.astro - Horizontal cards showcasing future projects
+
+const futureProjects = [
+    {
+        id: 1,
+        image: "/project_ai_assistant_1770215115301.png",
+        tech: "Inteligencia Artificial",
+        title: "Asistente de Aprendizaje con IA",
+        description:
+            "Un tutor robótico inteligente que ayuda a estudiantes con sus tareas, utilizando procesamiento de lenguaje natural y visión por computadora.",
+    },
+    {
+        id: 2,
+        image: "/project_smart_home_1770215130667.png",
+        tech: "IoT & Domótica",
+        title: "Sistema de Casa Inteligente",
+        description:
+            "Automatización completa del hogar con sensores IoT, control por voz y optimización energética para un futuro sostenible.",
+    },
+    {
+        id: 3,
+        image: "/project_drone_system_1770215145452.png",
+        tech: "Robótica Aérea",
+        title: "Drones Autónomos de Entrega",
+        description:
+            "Sistema de navegación autónoma para drones de entrega, con GPS avanzado, detección de obstáculos y optimización de rutas.",
+    },
+    {
+        id: 4,
+        image: "/project_environmental_1770215161675.png",
+        tech: "Sostenibilidad",
+        title: "Monitor Ambiental Inteligente",
+        description:
+            "Robot ecológico con sensores para medir calidad del aire y agua, alimentado por energía solar para proteger nuestro planeta.",
+    },
+];
+---
+
+<section
+    id="future-projects"
+    class="future-projects section-padding dark-section"
+>
+    <div class="container">
+        <!-- Section Header -->
+        <div class="future-projects__header reveal">
+            <h2 class="future-projects__title">
+                Proyectos del <span class="gradient-text">Futuro</span>
+            </h2>
+            <p class="future-projects__subtitle">
+                Descubre las innovaciones que nuestros estudiantes están
+                desarrollando para crear un mejor mañana.
+            </p>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="projects-grid">
+            {
+                futureProjects.map((project, index) => (
+                    <article
+                        class="project-card reveal-scale"
+                        style={`animation-delay: ${index * 0.1}s`}
+                    >
+                        <div class="project-card__image-wrapper">
+                            <img
+                                src={project.image}
+                                alt={project.title}
+                                class="project-card__image"
+                                loading="lazy"
+                            />
+                            <div class="project-card__image-overlay" />
+                        </div>
+
+                        <div class="project-card__content">
+                            <span class="project-card__tech">
+                                {project.tech}
+                            </span>
+
+                            <h3 class="project-card__title">{project.title}</h3>
+
+                            <p class="project-card__description">
+                                {project.description}
+                            </p>
+                        </div>
+                    </article>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Future Projects Section */
+    .future-projects {
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Header */
+    .future-projects__header {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto var(--space-12);
+    }
+
+    .future-projects__title {
+        font-size: clamp(var(--text-3xl), 5vw, var(--text-5xl));
+        font-weight: 700;
+        margin-bottom: var(--space-4);
+        color: var(--color-light);
+    }
+
+    .future-projects__subtitle {
+        font-size: var(--text-lg);
+        color: var(--color-neutral-300);
+        line-height: 1.7;
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    @media (min-width: 768px) {
+        .projects-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    /* Project Card - Horizontal Layout */
+    .project-card {
+        display: flex;
+        flex-direction: column;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        transition: all var(--transition-base);
+    }
+
+    @media (min-width: 640px) {
+        .project-card {
+            flex-direction: row;
+        }
+    }
+
+    .project-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Image Wrapper */
+    .project-card__image-wrapper {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+        background: var(--color-neutral-800);
+        flex-shrink: 0;
+    }
+
+    @media (min-width: 640px) {
+        .project-card__image-wrapper {
+            width: 180px;
+            aspect-ratio: 1;
+        }
+    }
+
+    .project-card__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform var(--transition-slow);
+    }
+
+    .project-card:hover .project-card__image {
+        transform: scale(1.1);
+    }
+
+    .project-card__image-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            to top,
+            rgba(15, 17, 21, 0.8) 0%,
+            transparent 60%
+        );
+    }
+
+    /* Content */
+    .project-card__content {
+        padding: var(--space-5);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+        flex-grow: 1;
+    }
+
+    @media (min-width: 640px) {
+        .project-card__content {
+            padding: var(--space-4);
+        }
+    }
+
+    .project-card__tech {
+        display: inline-flex;
+        width: fit-content;
+        padding: var(--space-1) var(--space-3);
+        background: var(--gradient-primary);
+        border-radius: var(--radius-full);
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: white;
+    }
+
+    .project-card__title {
+        font-size: var(--text-lg);
+        font-weight: 700;
+        color: white;
+        line-height: 1.3;
+    }
+
+    .project-card__description {
+        font-size: var(--text-xs);
+        color: var(--color-neutral-300);
+        line-height: 1.5;
+        margin-bottom: 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .future-projects__header {
+            margin-bottom: var(--space-10);
+        }
+
+        .projects-grid {
+            gap: var(--space-5);
+        }
+
+        .project-card__content {
+            padding: var(--space-4);
+        }
+    }
+</style>
+
+<script>
+    // Scroll reveal animations
+    document.addEventListener("DOMContentLoaded", () => {
+        const reveals = document.querySelectorAll(".reveal, .reveal-scale");
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                    }
+                });
+            },
+            { threshold: 0.1 },
+        );
+
+        reveals.forEach((el) => observer.observe(el));
+    });
+</script>

@@ -1,0 +1,39 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/layout/Header.astro";
+import FloatingNav from "../components/layout/FloatingNav.astro";
+import Footer from "../components/layout/Footer.astro";
+
+// Home Page Components
+import HomeHero from "../components/sections/HomeHero.astro";
+import Achievements from "../components/sections/Achievements.astro";
+import FutureProjects from "../components/sections/FutureProjects.astro";
+import HomeCTA from "../components/sections/HomeCTA.astro";
+
+// Page specific props
+const title = "ScienceBot | Inspirando a la Próxima Generación";
+const description =
+	"Descubre los logros increíbles de nuestros estudiantes. Academia líder en robótica y programación para niños y adolescentes, transformando ideas en innovaciones reales.";
+---
+
+<Layout title={title} description={description}>
+	<Header />
+	<FloatingNav />
+
+	<main>
+		<!-- Hero Section -->
+		<HomeHero />
+
+		<!-- Achievements Section -->
+		<Achievements />
+
+		<!-- Future Projects Section -->
+		<FutureProjects />
+
+		<!-- Call-to-Action Section -->
+		<HomeCTA />
+
+		<!-- Footer -->
+		<Footer />
+	</main>
+</Layout>

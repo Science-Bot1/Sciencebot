@@ -1,0 +1,388 @@
+---
+// HomeHero.astro - Hero section for Home page
+const particles = Array.from({ length: 20 }, (_, i) => ({
+    id: i,
+    left: `${Math.random() * 100}%`,
+    top: `${Math.random() * 100}%`,
+    delay: `${Math.random() * 5}s`,
+    duration: `${15 + Math.random() * 10}s`,
+}));
+---
+
+<section id="home-hero" class="home-hero">
+    <!-- Background Elements -->
+    <div class="home-hero__background">
+        <div class="home-hero__gradient"></div>
+        <div class="home-hero__grid"></div>
+
+        <!-- Animated Particles -->
+        {
+            particles.map((particle) => (
+                <div
+                    class="home-hero__particle"
+                    style={`left: ${particle.left}; top: ${particle.top}; animation-delay: ${particle.delay}; animation-duration: ${particle.duration};`}
+                    aria-hidden="true"
+                />
+            ))
+        }
+    </div>
+
+    <div class="home-hero__container container">
+        <div class="home-hero__content reveal">
+            <!-- Main Headline -->
+            <h1 class="home-hero__title">
+                Inspirando a la <span class="gradient-text"
+                    >próxima generación</span
+                >
+            </h1>
+
+            <!-- Descriptive Text -->
+            <p class="home-hero__description">
+                Explora los hitos increíbles alcanzados por nuestros
+                estudiantes. Desde competencias nacionales hasta soluciones
+                innovadoras que están cambiando el mundo.
+            </p>
+
+            <!-- Decorative Stats -->
+            <div class="home-hero__highlights">
+                <div class="home-hero__highlight">
+                    <div class="home-hero__highlight-icon">
+                        <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        >
+                            <path
+                                d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
+                            ></path>
+                        </svg>
+                    </div>
+                    <span>Logros Nacionales</span>
+                </div>
+                <div class="home-hero__highlight">
+                    <div class="home-hero__highlight-icon">
+                        <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        >
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z"></path>
+                            <path d="M2 17L12 22L22 17"></path>
+                            <path d="M2 12L12 17L22 12"></path>
+                        </svg>
+                    </div>
+                    <span>Proyectos Innovadores</span>
+                </div>
+                <div class="home-hero__highlight">
+                    <div class="home-hero__highlight-icon">
+                        <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        >
+                            <path
+                                d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21"
+                            ></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path
+                                d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13"
+                            ></path>
+                            <path
+                                d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88"
+                            ></path>
+                        </svg>
+                    </div>
+                    <span>Comunidad Global</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="home-hero__scroll">
+        <span>Explora más</span>
+        <div class="home-hero__scroll-arrow">
+            <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+            >
+                <path d="M12 5v14M19 12l-7 7-7-7"></path>
+            </svg>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Home Hero Section */
+    .home-hero {
+        position: relative;
+        min-height: 90vh;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        padding-top: calc(var(--header-height) + var(--space-8));
+        padding-bottom: var(--space-16);
+    }
+
+    /* Background */
+    .home-hero__background {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        overflow: hidden;
+    }
+
+    .home-hero__gradient {
+        position: absolute;
+        inset: 0;
+        background:
+            radial-gradient(
+                ellipse 100% 60% at 50% 0%,
+                rgba(139, 92, 246, 0.15) 0%,
+                transparent 70%
+            ),
+            radial-gradient(
+                ellipse 80% 50% at 20% 80%,
+                rgba(163, 230, 53, 0.1) 0%,
+                transparent 60%
+            ),
+            radial-gradient(
+                ellipse 70% 50% at 80% 70%,
+                rgba(255, 76, 36, 0.08) 0%,
+                transparent 60%
+            );
+    }
+
+    .home-hero__grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+            linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px),
+            linear-gradient(
+                90deg,
+                rgba(139, 92, 246, 0.05) 1px,
+                transparent 1px
+            );
+        background-size: 60px 60px;
+        mask-image: radial-gradient(
+            ellipse 90% 70% at 50% 40%,
+            black 0%,
+            transparent 80%
+        );
+    }
+
+    .home-hero__particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: var(--color-secondary);
+        border-radius: 50%;
+        opacity: 0.3;
+        animation: float-particle 20s infinite ease-in-out;
+    }
+
+    @keyframes float-particle {
+        0%,
+        100% {
+            transform: translate(0, 0) scale(1);
+            opacity: 0.2;
+        }
+        25% {
+            transform: translate(20px, -30px) scale(1.2);
+            opacity: 0.4;
+        }
+        50% {
+            transform: translate(-15px, -60px) scale(0.8);
+            opacity: 0.3;
+        }
+        75% {
+            transform: translate(30px, -40px) scale(1.1);
+            opacity: 0.35;
+        }
+    }
+
+    /* Container */
+    .home-hero__container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 60vh;
+    }
+
+    /* Content */
+    .home-hero__content {
+        max-width: 900px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-8);
+        padding: var(--space-8) 0;
+    }
+
+    .home-hero__title {
+        font-size: clamp(var(--text-4xl), 7vw, var(--text-7xl));
+        font-weight: 800;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+        color: var(--color-dark);
+        margin-bottom: var(--space-4);
+    }
+
+    .home-hero__description {
+        font-size: clamp(var(--text-lg), 2.5vw, var(--text-2xl));
+        line-height: 1.6;
+        color: var(--color-neutral-600);
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    /* Highlights */
+    .home-hero__highlights {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-6);
+        justify-content: center;
+        margin-top: var(--space-6);
+    }
+
+    .home-hero__highlight {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        padding: var(--space-4) var(--space-6);
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--color-neutral-200);
+        border-radius: var(--radius-full);
+        font-size: var(--text-sm);
+        font-weight: 600;
+        color: var(--color-dark);
+        transition: all var(--transition-base);
+    }
+
+    .home-hero__highlight:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+        background: rgba(255, 255, 255, 0.8);
+    }
+
+    .home-hero__highlight-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        background: var(--gradient-primary);
+        border-radius: 50%;
+        color: white;
+        flex-shrink: 0;
+    }
+
+    .home-hero__highlight-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    /* Scroll Indicator */
+    .home-hero__scroll {
+        position: absolute;
+        bottom: var(--space-8);
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-2);
+        color: var(--color-neutral-500);
+        font-size: var(--text-sm);
+        font-weight: 500;
+    }
+
+    .home-hero__scroll-arrow {
+        animation: bounce-arrow 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce-arrow {
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(8px);
+        }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .home-hero {
+            min-height: 85vh;
+            padding-top: calc(var(--header-height) + var(--space-6));
+        }
+
+        .home-hero__content {
+            gap: var(--space-6);
+        }
+
+        .home-hero__highlights {
+            gap: var(--space-4);
+        }
+
+        .home-hero__highlight {
+            padding: var(--space-3) var(--space-4);
+            font-size: var(--text-xs);
+        }
+
+        .home-hero__highlight-icon {
+            width: 32px;
+            height: 32px;
+        }
+
+        .home-hero__highlight-icon svg {
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .home-hero__particle {
+            display: none;
+        }
+
+        .home-hero__scroll {
+            bottom: var(--space-4);
+        }
+    }
+</style>
+
+<script>
+    // Scroll reveal animation
+    document.addEventListener("DOMContentLoaded", () => {
+        const reveals = document.querySelectorAll(".reveal");
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                    }
+                });
+            },
+            { threshold: 0.1 },
+        );
+
+        reveals.forEach((el) => observer.observe(el));
+    });
+</script>
