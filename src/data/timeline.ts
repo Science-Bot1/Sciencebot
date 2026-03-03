@@ -48,20 +48,20 @@ export const timelineCategories: TimelineCategory[] = [
 ];
 
 export const timelineEvents: TimelineEvent[] = [
-  // Historia - 2020 (Fundación)
+  // Historia - 2016 (Fundación)
   {
-    id: 'h-2020-1',
-    date: '2020-03-15',
+    id: 'h-2016-1',
+    date: '2016-03-01',
     title: 'Fundación de ScienceBot',
     description: 'Nace el sueño de transformar la educación tecnológica en Latinoamérica.',
     icon: '🚀',
     category: 'historia',
     featured: true,
-    expandedContent: 'ScienceBot fue fundada en un pequeño garaje por un grupo de ingenieros y educadores apasionados. Nuestra misión inicial era simple pero ambiciosa: democratizar el acceso a la educación en robótica y programación de alta calidad para niños y jóvenes de todos los sectores socioeconómicos.'
+    expandedContent: 'ScienceBot fue fundada por su fundadora con una visión clara y una misión que trascendía las aulas convencionales. Al principio, de manera completamente virtual, su misión era simple pero ambiciosa: democratizar el acceso a la educación en robótica y programación de alta calidad para niños y jóvenes de todos los sectores socioeconómicos.\n\nMISIÓN\nPromover la educación ambiental, sustentable y educativa a través de la robótica educativa en las escuelas, clubes sociales, universidades, empresas y zonas rurales; como una herramienta fundamental para el desarrollo del aprendizaje estudiantil, el trabajo en equipo y la solución de problemas de su entorno, con metodologías de impacto para las nuevas generaciones aprendiendo así a cuidar y proteger el medio ambiente.\n\nVISIÓN\nMotivar y guiar a niños, niñas y jóvenes a utilizar su tiempo libre en la búsqueda de sus posibles vocaciones en las líneas de ciencias duras profundizadas en las nuevas tecnologías de impacto mundial trayendo así desarrollo económico a su región. De igual manera, formalizarnos como una asociación líder en soluciones tecnológicas y educación ambiental basada en innovación.'
   },
   {
-    id: 'h-2020-2',
-    date: '2020-06-20',
+    id: 'h-2016-2',
+    date: '2016-06-20',
     title: 'Primeros 15 Estudiantes',
     description: 'Iniciamos operaciones con nuestro primer grupo piloto de estudiantes.',
     icon: '🌱',
@@ -69,18 +69,27 @@ export const timelineEvents: TimelineEvent[] = [
     expandedContent: 'Con apenas 15 estudiantes valientes que confiaron en nuestro proyecto piloto, comenzamos esta increíble aventura. Las clases se impartían los fines de semana y cada estudiante recibió atención personalizada para validar nuestra metodología de enseñanza "Aprender Haciendo".'
   },
 
-  // Historia - 2021 (Crecimiento)
+  // Historia - Crecimiento
   {
-    id: 'h-2021-1',
-    date: '2021-01-10',
+    id: 'h-sede-1',
+    date: '2023-01-01',
     title: 'Inauguración Sede Principal',
     description: 'Abrimos nuestro primer centro de aprendizaje especializado.',
     icon: '🏢',
     category: 'historia',
-    expandedContent: 'La apertura de nuestra sede principal marcó un antes y un después. Un espacio de 200m² diseñado específicamente para la creatividad, con laboratorios de electrónica, áreas de construcción de robots y zonas de programación colaborativa.'
+    expandedContent: 'La apertura de nuestra sede principal marcó un antes y un después. Un espacio de 150m² diseñado específicamente para la creatividad, con laboratorios de electrónica, áreas de construcción de robots y zonas de programación colaborativa.'
+  },
+  {
+    id: 'h-academia-online-1',
+    date: '2026-02-01',
+    title: 'Desarrollo Academia Online',
+    description: 'Inicia el desarrollo de nuestra academia online.',
+    icon: '💻',
+    category: 'historia',
+    expandedContent: 'Para cumplir con nuestra misión de promover la educación ambiental, sustentable y educativa a través de la robótica educativa, se está llevando a cabo el desarrollo de la academia online: una plataforma de aprendizaje accesible desde cualquier lugar del mundo, que rompe barreras geográficas y permite a niños y jóvenes de zonas rurales, ciudades alejadas y diferentes países acceder a formación de calidad en robótica, programación y tecnología con el sello pedagógico de ScienceBot.'
   },
 
-  // Cursos - 2021 (Expansión Académica)
+  /* TODO: Cursos - 2021 (Expansión Académica) — descomentar cuando estén listos
   {
     id: 'c-2021-1',
     date: '2021-03-01',
@@ -110,30 +119,60 @@ export const timelineEvents: TimelineEvent[] = [
     category: 'curso',
     expandedContent: 'Reconociendo la necesidad de habilidades de industria, lanzamos Python. Este curso es el puente perfecto entre la programación visual y el desarrollo de software real, permitiendo a los estudiantes crear scripts, analizar datos y hasta dar sus primeros pasos en Inteligencia Artificial.'
   },
+  */
 
-  // Hitos - 2021 (Logros Tempranos)
+  // Hitos - Logros Tempranos
   {
-    id: 'm-2021-1',
-    date: '2021-12-20',
-    title: '100 Estudiantes Graduados',
+    id: 'm-hito-graduados',
+    date: '2099-12-20',
+    title: 'xxx Estudiantes Graduados',
     description: 'Nuestra primera gran generación de innovadores completa su formación.',
     icon: '🎓',
     category: 'hito',
-    expandedContent: 'Cerrar el 2021 con 100 graduados fue la validación que necesitábamos. Ver a 100 niños y jóvenes presentando sus proyectos finales a sus familias fue un momento emotivo que consolidó nuestra visión de impacto social.'
+    expandedContent: 'Cerrar el Año con xxx graduados fue la validación que necesitábamos. Ver a xxx niños y jóvenes presentando sus proyectos finales a sus familias fue un momento emotivo que consolidó nuestra visión de impacto social.'
   },
 
-  // Estudiantes - 2021 (Casos de Éxito)
+  // Estudiantes - Niñas del Guaviare en la NASA
   {
-    id: 's-2021-1',
-    date: '2021-12-05',
-    title: 'Robot Asistente "Sofía"',
-    description: 'Sofía (12 años) crea un prototipo para ayudar a adultos mayores.',
-    icon: '👵',
+    id: 's-valeria-vega',
+    date: '2022-07-01',
+    title: 'Valeria Vega Torres en la NASA',
+    description: 'Estudiante de ScienceBot que representó al Guaviare en el Space Center de Houston.',
+    icon: '🚀',
     category: 'estudiante',
-    expandedContent: 'Sofía notó que su abuela olvidaba tomar sus medicinas. Usando Arduino y sensores básicos aprendidos en clase, prototipó un dispensador automático con alarmas sonoras y visuales. Su proyecto ganó la feria de ciencias local y fue el inicio de su interés por la ingeniería biomédica.'
+    featured: true,
+    expandedContent: 'Valeria Vega Torres fue seleccionada en el programa "Ella es Astronauta" de la Fundación SHE IS y viajó al Centro Espacial de la NASA en Houston, Texas. Representó con orgullo al departamento del Guaviare, siendo una de las primeras niñas de la región en pisar las instalaciones donde se forman los astronautas. Su paso por ScienceBot fue clave para desarrollar el pensamiento científico y la confianza en sí misma que la llevaron a este sueño.'
+  },
+  {
+    id: 's-sara-mondragon',
+    date: '2022-07-01',
+    title: 'Sara Mondragón en la NASA',
+    description: 'Con solo 12 años, viajó al Centro Espacial de la NASA para inspirar a otras niñas.',
+    icon: '🌌',
+    category: 'estudiante',
+    expandedContent: 'Sara Mondragón, con tan solo 12 años, viajó en 2022 al Centro Espacial de la NASA en Houston, Texas, como parte del programa "Ella es Astronauta" de la Fundación SHE IS. Su historia se convirtió en símbolo de que el talento no tiene límites geográficos: una niña del Guaviare podía mirar las estrellas de cerca. Su participación buscó inspirar a decenas de niñas de zonas rurales y urbanas a soñar en grande y apostarle a la ciencia y la tecnología.'
+  },
+  {
+    id: 's-anais-pastor',
+    date: '2022-07-01',
+    title: 'Anais Luciana Pastor Gallego en la NASA',
+    description: 'Estudiante de robótica de ScienceBot, destacada en el programa espacial.',
+    icon: '⭐',
+    category: 'estudiante',
+    expandedContent: 'Anais Luciana Pastor Gallego es estudiante de robótica de ScienceBot y fue destacada dentro del programa "Ella es Astronauta" de la Fundación SHE IS por su desempeño académico y su pasión por la ciencia. Viajó al Centro Espacial de la NASA en Houston, donde tuvo la oportunidad de participar en desafíos de cohetería y conocer a astronautas. Anais representa el tipo de talento que ScienceBot se propone despertar: curiosa, creativa y dispuesta a conquistar el universo.'
+  },
+  {
+    id: 's-zully-romero',
+    date: '2022-07-01',
+    title: 'Zully Karina Romero en la NASA',
+    description: 'Estudiante de la Institución Educativa La Libertad, participante de las inmersiones en Houston.',
+    icon: '🛸',
+    category: 'estudiante',
+    expandedContent: 'Zully Karina Romero, estudiante de la Institución Educativa La Libertad del Guaviare, participó en el programa de inmersión en el Centro Espacial de la NASA en Houston, Texas. A través de la formación en robótica y tecnología impulsada por ScienceBot en zonas rurales, Zully superó barreras de acceso para convertirse en una de las representantes de su región ante uno de los centros científicos más importantes del mundo. Su travesía demuestra que la educación STEM transforma vidas desde el primer taller.'
   },
 
-  // Cursos - 2022 (Nuevas Fronteras)
+
+  /* TODO: Cursos - 2022 (Nuevas Fronteras) — descomentar cuando estén listos
   {
     id: 'c-2022-1',
     date: '2022-02-15',
@@ -152,118 +191,90 @@ export const timelineEvents: TimelineEvent[] = [
     category: 'curso',
     expandedContent: 'Más allá de usar internet, enseñamos a construirlo. HTML, CSS y JavaScript moderno son las herramientas que entregamos para que los estudiantes puedan publicar sus propias ideas, portafolios y aplicaciones web al mundo entero.'
   },
+  */
 
-  // Hitos - 2022 (Expansión y Reconocimiento)
+  // Hitos - Competencias Robot Rally 2022
   {
-    id: 'm-2022-1',
-    date: '2022-03-15',
-    title: 'Lanzamiento Plataforma Virtual',
-    description: 'ScienceBot rompe barreras geográficas llegando a todo el país.',
-    icon: '💻',
-    category: 'hito',
-    expandedContent: 'En respuesta a la demanda de otras ciudades, desarrollamos nuestra propia plataforma de aprendizaje híbrido (LMS). Esto nos permitió llevar nuestra metodología a estudiantes en zonas rurales y ciudades alejadas, democratizando aún más el acceso.'
-  },
-  {
-    id: 'm-2022-2',
-    date: '2022-08-30',
-    title: 'Campeones Nacionales RoboCup',
-    description: 'Primer lugar en la categoría Rescate Junior.',
+    id: 'm-robot-rally-2022-1',
+    date: '2022-05-21',
+    title: 'Robot Rally — 1.er Lugar',
+    description: 'Marymount School Medellín — 🏆 Primer lugar.',
     icon: '🏆',
     category: 'hito',
     featured: true,
-    expandedContent: 'Nuestro equipo de selección compitió contra 50 escuelas de todo el país. Su robot autónomo de rescate no solo fue el más rápido, sino el único que completó el circuito perfecto. Este trofeo puso a ScienceBot en el mapa de la robótica competitiva nacional.'
+    expandedContent: 'En el Robot Rally organizado en el Marymount School de Medellín, nuestro equipo se coronó campeón del primer lugar. El Robot Rally es una competencia de robótica educativa donde los equipos deben programar y controlar robots para superar una serie de desafíos de velocidad, precisión y autonomia. Este primer puesto demostró la solidez técnica y el trabajo en equipo de nuestros estudiantes frente a instituciones de alto nivel educativo.'
+  },
+  {
+    id: 'm-robot-rally-2022-2',
+    date: '2022-05-21',
+    title: 'Robot Rally — 2.do Lugar',
+    description: 'Marymount School Medellín — 🥈 Segundo lugar.',
+    icon: '🥈',
+    category: 'hito',
+    expandedContent: 'En una segunda participación del Robot Rally en el Marymount School de Medellín, nuestro equipo obtuvo el segundo lugar. Esta competencia reunió a los mejores equipos de robótica de colegios de la región, poniendo a prueba habilidades de programación, diseño mecánico y toma de decisiones bajo presión. Quedar en el podio en dos ediciones del mismo año confirmó nuestra consistencia competitiva.'
   },
 
-  // Estudiantes - 2022
-  {
-    id: 's-2022-1',
-    date: '2022-04-20',
-    title: 'App "DislexiAyuda"',
-    description: 'Matías (14 años) desarrolla app para niños con dislexia.',
-    icon: '📱',
-    category: 'estudiante',
-    featured: true,
-    expandedContent: 'Inspirado por su hermana menor, Matías usó sus conocimientos de desarrollo móvil para crear una aplicación con juegos de letras y fonética diseñados específicamente para mentes disléxicas. La app ha sido descargada más de 5,000 veces.'
-  },
-  {
-    id: 's-2022-2',
-    date: '2022-09-15',
-    title: 'Equipo "TechGirls" en Japón',
-    description: 'Representación femenina destacada en mundial de robótica.',
-    icon: '🎎',
-    category: 'estudiante',
-    expandedContent: 'Nuestro equipo 100% femenino viajó a Tokio para el mundial. Su robot clasificador de residuos reciclables basado en visión por computadora impresionó a los jueces por su eficiencia y bajo costo de implementación.'
-  },
 
-  // Hitos - 2023 (Consolidación)
   {
-    id: 'm-2023-1',
-    date: '2023-01-25',
-    title: '1,000 Estudiantes Activos',
+    id: 'm-hito-estudiantes-activos',
+    date: '2099-01-25',
+    title: '"Numero de estudiantes" Estudiantes Activos',
     description: 'Una comunidad vibrante de creadores tecnológicos.',
     icon: '📈',
     category: 'hito',
     featured: true,
-    expandedContent: 'Alcanzar los 1,000 estudiantes activos simultáneos fue un hito logístico y pedagógico. Requirió escalar nuestro equipo de mentores a 50 profesionales y optimizar todos nuestros procesos, sin perder la calidez y personalización que nos caracteriza.'
+    expandedContent: 'Alcanzar los xxxx estudiantes activos simultáneos fue un hito logístico y pedagógico. Un logro que refleja no solo el crecimiento de ScienceBot, sino la confianza de cientos de familias que ven en la robótica y la programación una puerta hacia el futuro de sus hijos.'
   },
   {
-    id: 'm-2023-2',
-    date: '2023-06-10',
-    title: 'Certificación ISO 9001 Educación',
-    description: 'Reconocimiento internacional a nuestra calidad educativa.',
-    icon: '📜',
+    id: 'm-robot-rally-2023',
+    date: '2023-06-01',
+    title: 'Robot Rally 2023 — 2.do Lugar',
+    description: '🥈 Segundo lugar en el Robot Rally 2023.',
+    icon: '🥈',
     category: 'hito',
-    expandedContent: 'Nos convertimos en la primera academia de robótica extra-curricular de la región en obtener la certificación de calidad ISO. Esto garantiza a los padres que nuestros procesos de enseñanza, seguridad y administración cumplen con los más altos estándares globales.'
+    expandedContent: 'En la edición 2023 del Robot Rally, nuestros estudiantes volvieron a subir al podio obteniendo el segundo lugar. Esta competencia de robótica educativa evalúa la capacidad de los equipos para programar robots que completen recorridos y retos de ingeniería con precisión y creatividad. El segundo lugar reafirmó nuestro nivel competitivo frente a equipos de todo el país.'
   },
   {
-    id: 'm-2023-3',
-    date: '2023-11-15',
-    title: 'Premio Innovación Educativa 2023',
+    id: 'm-futbol-robotico-2023',
+    date: '2023-07-01',
+    title: 'Fútbol Robótico 2023 — 3.er Lugar',
+    description: '🥉 Tercer lugar en la categoría Fútbol Robótico.',
+    icon: '⚽',
+    category: 'hito',
+    expandedContent: 'En la categoría de Fútbol Robótico, nuestro equipo logró el tercer lugar compitiendo contra equipos de alto nivel. El fútbol robótico es una disciplina donde los robots deben detectar el balón mediante sensores, desplazarse de forma autónoma y marcar goles, poniendo a prueba tanto la programación como el diseño mecánico del robot. Una medalla de bronce que demuestra nuestra versatilidad en distintas modalidades de competencia.'
+  },
+  {
+    id: 'm-carrera-insectos-2023',
+    date: '2023-08-01',
+    title: 'Carrera de Insectos 2023 — 3.er Lugar',
+    description: '🥉 Tercer lugar en la Carrera de Insectos.',
+    icon: '🐛',
+    category: 'hito',
+    expandedContent: 'La Carrera de Insectos es una emocionante modalidad robótica en la que los equipos construyen y programan mini robots de locomoción inspirados en el movimiento de los insectos, compitiendo en velocidad y agilidad sobre un circuito de obstáculos. Nuestro equipo obtuvo el tercer lugar, destacando por la estabilidad mecánica y la eficiencia del código de movimiento de su robot, en una categoría altamente técnica y creativa.'
+  },
+  {
+    id: 'm-hito-premio',
+    date: '2099-11-15',
+    title: 'Premio Innovación Educativa "Año"',
     description: 'Galardonados como la Mejor Iniciativa EdTech del Año.',
     icon: '🏅',
     category: 'hito',
     expandedContent: 'El Ministerio de Educación y Ciencia nos otorgó este reconocimiento por nuestra contribución a la reducción de la brecha digital y el fomento de vocaciones STEM en edades tempranas.'
   },
 
-  // Estudiantes - 2023
-  {
-    id: 's-2023-1',
-    date: '2023-02-28',
-    title: 'Beca Completa en Stanford',
-    description: 'Diego (16 años) admitido por su portafolio de IA.',
-    icon: '🇺🇸',
-    category: 'estudiante',
-    expandedContent: 'Diego comenzó con nosotros a los 12 años en Scratch. Cuatro años después, su proyecto de detección de plagas en cultivos mediante drones e IA le valió una beca del 100% en una de las mejores universidades del mundo. Es nuestro orgullo.'
-  },
-  {
-    id: 's-2023-2',
-    date: '2023-07-10',
-    title: 'Startup "EcoTech" Levantó Capital',
-    description: 'Ex-alumnos de 18 años valorados en $1M USD.',
-    icon: '🦄',
-    category: 'estudiante',
-    expandedContent: 'Tres compañeros que se conocieron en nuestro curso de Python fundaron EcoTech Solutions. Su startup de sensores IoT para eficiencia energética en edificios acaba de recibir su primera ronda de inversión semilla, demostrando que nuestros estudiantes son emprendedores reales.'
-  },
 
-  // Historia - 2024 (Futuro)
+
+
+  // Historia - Dic 2025
   {
-    id: 'h-2024-1',
-    date: '2024-01-15',
-    title: 'Apertura Campus de Innovación',
-    description: 'Inicia la construcción de nuestro nuevo campus de 1000m².',
-    icon: '🏗️',
+    id: 'h-2025-aula-robotica',
+    date: '2025-12-12',
+    title: 'Entrega de la primera Aula de Robótica',
+    description: 'El departamento del Guaviare recibe la primera Aula de Robótica Oficial.',
+    icon: '🏫',
     category: 'historia',
     featured: true,
-    expandedContent: 'Para acomodar nuestro crecimiento, hemos iniciado la construcción del "ScienceBot Innovation Campus". Incluirá un makerspace abierto al público, auditorio para hackathons, y laboratorios de realidad virtual y aumentada. La inauguración está prevista para finales de 2024.'
-  },
-  {
-    id: 's-2024-1',
-    date: '2024-03-10',
-    title: 'Patente de Sistema de Riego',
-    description: 'Lucía (15 años) registra su primera patente industrial.',
-    icon: '💡',
-    category: 'estudiante',
-    expandedContent: 'Lucía patentó su "Sistema de Riego Predictivo de Bajo Costo". Su invención utiliza datos meteorológicos locales y sensores de suelo para ahorrar hasta un 40% de agua en pequeños cultivos familiares. Ya está en conversaciones con cooperativas agrícolas para su implementación pilot.'
+    expandedContent: 'El departamento del Guaviare recibió la primera Aula de Robótica Oficial, un espacio equipado con tecnología de última generación para fortalecer procesos educativos en ciencia, tecnología e innovación. Esta iniciativa está liderada por nuestra Escuela de Robótica "ScienceBot", y contó con el apoyo directo del Ministerio de Ciencia, Tecnología e Innovación.'
   }
 ];
 

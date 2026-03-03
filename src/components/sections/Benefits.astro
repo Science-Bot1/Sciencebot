@@ -156,17 +156,16 @@ const benefits = [
                         stroke="currentColor"
                         stroke-width="2"
                     >
-                        <path
-                            d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
                         ></path>
-                        <polyline points="14 2 14 8 20 8"></polyline>
-                        <line x1="16" y1="13" x2="8" y2="13"></line>
-                        <line x1="16" y1="17" x2="8" y2="17"></line>
-                        <polyline points="10 9 9 9 8 9"></polyline>
                     </svg>
                 </div>
-                <span class="benefits__stat-value" data-target="15">0</span>
-                <span class="benefits__stat-label">Cursos disponibles</span>
+                <span class="benefits__stat-value benefits__stat-value--dev"
+                    >🚧</span
+                >
+                <span class="benefits__stat-label"
+                    >Academia en<br />desarrollo</span
+                >
             </div>
 
             <div class="benefits__stat-card">
@@ -387,6 +386,10 @@ const benefits = [
 
     .benefits__stat-value::after {
         content: "+";
+    }
+
+    .benefits__stat-value--dev::after {
+        content: "";
     }
 
     .benefits__stat-label {

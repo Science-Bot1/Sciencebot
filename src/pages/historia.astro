@@ -7,6 +7,11 @@ import Timeline from "../components/timeline/Timeline.astro";
 import { timelineEvents, timelineCategories } from "../data/timeline.ts";
 import type { TimelineEvent, TimelineCategory } from "../data/timeline.ts";
 
+// Ordenar eventos por fecha ascendente (más antiguo primero)
+const sortedEvents = [...timelineEvents].sort(
+    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+);
+
 // Page specific props
 const title = "ScienceBot | Nuestra Historia";
 const description =
@@ -30,7 +35,7 @@ const description =
 
             <!-- Timeline Principal -->
             <Timeline
-                events={timelineEvents}
+                events={sortedEvents}
                 categories={timelineCategories}
                 title="Nuestra Historia"
                 subtitle="El viaje de ScienceBot a través del tiempo, desde un pequeño sueño hasta transformar miles de vidas"

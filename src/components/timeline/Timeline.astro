@@ -99,10 +99,27 @@ const getCategoryById = (categoryId: string) =>
 </section>
 
 <script>
+    // Recalculate left/right alternation for visible events
+    function reorderSides(visibleEvents: HTMLElement[]) {
+        visibleEvents.forEach((event, i) => {
+            event.classList.remove(
+                "timeline-event-left",
+                "timeline-event-right",
+            );
+            event.classList.add(
+                i % 2 === 0 ? "timeline-event-left" : "timeline-event-right",
+            );
+        });
+    }
+
     // Category filter functionality
     function initTimelineFilters() {
         const filterBtns = document.querySelectorAll(".filter-btn");
-        const timelineEvents = document.querySelectorAll(".timeline-event");
+        const timelineEvents =
+            document.querySelectorAll<HTMLElement>(".timeline-event");
+
+        // Apply correct alternation on first load
+        reorderSides(Array.from(timelineEvents));
 
         filterBtns.forEach((btn) => {
             btn.addEventListener("click", () => {
@@ -112,26 +129,31 @@ const getCategoryById = (categoryId: string) =>
                 filterBtns.forEach((b) => b.classList.remove("active"));
                 btn.classList.add("active");
 
-                // Filter events with smooth transition
-                timelineEvents.forEach((event, index) => {
-                    const htmlEvent = event as HTMLElement;
-                    const eventCategory =
-                        htmlEvent.getAttribute("data-category");
+                // First hide all, then show matching and reorder sides
+                const visibleEvents: HTMLElement[] = [];
+
+                timelineEvents.forEach((event) => {
+                    const eventCategory = event.getAttribute("data-category");
                     const shouldShow =
                         category === "all" || eventCategory === category;
 
-                    if (shouldShow) {
-                        htmlEvent.style.display = "grid";
-                        // Re-trigger animation
+                    if (!shouldShow) {
+                        event.classList.remove("active");
                         setTimeout(() => {
-                            htmlEvent.classList.add("active");
-                        }, index * 50);
-                    } else {
-                        htmlEvent.classList.remove("active");
-                        setTimeout(() => {
-                            htmlEvent.style.display = "none";
+                            event.style.display = "none";
                         }, 300);
+                    } else {
+                        event.style.display = "grid";
+                        visibleEvents.push(event);
                     }
+                });
+
+                // Recalculate left/right for visible events and re-trigger animation
+                reorderSides(visibleEvents);
+                visibleEvents.forEach((event, index) => {
+                    setTimeout(() => {
+                        event.classList.add("active");
+                    }, index * 50);
                 });
             });
         });
