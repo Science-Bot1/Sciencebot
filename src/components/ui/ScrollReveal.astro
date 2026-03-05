@@ -52,9 +52,13 @@
         );
 
         // Observe all reveal elements
-        document.querySelectorAll(".reveal").forEach((el) => {
-            revealObserver.observe(el);
-        });
+        document
+            .querySelectorAll(
+                ".reveal, .reveal-left, .reveal-right, .reveal-scale",
+            )
+            .forEach((el) => {
+                revealObserver.observe(el);
+            });
 
         // Observe all stagger containers
         document.querySelectorAll(".stagger-children").forEach((el) => {

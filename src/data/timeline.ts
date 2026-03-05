@@ -24,26 +24,26 @@ export const timelineCategories: TimelineCategory[] = [
   {
     id: 'historia',
     name: 'Historia',
-    color: '#ff4c24',
+    color: '#2020E8',
     icon: '🏛️'
+  },
+  {
+    id: 'hito',
+    name: 'Hitos',
+    color: '#1ccf08',
+    icon: '🎯'
+  },
+  {
+    id: 'estudiante',
+    name: 'Estudiantes',
+    color: '#fa0908',
+    icon: '👨‍🎓'
   },
   {
     id: 'curso',
     name: 'Cursos',
     color: '#8B5CF6',
     icon: '📚'
-  },
-  {
-    id: 'hito',
-    name: 'Hitos',
-    color: '#84CC16',
-    icon: '🎯'
-  },
-  {
-    id: 'estudiante',
-    name: 'Estudiantes',
-    color: '#06B6D4',
-    icon: '👨‍🎓'
   }
 ];
 
@@ -66,13 +66,13 @@ export const timelineEvents: TimelineEvent[] = [
     description: 'Iniciamos operaciones con nuestro primer grupo piloto de estudiantes.',
     icon: '🌱',
     category: 'historia',
-    expandedContent: 'Con apenas 15 estudiantes valientes que confiaron en nuestro proyecto piloto, comenzamos esta increíble aventura. Las clases se impartían los fines de semana y cada estudiante recibió atención personalizada para validar nuestra metodología de enseñanza "Aprender Haciendo".'
+    expandedContent: 'Con apenas 15 estudiantes valientes que confiaron en nuestro proyecto piloto, comenzamos esta increíble aventura. Las clases se impartían los fines de semana y cada estudiante recibió atención personalizada para validar nuestra metodología de enseñanza.'
   },
 
   // Historia - Crecimiento
   {
     id: 'h-sede-1',
-    date: '2023-01-01',
+    date: '2022-01-12',
     title: 'Inauguración Sede Principal',
     description: 'Abrimos nuestro primer centro de aprendizaje especializado.',
     icon: '🏢',
@@ -124,12 +124,12 @@ export const timelineEvents: TimelineEvent[] = [
   // Hitos - Logros Tempranos
   {
     id: 'm-hito-graduados',
-    date: '2099-12-20',
-    title: 'xxx Estudiantes Graduados',
+    date: '2023-12-20',
+    title: '100 Estudiantes Graduados *Corregir*',
     description: 'Nuestra primera gran generación de innovadores completa su formación.',
     icon: '🎓',
     category: 'hito',
-    expandedContent: 'Cerrar el Año con xxx graduados fue la validación que necesitábamos. Ver a xxx niños y jóvenes presentando sus proyectos finales a sus familias fue un momento emotivo que consolidó nuestra visión de impacto social.'
+    expandedContent: 'Cerrar el Año 2023 con 100 graduados fue la validación que necesitábamos. Ver a 100 niños y jóvenes presentando sus proyectos finales a sus familias fue un momento emotivo que consolidó nuestra visión de impacto social.'
   },
 
   // Estudiantes - Niñas del Guaviare en la NASA
@@ -169,6 +169,18 @@ export const timelineEvents: TimelineEvent[] = [
     icon: '🛸',
     category: 'estudiante',
     expandedContent: 'Zully Karina Romero, estudiante de la Institución Educativa La Libertad del Guaviare, participó en el programa de inmersión en el Centro Espacial de la NASA en Houston, Texas. A través de la formación en robótica y tecnología impulsada por ScienceBot en zonas rurales, Zully superó barreras de acceso para convertirse en una de las representantes de su región ante uno de los centros científicos más importantes del mundo. Su travesía demuestra que la educación STEM transforma vidas desde el primer taller.'
+  },
+
+  // Estudiantes - Representación Colombia en México
+  {
+    id: 's-mexico-roborrally-2023',
+    date: '2023-05-15',
+    title: 'Estudiantes de ScienceBot representan a Colombia en México',
+    description: 'Por su determinación y talento, estudiantes del Guaviare llevan el nombre de Colombia al RoboRally Internacional en México.',
+    icon: '🇨🇴',
+    category: 'estudiante',
+    featured: true,
+    expandedContent: 'Triunfantes regresaron al departamento del Guaviare los estudiantes de la Escuela de Robótica ScienceBot, quienes ganaron el Campeonato Nacional RoboRally en la categoría de Fútbol Robótico. Gracias a su determinación, esfuerzo y pasión por la robótica, estos jóvenes del Guaviare fueron seleccionados para representar a Colombia en el RoboRally Internacional celebrado en México, demostrando que el talento no conoce fronteras geográficas y que desde la Amazonia colombiana se puede competir al más alto nivel internacional.'
   },
 
 
@@ -217,17 +229,17 @@ export const timelineEvents: TimelineEvent[] = [
 
   {
     id: 'm-hito-estudiantes-activos',
-    date: '2099-01-25',
-    title: '"Numero de estudiantes" Estudiantes Activos',
+    date: '2026-01-25',
+    title: '200+ Estudiantes Activos "Corregir descripción" ',
     description: 'Una comunidad vibrante de creadores tecnológicos.',
     icon: '📈',
     category: 'hito',
     featured: true,
-    expandedContent: 'Alcanzar los xxxx estudiantes activos simultáneos fue un hito logístico y pedagógico. Un logro que refleja no solo el crecimiento de ScienceBot, sino la confianza de cientos de familias que ven en la robótica y la programación una puerta hacia el futuro de sus hijos.'
+    expandedContent: 'Alcanzar los 200+ estudiantes activos simultáneos fue un hito logístico y pedagógico. Un logro que refleja no solo el crecimiento de ScienceBot, sino la confianza de cientos de familias que ven en la robótica y la programación una puerta hacia el futuro de sus hijos.'
   },
   {
     id: 'm-robot-rally-2023',
-    date: '2023-06-01',
+    date: '2023-05-03',
     title: 'Robot Rally 2023 — 2.do Lugar',
     description: '🥈 Segundo lugar en el Robot Rally 2023.',
     icon: '🥈',
@@ -235,8 +247,18 @@ export const timelineEvents: TimelineEvent[] = [
     expandedContent: 'En la edición 2023 del Robot Rally, nuestros estudiantes volvieron a subir al podio obteniendo el segundo lugar. Esta competencia de robótica educativa evalúa la capacidad de los equipos para programar robots que completen recorridos y retos de ingeniería con precisión y creatividad. El segundo lugar reafirmó nuestro nivel competitivo frente a equipos de todo el país.'
   },
   {
+    id: 'm-hito-mexico-2023',
+    date: '2023-05-20',
+    title: 'ScienceBot representa a Colombia en México — RoboRally Internacional',
+    description: 'Tras ganar el Campeonato Nacional RoboRally, ScienceBot es seleccionada para representar a Colombia en México.',
+    icon: '🌎',
+    category: 'hito',
+    featured: true,
+    expandedContent: 'Después de coronarse campeones del Campeonato Nacional RoboRally en la categoría de Fútbol Robótico, la Escuela de Robótica ScienceBot fue seleccionada para representar a Colombia en el RoboRally Internacional celebrado en México. Este logro histórico posiciona al departamento del Guaviare en el mapa de la robótica latinoamericana, demostrando que con metodología, dedicación y un equipo comprometido, es posible competir y brillar a nivel internacional.'
+  },
+  {
     id: 'm-futbol-robotico-2023',
-    date: '2023-07-01',
+    date: '2023-05-04',
     title: 'Fútbol Robótico 2023 — 3.er Lugar',
     description: '🥉 Tercer lugar en la categoría Fútbol Robótico.',
     icon: '⚽',
@@ -245,7 +267,7 @@ export const timelineEvents: TimelineEvent[] = [
   },
   {
     id: 'm-carrera-insectos-2023',
-    date: '2023-08-01',
+    date: '2023-05-05',
     title: 'Carrera de Insectos 2023 — 3.er Lugar',
     description: '🥉 Tercer lugar en la Carrera de Insectos.',
     icon: '🐛',
@@ -253,17 +275,53 @@ export const timelineEvents: TimelineEvent[] = [
     expandedContent: 'La Carrera de Insectos es una emocionante modalidad robótica en la que los equipos construyen y programan mini robots de locomoción inspirados en el movimiento de los insectos, compitiendo en velocidad y agilidad sobre un circuito de obstáculos. Nuestro equipo obtuvo el tercer lugar, destacando por la estabilidad mecánica y la eficiencia del código de movimiento de su robot, en una categoría altamente técnica y creativa.'
   },
   {
-    id: 'm-hito-premio',
-    date: '2099-11-15',
-    title: 'Premio Innovación Educativa "Año"',
-    description: 'Galardonados como la Mejor Iniciativa EdTech del Año.',
+    id: 'm-reconocimiento-wef',
+    date: '2023-07-28',
+    title: 'Premio Joven Innovador — Women Economic Forum',
+    description: 'Anguie Tatiana Muñoz González recibe el premio "Joven Innovador en pro de un mundo mejor para todos."',
+    icon: '🌟',
+    category: 'hito',
+    featured: true,
+    expandedContent: 'Women Economic Forum (WEF) confiere a Anguie Tatiana Muñoz González el premio "Joven Innovador en pro de un mundo mejor para todos", otorgado en el Women Economic Forum WEF Latam Colombia, el 28 de julio de 2023, en Bogotá, Colombia.'
+  },
+  {
+    id: 'm-reconocimiento-orden-guaviare',
+    date: '2024-06-01',
+    title: 'Condecoración Orden Flor del Guaviare',
+    description: 'ScienceBot recibe la Orden Flor del Guaviare al mérito cívico por su servicio a la comunidad.',
+    icon: '�',
+    category: 'hito',
+    featured: true,
+    expandedContent: 'ScienceBot recibe la Condecoración de la Orden Flor del Guaviare al mérito cívico, distinción otorgada para exaltar a los ciudadanos y entidades que se hayan distinguido por su servicio a la comunidad y trabajo en el logro de las metas trazadas por el gobierno nacional en beneficio del desarrollo y la paz.'
+  },
+  {
+    id: 'm-reconocimiento-unad',
+    date: '2025-04-01',
+    title: 'Reconocimiento UNAD — 1er Desafío INNCUNAD 2025',
+    description: 'La UNAD distingue a ScienceBot por su creatividad y espíritu emprendedor en el Desafío INNCUNAD.',
+    icon: '🎖️',
+    category: 'hito',
+    expandedContent: 'La Universidad Nacional Abierta y a Distancia - UNAD, a través de la Vicerrectoría de Inclusión, Innovación y Emprendimiento (VIEM), otorga reconocimiento a ScienceBot por su destacada participación en el 1er Desafío INNCUNAD 2025, demostrando compromiso, creatividad y espíritu emprendedor al servicio de la transformación social y el desarrollo sostenible de los territorios.'
+  },
+  {
+    id: 'm-reconocimiento-puerto-iris',
+    date: '2025-09-25',
+    title: 'Reconocimiento II Feria de la Ciencia — Puerto Iris',
+    description: 'La I.E. Puerto Iris de Puerto Concordia reconoce a ScienceBot por su participación en la Feria de Ciencia y Tecnología.',
     icon: '🏅',
     category: 'hito',
-    expandedContent: 'El Ministerio de Educación y Ciencia nos otorgó este reconocimiento por nuestra contribución a la reducción de la brecha digital y el fomento de vocaciones STEM en edades tempranas.'
+    expandedContent: 'La Institución Educativa Puerto Iris de Puerto Concordia otorga reconocimiento a la Escuela de Robótica ScienceBot, San José del Guaviare, por su destacada participación en la II Feria de la Ciencia y la Tecnología de la Institución Educativa Puerto Iris. 25 de septiembre de 2025.'
   },
-
-
-
+  {
+    id: 'm-hito-elpais-2025',
+    date: '2025-12-11',
+    title: 'Tatiana Muñoz — 100 Nuevos Líderes de Colombia',
+    description: 'Tatiana Muñoz es destacada como uno de los 100 Nuevos Líderes de Colombia por transformar la educación STEM en el Guaviare.',
+    icon: '🏆',
+    category: 'hito',
+    featured: true,
+    expandedContent: 'Tatiana Muñoz Gonzalez es reconocida como uno de los 100 Nuevos Líderes de Colombia gracias al impacto de ScienceBot en el departamento del Guaviare. Con ScienceBot llegó a más de 3.000 estudiantes formados, 1.200 de ellos con beca completa, logrando que niños y niñas de la Amazonia colombiana encabecen por primera vez competencias nacionales e internacionales de tecnología y robótica. Un reconocimiento que posiciona al Guaviare como referente latinoamericano en educación STEM.'
+  },
 
   // Historia - Dic 2025
   {

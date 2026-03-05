@@ -146,7 +146,7 @@ const benefits = [
                 <span class="benefits__stat-label">% Satisfacción</span>
             </div>
 
-            <div class="benefits__stat-card">
+            <!-- <div class="benefits__stat-card">
                 <div class="benefits__stat-icon">
                     <svg
                         width="32"
@@ -166,7 +166,7 @@ const benefits = [
                 <span class="benefits__stat-label"
                     >Academia en<br />desarrollo</span
                 >
-            </div>
+            </div>-->
 
             <div class="benefits__stat-card">
                 <div class="benefits__stat-icon">
@@ -182,7 +182,7 @@ const benefits = [
                         <polyline points="12 6 12 12 16 14"></polyline>
                     </svg>
                 </div>
-                <span class="benefits__stat-value" data-target="5">0</span>
+                <span class="benefits__stat-value" data-target="10">0</span>
                 <span class="benefits__stat-label">Años de experiencia</span>
             </div>
         </div>
@@ -203,12 +203,12 @@ const benefits = [
         background:
             radial-gradient(
                 ellipse 50% 50% at 20% 20%,
-                rgba(139, 92, 246, 0.08) 0%,
+                var(--color-primary-alpha-10) 0%,
                 transparent 50%
             ),
             radial-gradient(
                 ellipse 40% 40% at 80% 80%,
-                rgba(163, 230, 53, 0.06) 0%,
+                var(--color-accent-alpha-5) 0%,
                 transparent 50%
             );
         pointer-events: none;
@@ -243,7 +243,7 @@ const benefits = [
     }
 
     .benefit-accordion:hover {
-        border-color: rgba(163, 230, 53, 0.3);
+        border-color: var(--color-primary-alpha-30);
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
 
@@ -262,7 +262,7 @@ const benefits = [
     }
 
     .benefit-accordion__trigger:hover {
-        background: rgba(163, 230, 53, 0.05);
+        background: var(--color-primary-alpha-5);
     }
 
     /* Icon Container */
@@ -274,7 +274,7 @@ const benefits = [
         width: 48px;
         height: 48px;
         background: var(--color-accent-lime);
-        color: var(--color-dark);
+        color: white;
         border-radius: var(--radius-lg);
         transition: transform var(--transition-base);
     }
@@ -339,17 +339,18 @@ const benefits = [
     /* Visual Stats Section */
     .benefits__visual {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         gap: var(--space-4);
         margin-top: var(--space-16);
-        max-width: 800px;
+        max-width: 700px;
         margin-left: auto;
         margin-right: auto;
     }
 
-    @media (min-width: 768px) {
+    @media (max-width: 640px) {
         .benefits__visual {
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: 1fr;
+            max-width: 300px;
         }
     }
 

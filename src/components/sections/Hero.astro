@@ -1,9 +1,9 @@
 ---
 import Button from "../ui/Button.astro";
+import StackedCarousel from "../carousel/StackedCarousel.astro";
 
 const stats = [
-    { value: "500+", label: "Estudiantes activos" },
-    { value: "🚧", label: "Academia en desarrollo" },
+    { value: "200+", label: "Estudiantes activos" },
     { value: "98%", label: "Padres satisfechos" },
 ];
 
@@ -194,9 +194,7 @@ const techIcons = [
 
             <!-- Headline -->
             <h1 class="hero__title">
-                Despierta el <span class="gradient-text">genio tecnológico</span
-                >
-                de tu hijo
+                Despierta el genio tecnológico de tu hijo
             </h1>
 
             <!-- Subtitle -->
@@ -239,22 +237,13 @@ const techIcons = [
             </div>
         </div>
 
-        <!-- Hero Visual - LEGO Car Image -->
         <div class="hero__visual">
-            <div class="hero__image-wrapper">
-                <img
-                    src="/lego-car.png"
-                    alt="Robot LEGO Mindstorms"
-                    class="hero__robot-image"
-                    loading="eager"
-                />
-            </div>
+            <StackedCarousel />
         </div>
     </div>
 
     <!-- Scroll indicator -->
     <div class="hero__scroll">
-        <span>Descubre más</span>
         <div class="hero__scroll-icon">
             <svg
                 width="24"
@@ -279,6 +268,13 @@ const techIcons = [
         align-items: center;
         overflow: hidden;
         padding-top: 72px;
+        /* Forzar azul para esta sección hero */
+        --gradient-text: linear-gradient(
+            135deg,
+            #1616a8 0%,
+            #2020e8 50%,
+            #5c5cff 100%
+        );
     }
 
     /* Background */
@@ -296,12 +292,12 @@ const techIcons = [
         background:
             radial-gradient(
                 ellipse 80% 50% at 50% -20%,
-                rgba(139, 92, 246, 0.08) 0%,
+                var(--color-primary-alpha-10) 0%,
                 transparent 60%
             ),
             radial-gradient(
                 ellipse 60% 40% at 80% 60%,
-                rgba(163, 230, 53, 0.06) 0%,
+                var(--color-accent-alpha-5) 0%,
                 transparent 50%
             );
     }
@@ -310,10 +306,10 @@ const techIcons = [
         position: absolute;
         inset: 0;
         background-image:
-            linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+            linear-gradient(var(--color-primary-alpha-5) 1px, transparent 1px),
             linear-gradient(
                 90deg,
-                rgba(139, 92, 246, 0.03) 1px,
+                var(--color-primary-alpha-5) 1px,
                 transparent 1px
             );
         background-size: 50px 50px;
@@ -326,7 +322,7 @@ const techIcons = [
 
     .hero__floating-icon {
         position: absolute;
-        color: var(--color-secondary);
+        color: var(--color-primary-light);
         opacity: 0.15;
         animation: float 4s ease-in-out infinite;
     }
@@ -340,16 +336,16 @@ const techIcons = [
     /* Container */
     .hero__container {
         display: grid;
+        grid-template-columns: 1fr;
         gap: var(--space-10);
         padding: var(--space-8) 0;
-        align-items: center;
+        margin: 0 auto;
     }
 
     @media (min-width: 1024px) {
         .hero__container {
             grid-template-columns: 1fr 1fr;
-            gap: var(--space-16);
-            padding: var(--space-16) 0;
+            align-items: center;
         }
     }
 
@@ -358,13 +354,9 @@ const techIcons = [
         display: flex;
         flex-direction: column;
         gap: var(--space-6);
-        text-align: center;
-    }
-
-    @media (min-width: 1024px) {
-        .hero__content {
-            text-align: left;
-        }
+        text-align: left;
+        align-items: flex-start;
+        width: 100%;
     }
 
     .hero__badge {
@@ -379,13 +371,6 @@ const techIcons = [
         font-weight: 500;
         color: var(--color-neutral-600);
         width: fit-content;
-        margin: 0 auto;
-    }
-
-    @media (min-width: 1024px) {
-        .hero__badge {
-            margin: 0;
-        }
     }
 
     .hero__badge-dot {
@@ -405,51 +390,34 @@ const techIcons = [
     }
 
     .hero__title :global(.gradient-text) {
-        background: var(--gradient-primary);
+        background: var(--gradient-text);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
+        color: transparent;
     }
 
     .hero__subtitle {
         font-size: var(--text-lg);
         color: var(--color-neutral-600);
         max-width: 50ch;
-        margin: 0 auto;
-    }
-
-    @media (min-width: 1024px) {
-        .hero__subtitle {
-            margin: 0;
-        }
     }
 
     .hero__cta {
         display: flex;
         flex-wrap: wrap;
         gap: var(--space-4);
-        justify-content: center;
-    }
-
-    @media (min-width: 1024px) {
-        .hero__cta {
-            justify-content: flex-start;
-        }
+        justify-content: flex-start;
     }
 
     .hero__stats {
         display: flex;
+        flex-wrap: wrap;
         gap: var(--space-8);
-        justify-content: center;
+        justify-content: flex-start;
         padding-top: var(--space-6);
         border-top: 1px solid var(--color-neutral-200);
         margin-top: var(--space-4);
-    }
-
-    @media (min-width: 1024px) {
-        .hero__stats {
-            justify-content: flex-start;
-        }
     }
 
     .hero__stat {
@@ -461,7 +429,7 @@ const techIcons = [
     .hero__stat-value {
         font-size: var(--text-2xl);
         font-weight: 700;
-        background: var(--gradient-primary);
+        background: var(--gradient-text);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -477,6 +445,9 @@ const techIcons = [
     .hero__visual {
         display: flex;
         justify-content: center;
+        align-items: center;
+        position: relative;
+        overflow: visible;
     }
 
     .hero__image-wrapper {
@@ -534,41 +505,51 @@ const techIcons = [
     .hero__ring--1 {
         width: 100%;
         height: 100%;
-        border-color: rgba(37, 99, 235, 0.2);
+        border-color: var(--color-primary-alpha-20);
         animation: rotate 20s linear infinite;
     }
 
     .hero__ring--2 {
         width: 80%;
         height: 80%;
-        border-color: rgba(124, 58, 237, 0.15);
+        border-color: var(--color-primary-alpha-15);
         animation: rotate 15s linear infinite reverse;
     }
 
     .hero__ring--3 {
         width: 60%;
         height: 60%;
-        border-color: rgba(16, 185, 129, 0.1);
+        border-color: var(--color-accent-alpha-10);
         animation: rotate 10s linear infinite;
     }
 
     /* Scroll indicator */
     .hero__scroll {
         position: absolute;
-        bottom: var(--space-8);
+        bottom: var(--space-6);
         left: 50%;
         transform: translateX(-50%);
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: var(--space-2);
-        color: var(--color-neutral-500);
+        color: var(--color-primary);
         font-size: var(--text-sm);
-        animation: bounce 2s ease-in-out infinite;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        cursor: pointer;
+        opacity: 0.75;
+        transition: opacity var(--transition-base);
+    }
+
+    .hero__scroll:hover {
+        opacity: 1;
     }
 
     .hero__scroll-icon {
         animation: bounce 2s ease-in-out infinite;
+        color: var(--color-primary);
     }
 
     @keyframes bounce {
@@ -577,7 +558,7 @@ const techIcons = [
             transform: translateY(0);
         }
         50% {
-            transform: translateY(8px);
+            transform: translateY(6px);
         }
     }
 

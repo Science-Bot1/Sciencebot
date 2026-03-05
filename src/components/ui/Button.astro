@@ -8,6 +8,7 @@ interface Props {
     target?: string;
     ariaLabel?: string;
     disabled?: boolean;
+    style?: string | Record<string, string>;
 }
 
 const {
@@ -19,6 +20,7 @@ const {
     target,
     ariaLabel,
     disabled = false,
+    style,
 } = Astro.props;
 
 const isLink = !!href;
@@ -55,6 +57,7 @@ const classes = [
             target={target}
             rel={target === "_blank" ? "noopener noreferrer" : undefined}
             aria-label={ariaLabel}
+            style={style}
         >
             <span class="button__content">
                 <slot />
@@ -66,6 +69,7 @@ const classes = [
             class={classes}
             aria-label={ariaLabel}
             disabled={disabled}
+            style={style}
         >
             <span class="button__content">
                 <slot />
@@ -134,17 +138,19 @@ const classes = [
         transform: translateY(-2px);
         box-shadow:
             var(--shadow-lg),
-            0 0 20px rgba(139, 92, 246, 0.4);
+            0 0 20px var(--color-primary-alpha-30);
     }
 
     /* Secondary */
     .button--secondary {
-        background: var(--color-dark);
-        color: white;
+        background: transparent;
+        color: var(--color-primary);
+        border: 2px solid var(--color-primary);
     }
 
     .button--secondary:hover:not(:disabled) {
-        background: var(--color-dark-secondary);
+        background: var(--color-primary);
+        color: white;
         transform: translateY(-2px);
     }
 

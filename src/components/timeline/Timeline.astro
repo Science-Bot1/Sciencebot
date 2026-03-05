@@ -46,6 +46,7 @@ const getCategoryById = (categoryId: string) =>
                     <button
                         class="filter-btn active"
                         data-category="all"
+                        style="--filter-color: #2020E8;"
                         aria-label="Mostrar todos los eventos"
                     >
                         <span class="filter-icon">🎯</span>
@@ -192,7 +193,7 @@ const getCategoryById = (categoryId: string) =>
         height: 100%;
         background: radial-gradient(
             ellipse at center,
-            rgba(139, 92, 246, 0.05) 0%,
+            rgba(26, 26, 230, 0.05) 0%,
             transparent 60%
         );
         pointer-events: none;
@@ -210,10 +211,7 @@ const getCategoryById = (categoryId: string) =>
     .timeline-heading {
         font-size: clamp(var(--text-4xl), 5vw, var(--text-6xl));
         font-weight: 800;
-        background: var(--gradient-text);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        color: var(--color-dark);
         margin-bottom: var(--space-4);
     }
 
@@ -263,7 +261,7 @@ const getCategoryById = (categoryId: string) =>
         color: white;
         box-shadow:
             var(--shadow-lg),
-            0 0 20px rgba(139, 92, 246, 0.3);
+            0 0 20px rgba(26, 26, 230, 0.3);
     }
 
     .filter-icon {
@@ -299,15 +297,13 @@ const getCategoryById = (categoryId: string) =>
             180deg,
             transparent 0%,
             var(--color-neutral-300) 5%,
-            var(--color-primary) 20%,
-            var(--color-secondary) 50%,
-            var(--color-accent-cyan) 80%,
+            var(--color-neutral-400) 50%,
             var(--color-neutral-300) 95%,
             transparent 100%
         );
         transform: translateX(-50%);
         border-radius: var(--radius-full);
-        opacity: 0.6;
+        opacity: 0.5;
         z-index: 1;
     }
 

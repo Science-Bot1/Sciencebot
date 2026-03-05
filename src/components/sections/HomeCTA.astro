@@ -4,7 +4,6 @@ import Button from "../ui/Button.astro";
 
 const stats = [
     { value: "500+", label: "Estudiantes", icon: "users" },
-    { value: "15+", label: "Cursos", icon: "book" },
     { value: "98%", label: "Satisfacción", icon: "star" },
     { value: "10+", label: "Años", icon: "award" },
 ];
@@ -122,9 +121,12 @@ const stats = [
                     </svg>
                     Visitar Academia
                 </Button>
-                <Button href="#" variant="outline" size="lg" data-inscribe-btn>
-                    Inscríbete Ahora
-                </Button>
+                <button
+                    id="inscribe-cta-btn"
+                    class="button button--outline button--lg"
+                >
+                    <span class="button__content">Inscríbete Ahora</span>
+                </button>
                 <Button href="/contacto" variant="secondary" size="lg">
                     Conocer Más
                 </Button>
@@ -166,6 +168,34 @@ const stats = [
 </section>
 
 <style>
+    /* Styles for native inscribe button */
+    #inscribe-cta-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-2);
+        font-family: var(--font-sans);
+        font-weight: 600;
+        line-height: 1;
+        text-decoration: none;
+        border-radius: var(--radius-full);
+        cursor: pointer;
+        transition: all var(--transition-base);
+        white-space: nowrap;
+        padding: var(--space-4) var(--space-8);
+        font-size: var(--text-base);
+        background: transparent;
+        color: var(--color-dark);
+        border: 2px solid var(--color-neutral-300);
+    }
+
+    #inscribe-cta-btn:hover {
+        background: var(--color-neutral-100);
+        color: var(--color-dark);
+        border-color: var(--color-neutral-400);
+        transform: translateY(-2px);
+    }
+
     /* Home CTA Section */
     .home-cta {
         position: relative;
@@ -184,12 +214,12 @@ const stats = [
         background:
             radial-gradient(
                 ellipse 100% 70% at 50% 50%,
-                rgba(139, 92, 246, 0.15) 0%,
+                var(--color-primary-alpha-10) 0%,
                 transparent 70%
             ),
             radial-gradient(
                 ellipse 80% 60% at 20% 30%,
-                rgba(163, 230, 53, 0.1) 0%,
+                var(--color-accent-alpha-10) 0%,
                 transparent 60%
             );
     }
@@ -198,10 +228,10 @@ const stats = [
         position: absolute;
         inset: 0;
         background-image:
-            linear-gradient(rgba(139, 92, 246, 0.04) 1px, transparent 1px),
+            linear-gradient(var(--color-primary-alpha-5) 1px, transparent 1px),
             linear-gradient(
                 90deg,
-                rgba(139, 92, 246, 0.04) 1px,
+                var(--color-primary-alpha-5) 1px,
                 transparent 1px
             );
         background-size: 40px 40px;
@@ -246,14 +276,14 @@ const stats = [
     /* Stats */
     .home-cta__stats {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         gap: var(--space-6);
         padding: var(--space-8) 0;
     }
 
-    @media (min-width: 768px) {
+    @media (max-width: 640px) {
         .home-cta__stats {
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: 1fr;
         }
     }
 
@@ -383,14 +413,24 @@ const stats = [
 
 <script>
     // Handle "Inscríbete Ahora" button click
-    document.addEventListener("DOMContentLoaded", () => {
-        const inscribeBtn = document.querySelector("[data-inscribe-btn]");
+    window.addEventListener("load", () => {
+        const inscribeBtn = document.getElementById("inscribe-cta-btn");
 
         inscribeBtn?.addEventListener("click", (e) => {
             e.preventDefault();
-            alert(
-                "La inscripción estará disponible próximamente. ¡Mantente atento!",
-            );
+            // Try to use the header button's existing click handler
+            const headerBtn = document.getElementById("cta-button-desktop");
+            if (headerBtn) {
+                headerBtn.click();
+            } else {
+                // Fallback: directly open the modal
+                const modal = document.getElementById("academia-modal");
+                if (modal) {
+                    modal.classList.add("is-open");
+                    modal.setAttribute("aria-hidden", "false");
+                    document.body.style.overflow = "hidden";
+                }
+            }
         });
 
         // Scroll reveal animations

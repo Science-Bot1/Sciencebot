@@ -54,7 +54,7 @@ const testimonials = [
     <div class="container">
         <SectionHeader
             label="Testimonios"
-            title="Lo que dicen las <span class='gradient-text'>familias</span>"
+            title="Lo que dicen las familias"
             subtitle="Padres satisfechos, niños felices aprendiendo"
             align="center"
         />
@@ -65,28 +65,27 @@ const testimonials = [
                 id="testimonials-carousel"
             >
                 {
-                    testimonials.map((testimonial) => (
+                    testimonials.map((t) => (
                         <div class="testimonials__card">
                             <div class="testimonials__card-header">
                                 <img
-                                    src={testimonial.image}
-                                    alt={testimonial.name}
+                                    src={t.image}
+                                    alt={t.name}
                                     class="testimonials__avatar"
                                     loading="lazy"
                                 />
                                 <div class="testimonials__author">
                                     <span class="testimonials__name">
-                                        {testimonial.name}
+                                        {t.name}
                                     </span>
                                     <span class="testimonials__role">
-                                        {testimonial.role}
+                                        {t.role}
                                     </span>
                                 </div>
                             </div>
-
                             <div
                                 class="testimonials__rating"
-                                aria-label={`${testimonial.rating} de 5 estrellas`}
+                                aria-label={`${t.rating} de 5 estrellas`}
                             >
                                 {Array.from({ length: 5 }).map((_, i) => (
                                     <svg
@@ -94,7 +93,7 @@ const testimonials = [
                                         height="20"
                                         viewBox="0 0 24 24"
                                         fill={
-                                            i < testimonial.rating
+                                            i < t.rating
                                                 ? "currentColor"
                                                 : "none"
                                         }
@@ -106,11 +105,9 @@ const testimonials = [
                                     </svg>
                                 ))}
                             </div>
-
                             <blockquote class="testimonials__quote">
-                                "{testimonial.quote}"
+                                "{t.quote}"
                             </blockquote>
-
                             <span class="testimonials__course">
                                 <svg
                                     width="16"
@@ -120,10 +117,12 @@ const testimonials = [
                                     stroke="currentColor"
                                     stroke-width="2"
                                 >
-                                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-                                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                                    <>
+                                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                                    </>
                                 </svg>
-                                {testimonial.course}
+                                {t.course}
                             </span>
                         </div>
                     ))
@@ -131,7 +130,6 @@ const testimonials = [
             </div>
         </div>
 
-        <!-- Navigation -->
         <div class="testimonials__nav">
             <button
                 class="testimonials__nav-btn"
@@ -144,20 +142,18 @@ const testimonials = [
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="2"
+                    stroke-width="2"><path d="M15 19l-7-7 7-7"></path></svg
                 >
-                    <path d="M15 19l-7-7 7-7"></path>
-                </svg>
             </button>
             <div class="testimonials__dots" id="testimonials-dots">
                 {
                     testimonials
                         .slice(0, 4)
-                        .map((_, index) => (
+                        .map((_, i) => (
                             <button
-                                class={`testimonials__dot ${index === 0 ? "active" : ""}`}
-                                data-index={index}
-                                aria-label={`Ir al testimonio ${index + 1}`}
+                                class={`testimonials__dot ${i === 0 ? "active" : ""}`}
+                                data-index={i}
+                                aria-label={`Ir al testimonio ${i + 1}`}
                             />
                         ))
                 }
@@ -173,15 +169,12 @@ const testimonials = [
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="2"
+                    stroke-width="2"><path d="M9 5l7 7-7 7"></path></svg
                 >
-                    <path d="M9 5l7 7-7 7"></path>
-                </svg>
             </button>
         </div>
     </div>
 
-    <!-- Decorative quote marks -->
     <div class="testimonials__decoration" aria-hidden="true">
         <svg
             width="120"
@@ -203,18 +196,15 @@ const testimonials = [
         position: relative;
         overflow: hidden;
     }
-
     .testimonials__decoration {
         position: absolute;
         top: var(--space-20);
         left: var(--space-10);
         color: var(--color-dark);
     }
-
     .testimonials__carousel-wrapper {
         overflow: hidden;
     }
-
     .testimonials__carousel {
         display: flex;
         gap: var(--space-6);
@@ -226,7 +216,6 @@ const testimonials = [
         scrollbar-width: none;
         -ms-overflow-style: none;
     }
-
     .testimonials__carousel::-webkit-scrollbar {
         display: none;
     }
@@ -241,14 +230,12 @@ const testimonials = [
         box-shadow: var(--shadow-sm);
         transition: all var(--transition-base);
     }
-
     @media (min-width: 1024px) {
         .testimonials__card {
             flex: 0 0 calc((100% - (2 * var(--space-6))) / 3);
             max-width: none;
         }
     }
-
     .testimonials__card:hover {
         border-color: var(--color-primary);
         box-shadow: var(--shadow-lg);
@@ -261,7 +248,6 @@ const testimonials = [
         gap: var(--space-4);
         margin-bottom: var(--space-4);
     }
-
     .testimonials__avatar {
         width: 60px;
         height: 60px;
@@ -269,34 +255,28 @@ const testimonials = [
         object-fit: cover;
         border: 3px solid var(--color-primary);
     }
-
     .testimonials__author {
         display: flex;
         flex-direction: column;
         gap: var(--space-1);
     }
-
     .testimonials__name {
         font-size: var(--text-lg);
         font-weight: 600;
         color: var(--color-dark);
     }
-
     .testimonials__role {
         font-size: var(--text-sm);
         color: var(--color-neutral-500);
     }
-
     .testimonials__rating {
         display: flex;
         gap: var(--space-1);
         margin-bottom: var(--space-4);
     }
-
     .testimonials__star {
         color: #f59e0b;
     }
-
     .testimonials__quote {
         font-size: var(--text-base);
         line-height: 1.7;
@@ -304,7 +284,6 @@ const testimonials = [
         margin: 0 0 var(--space-4);
         font-style: italic;
     }
-
     .testimonials__course {
         display: inline-flex;
         align-items: center;
@@ -317,7 +296,6 @@ const testimonials = [
         border-radius: var(--radius-full);
     }
 
-    /* Navigation */
     .testimonials__nav {
         display: flex;
         align-items: center;
@@ -325,7 +303,6 @@ const testimonials = [
         gap: var(--space-6);
         margin-top: var(--space-8);
     }
-
     .testimonials__nav-btn {
         display: flex;
         align-items: center;
@@ -339,18 +316,15 @@ const testimonials = [
         transition: all var(--transition-base);
         color: var(--color-neutral-600);
     }
-
     .testimonials__nav-btn:hover {
         background: var(--color-primary);
         border-color: var(--color-primary);
         color: white;
     }
-
     .testimonials__dots {
         display: flex;
         gap: var(--space-2);
     }
-
     .testimonials__dot {
         width: 10px;
         height: 10px;
@@ -360,12 +334,10 @@ const testimonials = [
         cursor: pointer;
         transition: all var(--transition-base);
     }
-
     .testimonials__dot:hover,
     .testimonials__dot.active {
         background: var(--color-neutral-600);
     }
-
     .testimonials__dot.active {
         width: 28px;
         border-radius: var(--radius-full);
@@ -377,27 +349,23 @@ const testimonials = [
     const prevBtn = document.getElementById("testimonials-prev");
     const nextBtn = document.getElementById("testimonials-next");
     const dots = document.querySelectorAll(".testimonials__dot");
-
     let currentIndex = 0;
 
     function getCardWidth() {
         const card = carousel?.querySelector(
             ".testimonials__card",
         ) as HTMLElement;
-        return card ? card.offsetWidth + 24 : 400; // card width + gap
+        return card ? card.offsetWidth + 24 : 400;
     }
-
     function updateDots() {
-        dots.forEach((dot, index) => {
-            dot.classList.toggle("active", index === currentIndex);
-        });
+        dots.forEach((d, i) =>
+            d.classList.toggle("active", i === currentIndex),
+        );
     }
-
     function scrollToCard(index: number) {
         if (carousel) {
-            const cardWidth = getCardWidth();
             carousel.scrollTo({
-                left: index * cardWidth,
+                left: index * getCardWidth(),
                 behavior: "smooth",
             });
             currentIndex = index;
@@ -406,35 +374,20 @@ const testimonials = [
     }
 
     prevBtn?.addEventListener("click", () => {
-        if (currentIndex > 0) {
-            scrollToCard(currentIndex - 1);
-        }
+        if (currentIndex > 0) scrollToCard(currentIndex - 1);
     });
-
     nextBtn?.addEventListener("click", () => {
-        const maxIndex = dots.length - 1;
-        if (currentIndex < maxIndex) {
-            scrollToCard(currentIndex + 1);
-        }
+        if (currentIndex < dots.length - 1) scrollToCard(currentIndex + 1);
     });
-
-    dots.forEach((dot) => {
-        dot.addEventListener("click", () => {
-            const index = parseInt(dot.getAttribute("data-index") || "0");
-            scrollToCard(index);
-        });
-    });
-
+    dots.forEach((dot) =>
+        dot.addEventListener("click", () =>
+            scrollToCard(parseInt(dot.getAttribute("data-index") || "0")),
+        ),
+    );
     carousel?.addEventListener("scroll", () => {
-        const cardWidth = getCardWidth();
-        const scrollLeft = carousel.scrollLeft;
-        const newIndex = Math.round(scrollLeft / cardWidth);
-        if (
-            newIndex !== currentIndex &&
-            newIndex >= 0 &&
-            newIndex < dots.length
-        ) {
-            currentIndex = newIndex;
+        const ni = Math.round(carousel.scrollLeft / getCardWidth());
+        if (ni !== currentIndex && ni >= 0 && ni < dots.length) {
+            currentIndex = ni;
             updateDots();
         }
     });

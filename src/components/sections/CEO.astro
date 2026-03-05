@@ -20,7 +20,7 @@ const ceoInfo = {
     <div class="container">
         <SectionHeader
             label="Nuestra Historia"
-            title="Conoce a la mente detrás de <span class='gradient-text'>ScienceBot</span>"
+            title="Conoce a la mente detrás de ScienceBot"
             subtitle="Una visión que transforma vidas a través de la tecnología"
             align="center"
         />
@@ -58,7 +58,6 @@ const ceoInfo = {
                 </blockquote>
 
                 <p class="ceo__bio">{ceoInfo.bio}</p>
-
                 <p class="ceo__vision">{ceoInfo.vision}</p>
 
                 <div class="ceo__experience">
@@ -96,7 +95,6 @@ const ceoInfo = {
         overflow: hidden;
         padding-top: var(--space-8);
     }
-
     @media (min-width: 768px) {
         .ceo {
             padding-top: var(--space-12);
@@ -112,7 +110,7 @@ const ceoInfo = {
         height: 100%;
         background: radial-gradient(
             ellipse 70% 50% at 70% 30%,
-            rgba(37, 99, 235, 0.08) 0%,
+            rgba(26, 26, 230, 0.08) 0%,
             transparent 60%
         );
         pointer-events: none;
@@ -125,7 +123,6 @@ const ceoInfo = {
         margin: 0 auto;
         align-items: start;
     }
-
     @media (min-width: 768px) {
         .ceo__content {
             grid-template-columns: 300px 1fr;
@@ -139,13 +136,11 @@ const ceoInfo = {
         align-items: center;
         gap: var(--space-6);
     }
-
     .ceo__image-container {
         position: relative;
         width: 220px;
         height: 220px;
     }
-
     .ceo__image {
         width: 100%;
         height: 100%;
@@ -153,18 +148,16 @@ const ceoInfo = {
         object-fit: cover;
         object-position: center;
         box-shadow:
-            0 20px 40px -10px rgba(37, 99, 235, 0.4),
+            0 20px 40px -10px rgba(26, 26, 230, 0.4),
             inset 0 -5px 20px rgba(0, 0, 0, 0.1);
         position: relative;
         z-index: 2;
         border: 4px solid white;
         transition: transform 0.3s ease;
     }
-
     .ceo__image:hover {
         transform: scale(1.05);
     }
-
     .ceo__image-glow {
         position: absolute;
         inset: -10px;
@@ -179,7 +172,6 @@ const ceoInfo = {
         z-index: 1;
         animation: pulse 3s ease-in-out infinite;
     }
-
     @keyframes pulse {
         0%,
         100% {
@@ -195,14 +187,12 @@ const ceoInfo = {
     .ceo__credentials {
         text-align: center;
     }
-
     .ceo__name {
         font-size: var(--text-2xl);
         font-weight: 700;
         color: var(--color-dark);
         margin-bottom: var(--space-1);
     }
-
     .ceo__role {
         display: inline-block;
         padding: var(--space-1) var(--space-4);
@@ -218,7 +208,6 @@ const ceoInfo = {
         flex-direction: column;
         gap: var(--space-6);
     }
-
     .ceo__quote {
         position: relative;
         padding: var(--space-6);
@@ -227,7 +216,6 @@ const ceoInfo = {
         border-left: 4px solid var(--color-primary);
         box-shadow: var(--shadow-lg);
     }
-
     .ceo__quote-icon {
         position: absolute;
         top: -16px;
@@ -235,7 +223,6 @@ const ceoInfo = {
         color: var(--color-primary);
         opacity: 0.2;
     }
-
     .ceo__quote p {
         font-size: var(--text-lg);
         font-style: italic;
@@ -243,37 +230,33 @@ const ceoInfo = {
         line-height: 1.7;
         margin: 0;
     }
-
     .ceo__bio {
         font-size: var(--text-base);
         color: var(--color-neutral-600);
         line-height: 1.7;
         margin: 0;
     }
-
     .ceo__vision {
         font-size: var(--text-base);
         color: var(--color-neutral-600);
         line-height: 1.8;
         margin: 0;
         padding: var(--space-4);
-        background: rgba(37, 99, 235, 0.05);
+        background: rgba(26, 26, 230, 0.05);
         border-radius: var(--radius-xl);
-        border: 1px solid rgba(37, 99, 235, 0.1);
+        border: 1px solid rgba(26, 26, 230, 0.1);
     }
 
     .ceo__experience {
         padding-top: var(--space-4);
         border-top: 1px solid var(--color-neutral-200);
     }
-
     .ceo__experience-title {
         font-size: var(--text-lg);
         font-weight: 600;
         color: var(--color-dark);
         margin-bottom: var(--space-4);
     }
-
     .ceo__experience-list {
         display: grid;
         gap: var(--space-3);
@@ -281,13 +264,11 @@ const ceoInfo = {
         padding: 0;
         margin: 0;
     }
-
     @media (min-width: 480px) {
         .ceo__experience-list {
             grid-template-columns: repeat(2, 1fr);
         }
     }
-
     .ceo__experience-item {
         display: flex;
         align-items: center;
@@ -295,7 +276,6 @@ const ceoInfo = {
         font-size: var(--text-sm);
         color: var(--color-neutral-600);
     }
-
     .ceo__experience-item svg {
         color: var(--color-accent-green);
         flex-shrink: 0;

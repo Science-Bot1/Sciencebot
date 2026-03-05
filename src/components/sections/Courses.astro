@@ -48,9 +48,9 @@ const courses = [
         ageRange: "10-17 años",
         level: "Intermedio",
         duration: "6 meses",
-        color: "#2563EB",
+        color: "#1A1AE6",
         url: "/cursos/python",
-        icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="python-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#60A5FA;stop-opacity:1" /><stop offset="100%" style="stop-color:#2563EB;stop-opacity:1" /></linearGradient></defs><path d="M12 3C8.5 3 7 4.5 7 7v3h5v1H6c-1.5 0-3 1-3 3.5S4.5 18 6 18h2v-2.5c0-1.5 1-2.5 2.5-2.5h5c1.5 0 2.5-1 2.5-2.5V7c0-2-1-4-4.5-4H12z" fill="url(#python-grad)"/><circle cx="9.5" cy="6.5" r="1" fill="white"/><path d="M12 21c3.5 0 5-1.5 5-4v-3h-5v-1h6c1.5 0 3-1 3-3.5S19.5 6 18 6h-2v2.5c0 1.5-1 2.5-2.5 2.5h-5C7 11 6 12 6 13.5V17c0 2 1 4 4.5 4H12z" fill="url(#python-grad)" opacity="0.85"/><circle cx="14.5" cy="17.5" r="1" fill="white"/></svg>`,
+        icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="python-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#60A5FA;stop-opacity:1" /><stop offset="100%" style="stop-color:#1A1AE6;stop-opacity:1" /></linearGradient></defs><path d="M12 3C8.5 3 7 4.5 7 7v3h5v1H6c-1.5 0-3 1-3 3.5S4.5 18 6 18h2v-2.5c0-1.5 1-2.5 2.5-2.5h5c1.5 0 2.5-1 2.5-2.5V7c0-2-1-4-4.5-4H12z" fill="url(#python-grad)"/><circle cx="9.5" cy="6.5" r="1" fill="white"/><path d="M12 21c3.5 0 5-1.5 5-4v-3h-5v-1h6c1.5 0 3-1 3-3.5S19.5 6 18 6h-2v2.5c0 1.5-1 2.5-2.5 2.5h-5C7 11 6 12 6 13.5V17c0 2 1 4 4.5 4H12z" fill="url(#python-grad)" opacity="0.85"/><circle cx="14.5" cy="17.5" r="1" fill="white"/></svg>`,
     },
     {
         id: "arduino",
@@ -72,9 +72,9 @@ const courses = [
         ageRange: "14-17 años",
         level: "Avanzado",
         duration: "6 meses",
-        color: "#7C3AED",
+        color: "#1A1A7A",
         url: "/cursos/desarrollo-web",
-        icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="web-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#A78BFA;stop-opacity:1" /><stop offset="100%" style="stop-color:#7C3AED;stop-opacity:1" /></linearGradient></defs><rect x="3" y="4" width="18" height="16" rx="2" fill="url(#web-grad)"/><rect x="3" y="4" width="18" height="4" rx="2" fill="white" opacity="0.2"/><circle cx="6" cy="6" r="0.8" fill="white"/><circle cx="8.5" cy="6" r="0.8" fill="white"/><circle cx="11" cy="6" r="0.8" fill="white"/><path d="M7 12l2 2-2 2" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/><line x1="11" y1="16" x2="15" y2="16" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.8"/><path d="M7 11h10M7 13h8" stroke="white" stroke-width="0.5" opacity="0.3"/></svg>`,
+        icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="web-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#A78BFA;stop-opacity:1" /><stop offset="100%" style="stop-color:#1A1A7A;stop-opacity:1" /></linearGradient></defs><rect x="3" y="4" width="18" height="16" rx="2" fill="url(#web-grad)"/><rect x="3" y="4" width="18" height="4" rx="2" fill="white" opacity="0.2"/><circle cx="6" cy="6" r="0.8" fill="white"/><circle cx="8.5" cy="6" r="0.8" fill="white"/><circle cx="11" cy="6" r="0.8" fill="white"/><path d="M7 12l2 2-2 2" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/><line x1="11" y1="16" x2="15" y2="16" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.8"/><path d="M7 11h10M7 13h8" stroke="white" stroke-width="0.5" opacity="0.3"/></svg>`,
     },
 ];
 ---
@@ -83,7 +83,7 @@ const courses = [
     <div class="container">
         <SectionHeader
             label="Nuestros Programas"
-            title="Cursos diseñados para <span class='gradient-text'>despertar la creatividad</span> tecnológica"
+            title="Cursos diseñados para despertar la creatividad tecnológica"
             subtitle="Desde los primeros pasos en robótica hasta proyectos avanzados de programación"
             align="center"
         />
@@ -161,7 +161,6 @@ const courses = [
                 }
             </div>
 
-            <!-- Navigation Arrows -->
             <button
                 class="courses__nav courses__nav--prev"
                 aria-label="Curso anterior"
@@ -173,10 +172,8 @@ const courses = [
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="2"
+                    stroke-width="2"><path d="M15 19l-7-7 7-7"></path></svg
                 >
-                    <path d="M15 19l-7-7 7-7"></path>
-                </svg>
             </button>
             <button
                 class="courses__nav courses__nav--next"
@@ -189,14 +186,11 @@ const courses = [
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="2"
+                    stroke-width="2"><path d="M9 5l7 7-7 7"></path></svg
                 >
-                    <path d="M9 5l7 7-7 7"></path>
-                </svg>
             </button>
         </div>
 
-        <!-- Pagination dots -->
         <div class="courses__pagination" id="courses-pagination">
             {
                 courses
@@ -224,7 +218,6 @@ const courses = [
         margin: 0 calc(-1 * var(--space-4));
         padding: 0 var(--space-4);
     }
-
     @media (min-width: 1024px) {
         .courses__carousel-container {
             margin: 0;
@@ -243,7 +236,6 @@ const courses = [
         scrollbar-width: none;
         -ms-overflow-style: none;
     }
-
     .courses__carousel::-webkit-scrollbar {
         display: none;
     }
@@ -256,7 +248,6 @@ const courses = [
         animation: cardSlideIn 0.6s ease forwards;
         animation-delay: calc(var(--card-index, 0) * 0.1s);
     }
-
     .courses__card-wrapper:nth-child(1) {
         --card-index: 0;
     }
@@ -275,7 +266,6 @@ const courses = [
     .courses__card-wrapper:nth-child(6) {
         --card-index: 5;
     }
-
     @keyframes cardSlideIn {
         to {
             opacity: 1;
@@ -288,7 +278,6 @@ const courses = [
             flex: 0 0 320px;
         }
     }
-
     @media (min-width: 1024px) {
         .courses__card-wrapper {
             flex: 0 0 calc((100% - (2 * var(--space-6))) / 3);
@@ -301,10 +290,9 @@ const courses = [
         flex-direction: column;
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
-
     .courses__card:hover {
         transform: translateY(-8px);
-        box-shadow: 0 20px 40px -10px rgba(139, 92, 246, 0.2);
+        box-shadow: 0 20px 40px -10px rgba(26, 26, 230, 0.2);
     }
 
     .courses__card-header {
@@ -313,7 +301,6 @@ const courses = [
         align-items: flex-start;
         margin-bottom: var(--space-4);
     }
-
     .courses__card-icon {
         display: flex;
         align-items: center;
@@ -336,7 +323,6 @@ const courses = [
             transform 0.3s ease,
             box-shadow 0.3s ease;
     }
-
     .courses__card:hover .courses__card-icon {
         transform: scale(1.1) rotate(5deg);
         box-shadow: 0 8px 20px -5px var(--course-color, var(--color-primary));
@@ -348,7 +334,6 @@ const courses = [
         gap: var(--space-1);
         align-items: flex-end;
     }
-
     .courses__badge {
         display: inline-block;
         padding: var(--space-1) var(--space-2);
@@ -357,19 +342,16 @@ const courses = [
         border-radius: var(--radius-sm);
         transition: transform 0.2s ease;
     }
-
     .courses__card:hover .courses__badge {
         transform: translateX(-4px);
     }
-
     .courses__badge--age {
         background: var(--color-accent-lime);
         color: var(--color-dark);
         font-weight: 600;
     }
-
     .courses__badge--level {
-        background: rgba(139, 92, 246, 0.12);
+        background: rgba(26, 26, 230, 0.12);
         color: var(--color-secondary);
     }
 
@@ -378,7 +360,6 @@ const courses = [
         display: flex;
         flex-direction: column;
     }
-
     .courses__card-title {
         font-size: var(--text-xl);
         font-weight: 700;
@@ -386,11 +367,9 @@ const courses = [
         margin-bottom: var(--space-2);
         transition: color 0.3s ease;
     }
-
     .courses__card:hover .courses__card-title {
         color: var(--color-secondary);
     }
-
     .courses__card-description {
         font-size: var(--text-sm);
         color: var(--color-neutral-600);
@@ -398,7 +377,6 @@ const courses = [
         flex: 1;
         margin-bottom: var(--space-4);
     }
-
     .courses__card-meta {
         display: flex;
         gap: var(--space-4);
@@ -406,7 +384,6 @@ const courses = [
         padding-bottom: var(--space-4);
         border-bottom: 1px solid var(--color-neutral-200);
     }
-
     .courses__meta-item {
         display: flex;
         align-items: center;
@@ -414,17 +391,14 @@ const courses = [
         font-size: var(--text-sm);
         color: var(--color-neutral-500);
     }
-
     .courses__card-cta {
         width: 100%;
         transition: all 0.3s ease;
     }
-
     .courses__card:hover .courses__card-cta {
         transform: translateY(-2px);
     }
 
-    /* Navigation */
     .courses__nav {
         position: absolute;
         top: 50%;
@@ -444,13 +418,11 @@ const courses = [
         backdrop-filter: blur(4px);
         color: var(--color-neutral-600);
     }
-
     @media (min-width: 1024px) {
         .courses__nav {
             display: flex;
         }
     }
-
     .courses__nav:hover {
         background: var(--color-primary);
         border-color: var(--color-primary);
@@ -458,29 +430,11 @@ const courses = [
         transform: translateY(-50%) scale(1.1);
         box-shadow: var(--shadow-md);
     }
-
-    .courses__nav:active {
-        transform: translateY(-50%) scale(0.95);
-    }
-
     .courses__nav--prev {
         left: -24px;
     }
-
     .courses__nav--next {
         right: -24px;
-    }
-
-    .courses__nav svg {
-        transition: transform 0.2s ease;
-    }
-
-    .courses__nav--prev:hover svg {
-        transform: translateX(-2px);
-    }
-
-    .courses__nav--next:hover svg {
-        transform: translateX(2px);
     }
 
     .courses__pagination {
@@ -489,7 +443,6 @@ const courses = [
         gap: var(--space-2);
         margin-top: var(--space-8);
     }
-
     .courses__dot {
         width: 10px;
         height: 10px;
@@ -499,12 +452,10 @@ const courses = [
         cursor: pointer;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-
     .courses__dot:hover {
         background: var(--color-neutral-600);
         transform: scale(1.3);
     }
-
     .courses__dot.active {
         background: var(--color-neutral-600);
         transform: scale(1.2);
@@ -519,53 +470,37 @@ const courses = [
     const prevBtn = document.getElementById("courses-prev");
     const nextBtn = document.getElementById("courses-next");
     const dots = document.querySelectorAll(".courses__dot");
-
     let currentIndex = 0;
-    const cardWidth = 350 + 24; // card width + gap
+    const cardWidth = 350 + 24;
 
     function updateDots() {
-        dots.forEach((dot, index) => {
-            dot.classList.toggle("active", index === currentIndex);
-        });
+        dots.forEach((d, i) =>
+            d.classList.toggle("active", i === currentIndex),
+        );
     }
-
     function scrollToCard(index: number) {
         if (carousel) {
-            carousel.scrollTo({
-                left: index * cardWidth,
-                behavior: "smooth",
-            });
+            carousel.scrollTo({ left: index * cardWidth, behavior: "smooth" });
             currentIndex = index;
             updateDots();
         }
     }
 
     prevBtn?.addEventListener("click", () => {
-        if (currentIndex > 0) {
-            scrollToCard(currentIndex - 1);
-        }
+        if (currentIndex > 0) scrollToCard(currentIndex - 1);
     });
-
     nextBtn?.addEventListener("click", () => {
-        const maxIndex = dots.length - 1;
-        if (currentIndex < maxIndex) {
-            scrollToCard(currentIndex + 1);
-        }
+        if (currentIndex < dots.length - 1) scrollToCard(currentIndex + 1);
     });
-
-    dots.forEach((dot) => {
-        dot.addEventListener("click", () => {
-            const index = parseInt(dot.getAttribute("data-index") || "0");
-            scrollToCard(index);
-        });
-    });
-
-    // Update dots on scroll
+    dots.forEach((dot) =>
+        dot.addEventListener("click", () =>
+            scrollToCard(parseInt(dot.getAttribute("data-index") || "0")),
+        ),
+    );
     carousel?.addEventListener("scroll", () => {
-        const scrollLeft = carousel.scrollLeft;
-        const newIndex = Math.round(scrollLeft / cardWidth);
-        if (newIndex !== currentIndex) {
-            currentIndex = newIndex;
+        const ni = Math.round(carousel.scrollLeft / cardWidth);
+        if (ni !== currentIndex) {
+            currentIndex = ni;
             updateDots();
         }
     });
