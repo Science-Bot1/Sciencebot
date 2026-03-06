@@ -57,7 +57,7 @@ export const timelineEvents: TimelineEvent[] = [
     icon: '🚀',
     category: 'historia',
     featured: true,
-    expandedContent: 'ScienceBot fue fundada por su fundadora con una visión clara y una misión que trascendía las aulas convencionales. Al principio, de manera completamente virtual, su misión era simple pero ambiciosa: democratizar el acceso a la educación en robótica y programación de alta calidad para niños y jóvenes de todos los sectores socioeconómicos.\n\nMISIÓN\nPromover la educación ambiental, sustentable y educativa a través de la robótica educativa en las escuelas, clubes sociales, universidades, empresas y zonas rurales; como una herramienta fundamental para el desarrollo del aprendizaje estudiantil, el trabajo en equipo y la solución de problemas de su entorno, con metodologías de impacto para las nuevas generaciones aprendiendo así a cuidar y proteger el medio ambiente.\n\nVISIÓN\nMotivar y guiar a niños, niñas y jóvenes a utilizar su tiempo libre en la búsqueda de sus posibles vocaciones en las líneas de ciencias duras profundizadas en las nuevas tecnologías de impacto mundial trayendo así desarrollo económico a su región. De igual manera, formalizarnos como una asociación líder en soluciones tecnológicas y educación ambiental basada en innovación.'
+    expandedContent: 'ScienceBot fue fundada con el propósito de democratizar el acceso a la educación en robótica y programación para niños y jóvenes de diferentes contextos socioeconómicos, inicialmente a través de un modelo virtual. La iniciativa promueve la educación ambiental y el desarrollo sostenible mediante metodologías innovadoras que fortalecen el aprendizaje, el trabajo en equipo y la resolución de problemas en escuelas, universidades, empresas y comunidades rurales. Asimismo, busca motivar a las nuevas generaciones a descubrir vocaciones en ciencia y tecnología, contribuyendo al desarrollo de sus regiones y consolidándose como una iniciativa líder en educación tecnológica y ambiental basada en la innovación.'
   },
   {
     id: 'h-2016-2',
@@ -125,7 +125,7 @@ export const timelineEvents: TimelineEvent[] = [
   {
     id: 'm-hito-graduados',
     date: '2023-12-20',
-    title: '100 Estudiantes Graduados *Corregir*',
+    title: '100 Estudiantes Graduados',
     description: 'Nuestra primera gran generación de innovadores completa su formación.',
     icon: '🎓',
     category: 'hito',
@@ -142,15 +142,6 @@ export const timelineEvents: TimelineEvent[] = [
     category: 'estudiante',
     featured: true,
     expandedContent: 'Valeria Vega Torres fue seleccionada en el programa "Ella es Astronauta" de la Fundación SHE IS y viajó al Centro Espacial de la NASA en Houston, Texas. Representó con orgullo al departamento del Guaviare, siendo una de las primeras niñas de la región en pisar las instalaciones donde se forman los astronautas. Su paso por ScienceBot fue clave para desarrollar el pensamiento científico y la confianza en sí misma que la llevaron a este sueño.'
-  },
-  {
-    id: 's-sara-mondragon',
-    date: '2022-07-01',
-    title: 'Sara Mondragón en la NASA',
-    description: 'Con solo 12 años, viajó al Centro Espacial de la NASA para inspirar a otras niñas.',
-    icon: '🌌',
-    category: 'estudiante',
-    expandedContent: 'Sara Mondragón, con tan solo 12 años, viajó en 2022 al Centro Espacial de la NASA en Houston, Texas, como parte del programa "Ella es Astronauta" de la Fundación SHE IS. Su historia se convirtió en símbolo de que el talento no tiene límites geográficos: una niña del Guaviare podía mirar las estrellas de cerca. Su participación buscó inspirar a decenas de niñas de zonas rurales y urbanas a soñar en grande y apostarle a la ciencia y la tecnología.'
   },
   {
     id: 's-anais-pastor',
@@ -230,12 +221,12 @@ export const timelineEvents: TimelineEvent[] = [
   {
     id: 'm-hito-estudiantes-activos',
     date: '2026-01-25',
-    title: '200+ Estudiantes Activos "Corregir descripción" ',
+    title: '300+ Estudiantes Activos',
     description: 'Una comunidad vibrante de creadores tecnológicos.',
     icon: '📈',
     category: 'hito',
     featured: true,
-    expandedContent: 'Alcanzar los 200+ estudiantes activos simultáneos fue un hito logístico y pedagógico. Un logro que refleja no solo el crecimiento de ScienceBot, sino la confianza de cientos de familias que ven en la robótica y la programación una puerta hacia el futuro de sus hijos.'
+    expandedContent: 'Alcanzar los 300+ estudiantes activos simultáneos fue un hito logístico y pedagógico. Un logro que refleja no solo el crecimiento de ScienceBot, sino la confianza de cientos de familias que ven en la robótica y la programación una puerta hacia el futuro de sus hijos.'
   },
   {
     id: 'm-robot-rally-2023',
@@ -302,6 +293,16 @@ export const timelineEvents: TimelineEvent[] = [
     icon: '🎖️',
     category: 'hito',
     expandedContent: 'La Universidad Nacional Abierta y a Distancia - UNAD, a través de la Vicerrectoría de Inclusión, Innovación y Emprendimiento (VIEM), otorga reconocimiento a ScienceBot por su destacada participación en el 1er Desafío INNCUNAD 2025, demostrando compromiso, creatividad y espíritu emprendedor al servicio de la transformación social y el desarrollo sostenible de los territorios.'
+  },
+  {
+    id: 'm-robo-jam-virtual',
+    date: '2025-09-20',
+    title: 'Participación en Robo Jam Virtual',
+    description: 'La Escuela ScienceBot representó al Guaviare en la competencia internacional Robo Jam Virtual.',
+    icon: '🤖',
+    category: 'hito',
+    featured: true,
+    expandedContent: 'La delegación de la Escuela de Robótica ScienceBot representó al Guaviare en una edición virtual de Robo Jam, una competencia internacional que contó con la participación de clubes de siete países. Durante esta competencia, los estudiantes del Guaviare lograron ubicarse entre los diez primeros lugares, demostrando su talento en la robótica a nivel mundial.'
   },
   {
     id: 'm-reconocimiento-puerto-iris',
