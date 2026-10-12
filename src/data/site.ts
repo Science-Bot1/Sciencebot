@@ -212,6 +212,18 @@ export const prensa = [
   },
 ];
 
+/** Recorrido "Del Guaviare al mundo" (orden cronológico aproximado). */
+export const ruta = [
+  { city: 'San José del Guaviare', what: 'Donde todo empezó: un kit de robótica y cuatro niños.', year: '2020', intl: false },
+  { city: 'Medellín', what: 'Doble podio en Robot Rally; campeones RoboSketch y RoboJam.', year: '2022 · 2024', intl: false },
+  { city: 'Houston, EE. UU.', what: 'Estudiantes en el Space Center con "Ella es Astronauta".', year: '2022 – 2025', intl: true },
+  { city: 'México', what: 'Representan a Colombia en el RoboRally Internacional.', year: '2023', intl: true },
+  { city: 'Bogotá', what: 'Premio WEF; Wept Life en la Feria del Libro.', year: '2023 · 2025', intl: false },
+  { city: 'Nueva York, EE. UU.', what: 'Tatiana, ponente en la sede de la ONU.', year: '2025', intl: true },
+  { city: 'Cartagena', what: 'Finalistas nacionales FIRST LEGO League.', year: '2025', intl: false },
+  { city: 'Washington D.C., EE. UU.', what: 'Encuentro Internacional de Mujeres Líderes.', year: '2025', intl: true },
+];
+
 export const faq = [
   {
     q: '¿Qué aprenden mis hijos?',

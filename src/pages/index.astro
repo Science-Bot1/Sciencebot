@@ -12,6 +12,7 @@ import {
 	aliados,
 	prensa,
 	faq,
+	ruta,
 	waLink,
 	contact,
 } from "../data/site";
@@ -305,26 +306,30 @@ const filtros = ["Todos", "Competencias", "Reconocimientos", "Estudiantes"];
 						</a>
 					))}
 				</div>
-				<figure class="map">
-					<figcaption>Del Guaviare al mundo</figcaption>
-					<svg viewBox="0 0 640 400" role="img" aria-label="Mapa de rutas desde San José del Guaviare hacia Medellín, Bogotá, Cartagena, México, Houston, Washington y Nueva York">
-						<g fill="none" stroke="#2020E8" stroke-width="2" stroke-dasharray="6 6">
-							<path d="M430 330 Q 390 270 370 240"></path><path d="M430 330 Q 430 280 410 255"></path>
-							<path d="M430 330 Q 370 230 360 180"></path><path d="M430 330 Q 260 230 150 170"></path>
-							<path d="M430 330 Q 300 200 230 90"></path><path d="M430 330 Q 420 160 420 60"></path>
-							<path d="M430 330 Q 470 170 480 40"></path>
-						</g>
-						<g font-family="Outfit, sans-serif" font-size="14" font-weight="700" fill="#14192E">
-							<circle cx="430" cy="330" r="11" fill="#2E8A23"></circle><text x="448" y="335">San José del Guaviare</text>
-							<circle cx="370" cy="240" r="7" fill="#2020E8"></circle><text x="292" y="244">Medellín</text>
-							<circle cx="410" cy="255" r="7" fill="#2020E8"></circle><text x="424" y="260">Bogotá</text>
-							<circle cx="360" cy="180" r="7" fill="#2020E8"></circle><text x="272" y="184">Cartagena</text>
-							<circle cx="150" cy="170" r="7" fill="#C5302A"></circle><text x="90" y="160">México</text>
-							<circle cx="230" cy="90" r="7" fill="#C5302A"></circle><text x="160" y="80">Houston</text>
-							<circle cx="420" cy="60" r="7" fill="#C5302A"></circle><text x="320" y="64">Washington</text>
-							<circle cx="480" cy="40" r="7" fill="#C5302A"></circle><text x="494" y="45">Nueva York (ONU)</text>
-						</g>
-					</svg>
+				<figure class="route">
+					<figcaption>
+						<span class="route__title">Del Guaviare al mundo</span>
+						<span class="route__sub">Hasta dónde han llevado sus robots nuestros estudiantes.</span>
+					</figcaption>
+					<ol class="route__list">
+						{ruta.map((r, i) => (
+							<li class="route__stop">
+								<span class="route__rail" aria-hidden="true">
+									<span class:list={["route__dot", { "route__dot--intl": r.intl, "route__dot--home": i === 0 }]}>{i + 1}</span>
+									{i < ruta.length - 1 && <span class="route__line"></span>}
+								</span>
+								<span class="route__text">
+									<strong>{r.city}</strong>
+									<span>{r.what}</span>
+								</span>
+								<span class="route__year">{r.year}</span>
+							</li>
+						))}
+					</ol>
+					<div class="route__legend">
+						<span><i class="route__key" aria-hidden="true"></i>Colombia</span>
+						<span><i class="route__key route__key--intl" aria-hidden="true"></i>Internacional</span>
+					</div>
 				</figure>
 			</div>
 		</section>
@@ -469,9 +474,25 @@ const filtros = ["Todos", "Competencias", "Reconocimientos", "Estudiantes"];
 	.press:hover { border-color: var(--color-primary); color: var(--rd-ink); }
 	.press__meta { font-weight: 800; font-size: 13px; color: var(--color-primary); }
 	.press__title { font-weight: 700; font-size: 17px; line-height: 1.35; }
-	.map { margin: 0; background: #fff; border-radius: 28px; padding: 24px; display: flex; flex-direction: column; gap: 12px; flex: 1.2 1 480px !important; }
-	.map figcaption { font-weight: 800; font-size: 22px; }
-	.map svg { width: 100%; height: auto; }
+	.route { margin: 0; background: #fff; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 16px; flex: 1.2 1 480px !important; }
+	.route figcaption { display: flex; flex-direction: column; gap: 6px; }
+	.route__title { font-weight: 800; font-size: 24px; line-height: 1.15; }
+	.route__sub { font-size: 15px; color: var(--rd-muted); }
+	.route__list { list-style: none; display: flex; flex-direction: column; }
+	.route__stop { display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; gap: 14px; align-items: start; }
+	.route__rail { display: flex; flex-direction: column; align-items: center; align-self: stretch; }
+	.route__dot { width: 36px; height: 36px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px; color: #fff; background: var(--color-primary); }
+	.route__dot--intl { background: var(--rd-cta); }
+	.route__dot--home { background: #2E8A23; }
+	.route__line { flex: 1; width: 0; border-left: 3px dashed #c9cedc; margin: 4px 0; }
+	.route__text { display: flex; flex-direction: column; gap: 2px; padding: 6px 0 18px; }
+	.route__text strong { font-size: 17px; line-height: 1.25; }
+	.route__text span { font-size: 14px; line-height: 1.45; color: var(--rd-muted); }
+	.route__year { margin-top: 8px; white-space: nowrap; font-weight: 800; font-size: 13px; background: var(--rd-bg); border: 1px solid var(--rd-border); padding: 5px 10px; border-radius: 999px; }
+	.route__legend { display: flex; flex-wrap: wrap; gap: 16px; font-size: 13px; font-weight: 700; color: var(--rd-muted); }
+	.route__legend span { display: inline-flex; align-items: center; gap: 6px; }
+	.route__key { width: 12px; height: 12px; border-radius: 50%; background: var(--color-primary); display: inline-block; }
+	.route__key--intl { background: var(--rd-cta); }
 
 	@media (max-width: 640px) {
 		.hero__float { position: static; margin-top: 16px; max-width: none; }
