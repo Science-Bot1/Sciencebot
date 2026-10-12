@@ -1,0 +1,46 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import "../styles/redesign.css";
+import { contact } from "../data/site";
+---
+
+<!-- BORRADOR LEGAL: debe revisarlo un abogado antes de publicarse. -->
+<Layout title="Política de tratamiento de datos | ScienceBot" description="Política de tratamiento de datos personales de ScienceBot conforme a la Ley 1581 de 2012.">
+    <Header />
+    <main class="rd legal">
+        <div class="rd-wrap legal__inner rd-stack">
+            <p class="rd-todo" style="align-self:flex-start">Borrador: pendiente de revisión legal</p>
+            <h1>Política de tratamiento de datos personales</h1>
+            <p>
+                ScienceBot, escuela de robótica con sede en {contact.city}, trata los datos personales de estudiantes,
+                acudientes y aliados conforme a la Ley 1581 de 2012, el Decreto 1377 de 2013 y demás normas que las
+                complementen.
+            </p>
+            <h2>Datos que recolectamos</h2>
+            <p>Nombre, documento, datos de contacto del acudiente, edad e institución del estudiante, e imágenes tomadas en clases y eventos.</p>
+            <h2>Datos de niños, niñas y adolescentes</h2>
+            <p>
+                Solo tratamos datos de menores con autorización previa, expresa e informada de su representante legal,
+                respetando su interés superior. No publicamos nombres completos ni fotografías de menores sin esa
+                autorización.
+            </p>
+            <h2>Finalidades</h2>
+            <p>Gestionar inscripciones y becas, comunicar novedades académicas, inscribir equipos en competencias y divulgar logros con autorización.</p>
+            <h2>Derechos del titular</h2>
+            <p>Conocer, actualizar, rectificar y suprimir sus datos, y revocar la autorización en cualquier momento.</p>
+            <h2>Contacto</h2>
+            <p>Escríbenos a <a href={`mailto:${contact.email}`}>{contact.email}</a> o al <a href={contact.phoneHref}>{contact.phone}</a>.</p>
+        </div>
+    </main>
+    <Footer />
+</Layout>
+
+<style>
+    .legal { margin-top: var(--rd-header-h); }
+    .legal__inner { max-width: 760px; padding-top: 64px; padding-bottom: 96px; gap: 16px; }
+    .legal h1 { font-size: clamp(32px, 4vw, 44px); font-weight: 800; }
+    .legal h2 { font-size: 22px; font-weight: 700; margin-top: 12px; }
+    .legal p { font-size: 17px; line-height: 1.7; }
+</style>

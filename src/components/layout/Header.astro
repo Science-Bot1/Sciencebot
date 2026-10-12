@@ -1,5 +1,7 @@
 ---
-import Button from "../ui/Button.astro";
+import { waLink } from "../../data/site";
+
+const trialHref = waLink("Hola ScienceBot, quiero una clase de prueba gratis");
 
 // Detectar la página actual para ajustar la navegación
 const currentPath = Astro.url.pathname;
@@ -43,12 +45,14 @@ const contactHref = "/contacto";
 
         <!-- CTA Button -->
         <div class="header__cta">
-            <button
-                id="cta-button-desktop"
+            <a
+                href={trialHref}
                 class="btn btn-primary btn-sm btn-gradient"
+                target="_blank"
+                rel="noopener noreferrer"
             >
-                Inscríbete Ahora
-            </button>
+                Clase de prueba gratis
+            </a>
         </div>
 
         <!-- Mobile Menu Toggle -->
@@ -76,52 +80,14 @@ const contactHref = "/contacto";
                 }
             </ul>
         </nav>
-        <button
-            id="cta-button-mobile"
+        <a
+            href={trialHref}
             class="btn btn-primary btn-lg header__mobile-cta btn-gradient"
+            target="_blank"
+            rel="noopener noreferrer"
         >
-            Inscríbete Ahora
-        </button>
-    </div>
-
-    <!-- Modal de Academia Pronto -->
-    <div id="academia-modal" class="modal" aria-hidden="true">
-        <div class="modal__overlay"></div>
-        <div class="modal__content">
-            <button class="modal__close" aria-label="Cerrar">
-                <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                >
-                    <path d="M18 6L6 18M6 6l12 12"></path>
-                </svg>
-            </button>
-            <div class="modal__icon">
-                <svg
-                    width="64"
-                    height="64"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                >
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <path d="M12 6v6l4 2"></path>
-                </svg>
-            </div>
-            <h2 class="modal__title">¡Muy Pronto!</h2>
-            <p class="modal__message">
-                La academia online estará disponible próximamente. Estamos
-                trabajando para ofrecerte la mejor experiencia de aprendizaje.
-            </p>
-            <button class="modal__button btn btn-primary btn-lg btn-gradient">
-                Entendido
-            </button>
-        </div>
+            Clase de prueba gratis
+        </a>
     </div>
 </header>
 
@@ -374,103 +340,6 @@ const contactHref = "/contacto";
         opacity: 1;
     }
 
-    /* Modal Styles */
-    .modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 9999;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.3s ease;
-    }
-
-    .modal.is-open {
-        opacity: 1;
-        pointer-events: auto;
-    }
-
-    .modal__overlay {
-        position: absolute;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(4px);
-    }
-
-    .modal__content {
-        position: relative;
-        background: white;
-        border-radius: var(--radius-2xl);
-        padding: var(--space-8);
-        max-width: 500px;
-        width: 90%;
-        text-align: center;
-        transform: scale(0.9) translateY(0);
-        transition: transform 0.3s ease;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        margin: auto;
-    }
-
-    .modal.is-open .modal__content {
-        transform: scale(1);
-    }
-
-    .modal__close {
-        position: absolute;
-        top: var(--space-4);
-        right: var(--space-4);
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: transparent;
-        border: none;
-        color: var(--color-neutral-400);
-        cursor: pointer;
-        border-radius: var(--radius-full);
-        transition: all 0.2s ease;
-    }
-
-    .modal__close:hover {
-        background: var(--color-neutral-100);
-        color: var(--color-neutral-600);
-    }
-
-    .modal__icon {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 80px;
-        height: 80px;
-        margin: 0 auto var(--space-6);
-        background: var(--color-primary-alpha-10);
-        border-radius: var(--radius-full);
-        color: var(--color-primary);
-    }
-
-    .modal__title {
-        font-size: var(--text-3xl);
-        font-weight: 700;
-        color: var(--color-dark);
-        margin-bottom: var(--space-4);
-    }
-
-    .modal__message {
-        font-size: var(--text-lg);
-        color: var(--color-neutral-600);
-        line-height: 1.6;
-        margin-bottom: var(--space-6);
-    }
-
-    .modal__button {
-        width: 100%;
-    }
 </style>
 
 <script>
@@ -529,39 +398,4 @@ const contactHref = "/contacto";
         });
     });
 
-    // Modal functionality
-    const modal = document.getElementById("academia-modal");
-    const ctaButtonDesktop = document.getElementById("cta-button-desktop");
-    const ctaButtonMobile = document.getElementById("cta-button-mobile");
-    const modalClose = modal?.querySelector(".modal__close");
-    const modalButton = modal?.querySelector(".modal__button");
-    const modalOverlay = modal?.querySelector(".modal__overlay");
-
-    function openModal() {
-        modal?.classList.add("is-open");
-        modal?.setAttribute("aria-hidden", "false");
-        document.body.style.overflow = "hidden";
-    }
-
-    function closeModal() {
-        modal?.classList.remove("is-open");
-        modal?.setAttribute("aria-hidden", "true");
-        document.body.style.overflow = "";
-    }
-
-    // Open modal when CTA buttons are clicked
-    ctaButtonDesktop?.addEventListener("click", openModal);
-    ctaButtonMobile?.addEventListener("click", openModal);
-
-    // Close modal
-    modalClose?.addEventListener("click", closeModal);
-    modalButton?.addEventListener("click", closeModal);
-    modalOverlay?.addEventListener("click", closeModal);
-
-    // Close modal with Escape key
-    document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && modal?.classList.contains("is-open")) {
-            closeModal();
-        }
-    });
 </script>

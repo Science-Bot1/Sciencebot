@@ -1,205 +1,59 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/layout/Header.astro";
-import FloatingNav from "../components/layout/FloatingNav.astro";
 import Footer from "../components/layout/Footer.astro";
+import WhatsAppButton from "../components/ui/WhatsAppButton.astro";
 import Timeline from "../components/timeline/Timeline.astro";
-import { timelineEvents, timelineCategories } from "../data/timeline.ts";
-import type { TimelineEvent, TimelineCategory } from "../data/timeline.ts";
+import "../styles/redesign.css";
+import { timelineEvents } from "../data/timeline";
+import { waLink } from "../data/site";
 
-// Ordenar eventos por fecha ascendente (más antiguo primero)
-const sortedEvents = [...timelineEvents].sort(
-    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
-);
-
-// Page specific props
-const title = "ScienceBot | Nuestra Historia";
+const title = "Nuestra historia | ScienceBot";
 const description =
-    "Descubre la increíble historia de ScienceBot, desde nuestros inicios hasta convertirnos en la academia de robótica y programación líder en Latinoamérica.";
+    "De un kit de robótica y cuatro niños en 2020 a más de 6.000 formados, la NASA y la ONU: la línea de tiempo de ScienceBot, escuela de robótica del Guaviare.";
 ---
 
 <Layout title={title} description={description}>
     <Header />
-    <FloatingNav />
 
-    <main>
-        <!-- ── HERO CON IMAGEN DE FONDO ─────────────────────── -->
-        <section class="historia-hero">
-            <div class="historia-hero__overlay"></div>
-            <div class="historia-hero__content">
-                <h1 class="historia-hero__title">Nuestra Historia</h1>
-                <p class="historia-hero__subtitle">
-                    El viaje de ScienceBot a través del tiempo, desde un pequeño
-                    sueño hasta transformar miles de vidas
-                </p>
+    <main class="rd">
+        <section class="h-hero">
+            <img src="/img/rediseno/comunidad-joven.webp" alt="" class="h-hero__bg" />
+            <div class="rd-wrap h-hero__inner rd-stack">
+                <a href="/" class="h-hero__back">← Inicio</a>
+                <h1>Nuestra historia</h1>
+                <p>De un kit de robótica y cuatro niños en 2020 a más de 6.000 formados, la NASA y la ONU.</p>
             </div>
         </section>
 
-        <!-- ── TIMELINE ──────────────────────────────────────── -->
-        <section class="timeline-section relative overflow-hidden bg-slate-50">
-            <div class="absolute inset-0 z-0 opacity-40">
-                <div
-                    class="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]"
-                >
+        <Timeline events={timelineEvents} />
+
+        <section class="rd-wrap" style="padding-bottom: 96px">
+            <div class="h-cta">
+                <div class="rd-stack" style="gap: 8px; max-width: 560px">
+                    <h2 class="rd-h2" style="color: #fff">El futuro continúa…</h2>
+                    <p style="color: #d3d9ee; font-size: 17px">El próximo hito puede tener el nombre de tu hija o tu hijo.</p>
                 </div>
+                <a href={waLink("Hola ScienceBot, quiero una clase de prueba gratis")} class="rd-btn rd-btn--cta" target="_blank" rel="noopener noreferrer">
+                    Reservar clase de prueba gratis
+                </a>
             </div>
-
-            <Timeline
-                events={sortedEvents}
-                categories={timelineCategories}
-                title=""
-                subtitle=""
-                showCategoryFilter={true}
-            />
-
-            <!-- Additional CTA Section -->
-            <section class="cta-section section-padding dark-section">
-                <div class="container">
-                    <div class="cta-content text-center">
-                        <h2 class="text-4xl md:text-5xl font-bold mb-6">
-                            Sé parte de nuestro <span class="gradient-text"
-                                >futuro</span
-                            >
-                        </h2>
-                        <p class="text-xl mb-8 max-w-3xl mx-auto">
-                            Únete a la comunidad de estudiantes que están
-                            aprendiendo robótica, programación y tecnología de
-                            la mano de los mejores instructores. El futuro
-                            comienza hoy.
-                        </p>
-                        <div
-                            class="cta-buttons flex flex-col sm:flex-row gap-4 justify-center"
-                        >
-                            <a href="/academia" class="btn btn-primary btn-lg">
-                                Explorar Nuestra Academia
-                            </a>
-                            <a
-                                href="/contacto"
-                                class="btn btn-secondary btn-lg"
-                            >
-                                Agendar una Visita
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
         </section>
-
-        <Footer />
     </main>
 
-    <style>
-        /* ── Historia Hero ─────────────────────────────────── */
-        .historia-hero {
-            position: relative;
-            width: 100%;
-            height: 90vh;
-            min-height: 620px;
-            background-image: url("/hero-foto.jpeg");
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            margin-top: 86px; /* altura del header */
-        }
-
-        .historia-hero__overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                to bottom,
-                rgba(0, 0, 0, 0.45) 0%,
-                rgba(0, 0, 0, 0.65) 100%
-            );
-        }
-
-        .historia-hero__content {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            padding: 0 1.5rem;
-            max-width: 800px;
-        }
-
-        .historia-hero__title {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 800;
-            color: #ffffff;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-            margin-bottom: 1rem;
-            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
-        }
-
-        .historia-hero__subtitle {
-            font-size: clamp(1rem, 2.5vw, 1.25rem);
-            color: rgba(255, 255, 255, 0.88);
-            line-height: 1.6;
-            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
-        }
-
-        @media (max-width: 768px) {
-            .historia-hero {
-                height: 75vh;
-                min-height: 480px;
-                margin-top: 72px;
-            }
-        }
-
-        /* CTA Section */
-        .cta-section {
-            position: relative;
-        }
-
-        /* Reduce gap between hero and timeline */
-        .timeline-section {
-            padding-top: 0 !important;
-        }
-
-        /* Collapse the empty SectionHeader space (title="" subtitle="") */
-        .timeline-section :global(.section-header) {
-            display: none;
-        }
-
-        .cta-content h2 {
-            color: var(--color-light);
-        }
-
-        .cta-content p {
-            color: var(--color-neutral-300);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .timeline-hero {
-                padding: calc(var(--header-height) + var(--space-12)) 0
-                    var(--space-16);
-            }
-
-            .hero-stats {
-                gap: var(--space-4);
-            }
-
-            .stat-item {
-                min-width: 80px;
-            }
-
-            .stat-number {
-                font-size: var(--text-3xl);
-            }
-        }
-
-        @media (max-width: 480px) {
-            .stat-number {
-                font-size: var(--text-2xl);
-            }
-
-            .stat-item {
-                min-width: 60px;
-            }
-        }
-    </style>
+    <Footer />
+    <WhatsAppButton />
 </Layout>
+
+<style>
+    .h-hero { position: relative; overflow: hidden; background: var(--rd-navy); color: #fff; margin-top: var(--rd-header-h); }
+    .h-hero__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.25; }
+    .h-hero__inner { position: relative; padding-top: 72px; padding-bottom: 56px; gap: 16px; }
+    .h-hero__back { color: #d3d9ee; font-weight: 700; align-self: flex-start; min-height: 32px; display: inline-flex; align-items: center; }
+    .h-hero h1 { color: #fff; font-size: clamp(38px, 5vw, 56px); line-height: 1.05; font-weight: 800; }
+    .h-hero p { color: #d3d9ee; font-size: 19px; line-height: 1.6; max-width: 640px; }
+    .h-cta {
+        background: var(--rd-navy); color: #fff; border-radius: 32px; padding: clamp(28px, 4vw, 48px);
+        display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between;
+    }
+</style>

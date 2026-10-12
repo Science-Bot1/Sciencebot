@@ -1,429 +1,398 @@
-// Type definitions
-export type TimelineCategoryType = 'historia' | 'curso' | 'hito' | 'estudiante';
+// Línea de tiempo de ScienceBot.
+// Fuentes: repositorio anterior (hitos verificados), tati-bot.vercel.app,
+// El Espectador / ONU Colombia (sep 2026), Radio Nacional y Enter.co (2022).
+// Regla: no publicar nombres completos de menores sin consentimiento de sus familias.
 
-export interface TimelineCategory {
-  id: TimelineCategoryType;
-  name: string;
-  color: string;
-  icon: string;
-}
+export type TimelineCategory =
+  | 'historia'
+  | 'competencias'
+  | 'estudiantes'
+  | 'reconocimientos'
+  | 'proyectos';
 
 export interface TimelineEvent {
   id: string;
+  /** ISO (AAAA-MM-DD). Si solo se conoce el año, usar AAAA-01-01 y dateLabel. */
   date: string;
+  /** Texto visible de la fecha cuando no es exacta (ej. "2020"). */
+  dateLabel?: string;
   title: string;
-  description: string;
-  icon: string;
-  category: TimelineCategoryType;
+  summary: string;
+  body?: string;
+  category: TimelineCategory;
   featured?: boolean;
-  expandedContent?: string;
+  /** Puesto obtenido en competencias. */
+  medal?: 1 | 2 | 3;
+  place?: string;
   image?: string;
+  imageAlt?: string;
+  sourceUrl?: string;
+  sourceName?: string;
+  /** Dato por validar con Tatiana antes de publicar. */
+  todo?: string;
 }
 
-export const timelineCategories: TimelineCategory[] = [
-  {
-    id: 'historia',
-    name: 'Historia',
-    color: '#2020E8',
-    icon: '🏛️'
-  },
-  {
-    id: 'hito',
-    name: 'Hitos',
-    color: '#1ccf08',
-    icon: '🎯'
-  },
-  {
-    id: 'estudiante',
-    name: 'Estudiantes',
-    color: '#fa0908',
-    icon: '👨‍🎓'
-  },
-  {
-    id: 'curso',
-    name: 'Cursos',
-    color: '#8B5CF6',
-    icon: '📚'
-  }
+export const timelineCategories: { id: TimelineCategory; name: string; color: string }[] = [
+  { id: 'historia', name: 'Historia', color: '#10173A' },
+  { id: 'competencias', name: 'Competencias', color: '#2020E8' },
+  { id: 'estudiantes', name: 'Estudiantes', color: '#7A35B0' },
+  { id: 'reconocimientos', name: 'Reconocimientos', color: '#C5302A' },
+  { id: 'proyectos', name: 'Proyectos', color: '#2E8A23' },
 ];
+
+const IMG = '/img/rediseno';
+const TATI = 'https://tati-bot.vercel.app/';
+const ESPECTADOR =
+  'https://www.elespectador.com/colombia-20/paz-y-memoria/la-profesora-de-robotica-que-les-ensena-a-los-ninos-del-guaviare-a-sonar-con-la-paz/';
 
 export const timelineEvents: TimelineEvent[] = [
-  // Historia - 2016 (Fundación)
+  // ── 2020 ─────────────────────────────────────────────
   {
-    id: 'h-2016-1',
-    date: '2016-03-01',
-    title: 'Fundación de ScienceBot',
-    description: 'Nace el sueño de transformar la educación tecnológica en Latinoamérica.',
-    icon: '🚀',
+    id: 'nace-sciencebot',
+    date: '2020-01-01',
+    dateLabel: '2020',
+    title: 'Nace ScienceBot: un kit de robótica y cuatro niños',
+    summary:
+      'La pandemia deja a Tatiana Muñoz en el Guaviare, lejos de sus estudios en Argentina. Empieza a enseñar robótica a cuatro niños; pronto son más de 70.',
+    body:
+      'Según la prensa, todo empezó cuando vio a niños jugando a la guerra y les propuso construir robots con materiales reciclables, servomotores y sensores. El repositorio anterior mencionaba un antecedente virtual en 2016.',
     category: 'historia',
     featured: true,
-    expandedContent: 'ScienceBot fue fundada con el propósito de democratizar el acceso a la educación en robótica y programación para niños y jóvenes de diferentes contextos socioeconómicos, inicialmente a través de un modelo virtual. La iniciativa promueve la educación ambiental y el desarrollo sostenible mediante metodologías innovadoras que fortalecen el aprendizaje, el trabajo en equipo y la resolución de problemas en escuelas, universidades, empresas y comunidades rurales. Asimismo, busca motivar a las nuevas generaciones a descubrir vocaciones en ciencia y tecnología, contribuyendo al desarrollo de sus regiones y consolidándose como una iniciativa líder en educación tecnológica y ambiental basada en la innovación.'
+    place: 'San José del Guaviare',
+    image: `${IMG}/comunidad-joven.webp`,
+    imageAlt: 'Joven muestra su robot en un taller comunitario',
+    sourceUrl: ESPECTADOR,
+    sourceName: 'El Espectador',
+    todo: 'Confirmar si 2016 fue un antecedente virtual o se elimina',
   },
   {
-    id: 'h-2016-2',
-    date: '2016-06-20',
-    title: 'Primeros 15 Estudiantes',
-    description: 'Iniciamos operaciones con nuestro primer grupo piloto de estudiantes.',
-    icon: '🌱',
+    id: 'renault-4',
+    date: '2020-06-01',
+    dateLabel: '2020 – 2022',
+    title: 'Un Renault 4 rojo se convierte en aula móvil',
+    summary:
+      'Durante dos años la escuela no tuvo sede: las clases llegaban en un Renault 4 con computadores usados a barrios, comunidades indígenas y zonas de reincorporación.',
     category: 'historia',
-    expandedContent: 'Con apenas 15 estudiantes valientes que confiaron en nuestro proyecto piloto, comenzamos esta increíble aventura. Las clases se impartían los fines de semana y cada estudiante recibió atención personalizada para validar nuestra metodología de enseñanza.'
+    place: 'Guaviare',
   },
-
-  // Historia - Crecimiento
+  // ── 2021 ─────────────────────────────────────────────
   {
-    id: 'h-sede-1',
-    date: '2022-01-12',
-    title: 'Inauguración Sede Principal',
-    description: 'Abrimos nuestro primer centro de aprendizaje especializado.',
-    icon: '🏢',
-    category: 'historia',
-    expandedContent: 'La apertura de nuestra sede principal marcó un antes y un después. Un espacio de 150m² diseñado específicamente para la creatividad, con laboratorios de electrónica, áreas de construcción de robots y zonas de programación colaborativa.'
+    id: 'genios-futuro',
+    date: '2021-01-01',
+    dateLabel: '2021',
+    title: 'Ganadores de Genios del Futuro Latinoamérica',
+    summary: 'Primer triunfo internacional de los estudiantes, en programación.',
+    category: 'competencias',
+    medal: 1,
+    place: 'Latinoamérica',
+    sourceUrl: TATI,
+    sourceName: 'tati-bot',
   },
+  // ── 2022 ─────────────────────────────────────────────
   {
-    id: 'h-academia-online-1',
-    date: '2026-02-01',
-    title: 'Desarrollo Academia Online',
-    description: 'Inicia el desarrollo de nuestra academia online.',
-    icon: '💻',
-    category: 'historia',
-    expandedContent: 'Para cumplir con nuestra misión de promover la educación ambiental, sustentable y educativa a través de la robótica educativa, se está llevando a cabo el desarrollo de la academia online: una plataforma de aprendizaje accesible desde cualquier lugar del mundo, que rompe barreras geográficas y permite a niños y jóvenes de zonas rurales, ciudades alejadas y diferentes países acceder a formación de calidad en robótica, programación y tecnología con el sello pedagógico de ScienceBot.'
-  },
-
-  /* TODO: Cursos - 2021 (Expansión Académica) — descomentar cuando estén listos
-  {
-    id: 'c-2021-1',
-    date: '2021-03-01',
-    title: 'Lanzamiento Scratch Jr',
-    description: 'Curso insignia para introducir a niños de 6-8 años a la lógica de programación.',
-    icon: '🐱',
-    category: 'curso',
-    image: '/images/curso-scratchjr.jpg',
-    expandedContent: 'Scratch Jr se convirtió rápidamente en nuestro curso de entrada más popular. Diseñado meticulosamente para no lectores, permite a los niños más pequeños expresar su creatividad creando sus propias historias interactivas y juegos, desarrollando pensamiento computacional sin darse cuenta.'
+    id: 'semillero-san-jose-obrero',
+    date: '2022-02-01',
+    dateLabel: 'Feb 2022',
+    title: 'Semillero de investigación en el Colegio San José Obrero',
+    summary: 'La robótica entra a un colegio público del municipio.',
+    category: 'proyectos',
+    place: 'San José del Guaviare',
+    sourceUrl: ESPECTADOR,
+    sourceName: 'El Espectador',
   },
   {
-    id: 'c-2021-2',
-    date: '2021-06-15',
-    title: 'Robótica con LEGO Mindstorms',
-    description: 'Incorporación de tecnología de punta para ingeniería robótica avanzada.',
-    icon: '🤖',
-    category: 'curso',
-    featured: true,
-    expandedContent: 'La alianza con LEGO Education nos permitió traer los kits Mindstorms EV3. Este curso desafía a los estudiantes a resolver problemas de ingeniería complejos, construyendo robots que caminan, hablan y "piensan", preparándolos para competencias internacionales.'
-  },
-  {
-    id: 'c-2021-3',
-    date: '2021-09-01',
-    title: 'Python para Jóvenes',
-    description: 'El salto a la programación textual profesional.',
-    icon: '🐍',
-    category: 'curso',
-    expandedContent: 'Reconociendo la necesidad de habilidades de industria, lanzamos Python. Este curso es el puente perfecto entre la programación visual y el desarrollo de software real, permitiendo a los estudiantes crear scripts, analizar datos y hasta dar sus primeros pasos en Inteligencia Artificial.'
-  },
-  */
-
-  // Hitos - Logros Tempranos
-  {
-    id: 'm-hito-graduados',
-    date: '2023-12-20',
-    title: '100 Estudiantes Graduados',
-    description: 'Nuestra primera gran generación de innovadores completa su formación.',
-    icon: '🎓',
-    category: 'hito',
-    expandedContent: 'Cerrar el Año 2023 con 100 graduados fue la validación que necesitábamos. Ver a 100 niños y jóvenes presentando sus proyectos finales a sus familias fue un momento emotivo que consolidó nuestra visión de impacto social.'
-  },
-
-  // Estudiantes - Niñas del Guaviare en la NASA
-  {
-    id: 's-valeria-vega',
-    date: '2022-07-01',
-    title: 'Valeria Vega Torres en la NASA',
-    description: 'Estudiante de ScienceBot que representó al Guaviare en el Space Center de Houston.',
-    icon: '🚀',
-    category: 'estudiante',
-    featured: true,
-    expandedContent: 'Valeria Vega Torres fue seleccionada en el programa "Ella es Astronauta" de la Fundación SHE IS y viajó al Centro Espacial de la NASA en Houston, Texas. Representó con orgullo al departamento del Guaviare, siendo una de las primeras niñas de la región en pisar las instalaciones donde se forman los astronautas. Su paso por ScienceBot fue clave para desarrollar el pensamiento científico y la confianza en sí misma que la llevaron a este sueño.'
-  },
-  {
-    id: 's-anais-pastor',
-    date: '2022-07-01',
-    title: 'Anais Luciana Pastor Gallego en la NASA',
-    description: 'Estudiante de robótica de ScienceBot, destacada en el programa espacial.',
-    icon: '⭐',
-    category: 'estudiante',
-    expandedContent: 'Anais Luciana Pastor Gallego es estudiante de robótica de ScienceBot y fue destacada dentro del programa "Ella es Astronauta" de la Fundación SHE IS por su desempeño académico y su pasión por la ciencia. Viajó al Centro Espacial de la NASA en Houston, donde tuvo la oportunidad de participar en desafíos de cohetería y conocer a astronautas. Anais representa el tipo de talento que ScienceBot se propone despertar: curiosa, creativa y dispuesta a conquistar el universo.'
-  },
-  {
-    id: 's-zully-romero',
-    date: '2022-07-01',
-    title: 'Zully Karina Romero en la NASA',
-    description: 'Estudiante de la Institución Educativa La Libertad, participante de las inmersiones en Houston.',
-    icon: '🛸',
-    category: 'estudiante',
-    expandedContent: 'Zully Karina Romero, estudiante de la Institución Educativa La Libertad del Guaviare, participó en el programa de inmersión en el Centro Espacial de la NASA en Houston, Texas. A través de la formación en robótica y tecnología impulsada por ScienceBot en zonas rurales, Zully superó barreras de acceso para convertirse en una de las representantes de su región ante uno de los centros científicos más importantes del mundo. Su travesía demuestra que la educación STEM transforma vidas desde el primer taller.'
-  },
-
-  // Estudiantes - Representación Colombia en México
-  {
-    id: 's-mexico-roborrally-2023',
-    date: '2023-05-15',
-    title: 'Estudiantes de ScienceBot representan a Colombia en México',
-    description: 'Por su determinación y talento, estudiantes del Guaviare llevan el nombre de Colombia al RoboRally Internacional en México.',
-    icon: '🇨🇴',
-    category: 'estudiante',
-    featured: true,
-    expandedContent: 'Triunfantes regresaron al departamento del Guaviare los estudiantes de la Escuela de Robótica ScienceBot, quienes ganaron el Campeonato Nacional RoboRally en la categoría de Fútbol Robótico. Gracias a su determinación, esfuerzo y pasión por la robótica, estos jóvenes del Guaviare fueron seleccionados para representar a Colombia en el RoboRally Internacional celebrado en México, demostrando que el talento no conoce fronteras geográficas y que desde la Amazonia colombiana se puede competir al más alto nivel internacional.'
-  },
-
-
-  /* TODO: Cursos - 2022 (Nuevas Fronteras) — descomentar cuando estén listos
-  {
-    id: 'c-2022-1',
-    date: '2022-02-15',
-    title: 'Arduino y Electrónica Creativa',
-    description: 'Fusión de hardware y software para el Internet de las Cosas.',
-    icon: '⚡',
-    category: 'curso',
-    expandedContent: 'Este curso desmitifica la electrónica. Los estudiantes aprenden que no es magia, es ciencia. Desde encender un LED hasta automatizar un sistema de riego casero, Arduino les da el poder de controlar el mundo físico con sus códigos.'
-  },
-  {
-    id: 'c-2022-2',
-    date: '2022-05-20',
-    title: 'Desarrollo Web Fullstack',
-    description: 'Formando a la próxima generación de creadores de la web.',
-    icon: '🌐',
-    category: 'curso',
-    expandedContent: 'Más allá de usar internet, enseñamos a construirlo. HTML, CSS y JavaScript moderno son las herramientas que entregamos para que los estudiantes puedan publicar sus propias ideas, portafolios y aplicaciones web al mundo entero.'
-  },
-  */
-
-  // Hitos - Competencias Robot Rally 2022
-  {
-    id: 'm-robot-rally-2022-1',
+    id: 'robot-rally-2022',
     date: '2022-05-21',
-    title: 'Robot Rally — 1.er Lugar',
-    description: 'Marymount School Medellín — 🏆 Primer lugar.',
-    icon: '🏆',
-    category: 'hito',
+    title: 'Doble podio en Robot Rally',
+    summary: 'Primer y segundo lugar en el Robot Rally del Marymount School de Medellín.',
+    body:
+      'Los equipos programaron y controlaron robots para superar desafíos de velocidad, precisión y autonomía frente a colegios de alto nivel.',
+    category: 'competencias',
     featured: true,
-    expandedContent: 'En el Robot Rally organizado en el Marymount School de Medellín, nuestro equipo se coronó campeón del primer lugar. El Robot Rally es una competencia de robótica educativa donde los equipos deben programar y controlar robots para superar una serie de desafíos de velocidad, precisión y autonomia. Este primer puesto demostró la solidez técnica y el trabajo en equipo de nuestros estudiantes frente a instituciones de alto nivel educativo.'
+    medal: 1,
+    place: 'Marymount School, Medellín',
+    image: `${IMG}/futbol-robotico-2.webp`,
+    imageAlt: 'Jóvenes guían sus robots sobre una pista de competencia',
+    todo: 'La foto es de un torneo de ScienceBot; reemplazar por una del Marymount si existe',
   },
   {
-    id: 'm-robot-rally-2022-2',
-    date: '2022-05-21',
-    title: 'Robot Rally — 2.do Lugar',
-    description: 'Marymount School Medellín — 🥈 Segundo lugar.',
-    icon: '🥈',
-    category: 'hito',
-    expandedContent: 'En una segunda participación del Robot Rally en el Marymount School de Medellín, nuestro equipo obtuvo el segundo lugar. Esta competencia reunió a los mejores equipos de robótica de colegios de la región, poniendo a prueba habilidades de programación, diseño mecánico y toma de decisiones bajo presión. Quedar en el podio en dos ediciones del mismo año confirmó nuestra consistencia competitiva.'
-  },
-
-
-  {
-    id: 'm-hito-estudiantes-activos',
-    date: '2026-01-25',
-    title: '300+ Estudiantes Activos',
-    description: 'Una comunidad vibrante de creadores tecnológicos.',
-    icon: '📈',
-    category: 'hito',
+    id: 'ella-es-astronauta-2022',
+    date: '2022-07-01',
+    title: 'La primera niña del Guaviare en la NASA',
+    summary:
+      'Estudiantes de ScienceBot viajan al Space Center Houston con el programa "Ella es Astronauta" de la Fundación SHE IS.',
+    body:
+      'Una de ellas, estudiante de la I.E. La Libertad, hoy estudia becada en Bogotá. Los nombres completos se publican solo con autorización de las familias.',
+    category: 'estudiantes',
     featured: true,
-    expandedContent: 'Alcanzar los 300+ estudiantes activos simultáneos fue un hito logístico y pedagógico. Un logro que refleja no solo el crecimiento de ScienceBot, sino la confianza de cientos de familias que ven en la robótica y la programación una puerta hacia el futuro de sus hijos.'
+    place: 'Space Center Houston, EE. UU.',
+    image: `${IMG}/nasa-guaviare.webp`,
+    imageAlt: 'Estudiantes del Guaviare con traje azul presentan en el Space Center Houston',
   },
   {
-    id: 'm-robot-rally-2023',
+    id: 'wro-consultora',
+    date: '2022-10-01',
+    title: 'Tatiana, consultora de WRO Colombia',
+    summary: 'Empieza como consultora de robótica educativa de la World Robot Olympiad.',
+    category: 'proyectos',
+    place: 'Colombia',
+  },
+  {
+    id: 'robotic-awards-2022',
+    date: '2022-11-01',
+    dateLabel: '2022',
+    title: 'Nominados a los Robotic Awards Latinoamérica',
+    summary:
+      'Categoría Mejor Equipo Sudamérica Norte (Junior), entre más de 40 escuelas de la región.',
+    category: 'reconocimientos',
+    place: 'Latinoamérica',
+    sourceUrl:
+      'https://radionacional.co/actualidad/tecnologia/jovenes-colombianos-nominado-premios-robotic-awards-latinoamerica',
+    sourceName: 'Radio Nacional',
+  },
+  {
+    id: 'sede-propia',
+    date: '2022-12-01',
+    dateLabel: 'Fin de 2022',
+    title: 'Sede propia en San José del Guaviare',
+    summary: 'Después de dos años sobre ruedas, la escuela abre su local.',
+    category: 'historia',
+    place: 'San José del Guaviare',
+  },
+  // ── 2023 ─────────────────────────────────────────────
+  {
+    id: 'robot-rally-2023',
     date: '2023-05-03',
-    title: 'Robot Rally 2023 — 2.do Lugar',
-    description: '🥈 Segundo lugar en el Robot Rally 2023.',
-    icon: '🥈',
-    category: 'hito',
-    expandedContent: 'En la edición 2023 del Robot Rally, nuestros estudiantes volvieron a subir al podio obteniendo el segundo lugar. Esta competencia de robótica educativa evalúa la capacidad de los equipos para programar robots que completen recorridos y retos de ingeniería con precisión y creatividad. El segundo lugar reafirmó nuestro nivel competitivo frente a equipos de todo el país.'
+    title: 'Robot Rally 2023: segundo lugar',
+    summary: 'Los estudiantes vuelven al podio.',
+    category: 'competencias',
+    medal: 2,
   },
   {
-    id: 'm-hito-mexico-2023',
-    date: '2023-05-20',
-    title: 'ScienceBot representa a Colombia en México — RoboRally Internacional',
-    description: 'Tras ganar el Campeonato Nacional RoboRally, ScienceBot es seleccionada para representar a Colombia en México.',
-    icon: '🌎',
-    category: 'hito',
-    featured: true,
-    expandedContent: 'Después de coronarse campeones del Campeonato Nacional RoboRally en la categoría de Fútbol Robótico, la Escuela de Robótica ScienceBot fue seleccionada para representar a Colombia en el RoboRally Internacional celebrado en México. Este logro histórico posiciona al departamento del Guaviare en el mapa de la robótica latinoamericana, demostrando que con metodología, dedicación y un equipo comprometido, es posible competir y brillar a nivel internacional.'
-  },
-  {
-    id: 'm-futbol-robotico-2023',
+    id: 'futbol-robotico-2023',
     date: '2023-05-04',
-    title: 'Fútbol Robótico 2023 — 3.er Lugar',
-    description: '🥉 Tercer lugar en la categoría Fútbol Robótico.',
-    icon: '⚽',
-    category: 'hito',
-    expandedContent: 'En la categoría de Fútbol Robótico, nuestro equipo logró el tercer lugar compitiendo contra equipos de alto nivel. El fútbol robótico es una disciplina donde los robots deben detectar el balón mediante sensores, desplazarse de forma autónoma y marcar goles, poniendo a prueba tanto la programación como el diseño mecánico del robot. Una medalla de bronce que demuestra nuestra versatilidad en distintas modalidades de competencia.'
+    title: 'Fútbol Robótico 2023: tercer lugar',
+    summary: 'Robots que detectan el balón con sensores y juegan de forma autónoma.',
+    category: 'competencias',
+    medal: 3,
   },
   {
-    id: 'm-carrera-insectos-2023',
+    id: 'carrera-insectos-2023',
     date: '2023-05-05',
-    title: 'Carrera de Insectos 2023 — 3.er Lugar',
-    description: '🥉 Tercer lugar en la Carrera de Insectos.',
-    icon: '🐛',
-    category: 'hito',
-    expandedContent: 'La Carrera de Insectos es una emocionante modalidad robótica en la que los equipos construyen y programan mini robots de locomoción inspirados en el movimiento de los insectos, compitiendo en velocidad y agilidad sobre un circuito de obstáculos. Nuestro equipo obtuvo el tercer lugar, destacando por la estabilidad mecánica y la eficiencia del código de movimiento de su robot, en una categoría altamente técnica y creativa.'
+    title: 'Carrera de Insectos 2023: tercer lugar',
+    summary: 'Mini robots de locomoción inspirados en insectos.',
+    category: 'competencias',
+    medal: 3,
   },
   {
-    id: 'm-reconocimiento-wef',
+    id: 'roborally-mexico-2023',
+    date: '2023-05-20',
+    title: 'Campeones nacionales y representantes de Colombia en México',
+    summary:
+      'Tras ganar el Campeonato Nacional RoboRally en Fútbol Robótico, los estudiantes representan a Colombia en el RoboRally Internacional.',
+    category: 'competencias',
+    featured: true,
+    medal: 1,
+    place: 'Colombia → México',
+    image: `${IMG}/futbol-robotico.webp`,
+    imageAlt: 'Jóvenes compiten en una cancha de fútbol robótico frente al público',
+  },
+  {
+    id: 'ella-es-astronauta-2023',
+    date: '2023-07-01',
+    dateLabel: '2023',
+    title: 'Primer puesto en "Ella es Astronauta"',
+    summary: 'Estudiantes del Guaviare ganan y viajan a la NASA.',
+    category: 'estudiantes',
+    medal: 1,
+    place: 'Space Center Houston',
+    sourceUrl: TATI,
+    sourceName: 'tati-bot',
+  },
+  {
+    id: 'wef-2023',
     date: '2023-07-28',
-    title: 'Premio Joven Innovador — Women Economic Forum',
-    description: 'Anguie Tatiana Muñoz González recibe el premio "Joven Innovador en pro de un mundo mejor para todos."',
-    icon: '🌟',
-    category: 'hito',
-    featured: true,
-    expandedContent: 'Women Economic Forum (WEF) confiere a Anguie Tatiana Muñoz González el premio "Joven Innovador en pro de un mundo mejor para todos", otorgado en el Women Economic Forum WEF Latam Colombia, el 28 de julio de 2023, en Bogotá, Colombia.'
+    title: 'Premio Joven Innovador, Women Economic Forum',
+    summary:
+      'Tatiana recibe el premio "Joven Innovador en pro de un mundo mejor para todos" en el WEF Latam Colombia.',
+    category: 'reconocimientos',
+    place: 'Bogotá',
   },
   {
-    id: 'm-reconocimiento-orden-guaviare',
+    id: 'graduados-2023',
+    date: '2023-12-20',
+    title: '100 estudiantes graduados',
+    summary: 'La primera gran generación presenta sus proyectos finales a sus familias.',
+    category: 'estudiantes',
+    image: `${IMG}/certificado.webp`,
+    imageAlt: 'Estudiante recibe su certificado junto a su profesora',
+  },
+  // ── 2024 ─────────────────────────────────────────────
+  {
+    id: 'robosketch-robojam-2024',
+    date: '2024-03-01',
+    dateLabel: '2024',
+    title: 'Campeones RoboSketch y RoboJam Medellín',
+    summary: 'Doble título para los equipos de ScienceBot.',
+    category: 'competencias',
+    medal: 1,
+    place: 'Medellín',
+    sourceUrl: TATI,
+    sourceName: 'tati-bot',
+  },
+  {
+    id: 'ley-199-2024',
+    date: '2024-04-01',
+    dateLabel: '2024',
+    title: 'Proyecto de Ley 199 de 2024 Cámara',
+    summary: 'Tatiana co-impulsa la ley que busca hacer obligatoria la robótica en los colegios.',
+    category: 'proyectos',
+    place: 'Congreso de Colombia',
+  },
+  {
+    id: 'orden-flor-2024',
     date: '2024-06-01',
-    title: 'Condecoración Orden Flor del Guaviare',
-    description: 'ScienceBot recibe la Orden Flor del Guaviare al mérito cívico por su servicio a la comunidad.',
-    icon: '�',
-    category: 'hito',
+    title: 'Orden Flor del Guaviare al mérito cívico',
+    summary:
+      'Condecoración para quienes se distinguen por su servicio a la comunidad, el desarrollo y la paz.',
+    category: 'reconocimientos',
     featured: true,
-    expandedContent: 'ScienceBot recibe la Condecoración de la Orden Flor del Guaviare al mérito cívico, distinción otorgada para exaltar a los ciudadanos y entidades que se hayan distinguido por su servicio a la comunidad y trabajo en el logro de las metas trazadas por el gobierno nacional en beneficio del desarrollo y la paz.'
+    place: 'Guaviare',
+    image: `${IMG}/aula.webp`,
+    imageAlt: 'Aula de ScienceBot llena de estudiantes trabajando',
   },
   {
-    id: 'm-reconocimiento-unad',
+    id: 'ella-es-astronauta-2024',
+    date: '2024-07-01',
+    dateLabel: '2024',
+    title: 'De nuevo primer puesto en "Ella es Astronauta"',
+    summary: 'Segundo año consecutivo en lo más alto.',
+    category: 'estudiantes',
+    medal: 1,
+  },
+  // ── 2025 ─────────────────────────────────────────────
+  {
+    id: 'onu-2025',
+    date: '2025-03-01',
+    title: 'Tatiana, ponente en la sede de la ONU',
+    summary: 'Habla en Nueva York sobre robótica, educación y paz.',
+    body:
+      'ScienceBot trabaja con hijos de firmantes de paz en el ETCR Colinas, con apoyo de la Misión de la ONU en Colombia.',
+    category: 'reconocimientos',
+    featured: true,
+    place: 'Nueva York',
+    image: `${IMG}/tatiana-onu.webp`,
+    imageAlt: 'Tatiana Muñoz con un integrante de la Misión de la ONU en Colombia',
+  },
+  {
+    id: 'unad-2025',
     date: '2025-04-01',
-    title: 'Reconocimiento UNAD — 1er Desafío INNCUNAD 2025',
-    description: 'La UNAD distingue a ScienceBot por su creatividad y espíritu emprendedor en el Desafío INNCUNAD.',
-    icon: '🎖️',
-    category: 'hito',
-    expandedContent: 'La Universidad Nacional Abierta y a Distancia - UNAD, a través de la Vicerrectoría de Inclusión, Innovación y Emprendimiento (VIEM), otorga reconocimiento a ScienceBot por su destacada participación en el 1er Desafío INNCUNAD 2025, demostrando compromiso, creatividad y espíritu emprendedor al servicio de la transformación social y el desarrollo sostenible de los territorios.'
+    title: 'Reconocimiento UNAD, 1er Desafío INNCUNAD',
+    summary: 'Por creatividad y espíritu emprendedor al servicio de los territorios.',
+    category: 'reconocimientos',
   },
   {
-    id: 'm-robo-jam-virtual',
+    id: 'wept-life-filbo',
+    date: '2025-05-01',
+    dateLabel: '2025 – 2026',
+    title: 'Wept Life llega a la Feria del Libro de Bogotá',
+    summary:
+      'El barco robot que mide la calidad del agua de los humedales se presenta ante MinCiencias y en la FILBo, con el programa Colombia Robótica.',
+    category: 'proyectos',
+    place: 'Bogotá',
+    image: `${IMG}/pm-barco.webp`,
+    imageAlt: 'Carcasa impresa en 3D del barco robot Wept Life',
+    todo: 'Confirmar año exacto (tati-bot dice 2025; ONU Colombia, "este año" en 2026)',
+  },
+  {
+    id: 'robojam-2025',
     date: '2025-09-20',
-    title: 'Participación en Robo Jam Virtual',
-    description: 'La Escuela ScienceBot representó al Guaviare en la competencia internacional Robo Jam Virtual.',
-    icon: '🤖',
-    category: 'hito',
-    featured: true,
-    expandedContent: 'La delegación de la Escuela de Robótica ScienceBot representó al Guaviare en una edición virtual de Robo Jam, una competencia internacional que contó con la participación de clubes de siete países. Durante esta competencia, los estudiantes del Guaviare lograron ubicarse entre los diez primeros lugares, demostrando su talento en la robótica a nivel mundial.'
+    title: 'Top 10 en Robo Jam Virtual',
+    summary: 'Entre clubes de siete países.',
+    category: 'competencias',
   },
   {
-    id: 'm-reconocimiento-puerto-iris',
+    id: 'puerto-iris-2025',
     date: '2025-09-25',
-    title: 'Reconocimiento II Feria de la Ciencia — Puerto Iris',
-    description: 'La I.E. Puerto Iris de Puerto Concordia reconoce a ScienceBot por su participación en la Feria de Ciencia y Tecnología.',
-    icon: '🏅',
-    category: 'hito',
-    expandedContent: 'La Institución Educativa Puerto Iris de Puerto Concordia otorga reconocimiento a la Escuela de Robótica ScienceBot, San José del Guaviare, por su destacada participación en la II Feria de la Ciencia y la Tecnología de la Institución Educativa Puerto Iris. 25 de septiembre de 2025.'
+    title: 'II Feria de la Ciencia, I.E. Puerto Iris',
+    summary: 'Reconocimiento de la institución de Puerto Concordia.',
+    category: 'reconocimientos',
   },
   {
-    id: 'm-hito-elpais-2025',
-    date: '2025-12-11',
-    title: 'Tatiana Muñoz — 100 Nuevos Líderes de Colombia',
-    description: 'Tatiana Muñoz es destacada como uno de los 100 Nuevos Líderes de Colombia por transformar la educación STEM en el Guaviare.',
-    icon: '🏆',
-    category: 'hito',
+    id: 'fll-2025',
+    date: '2025-10-01',
+    dateLabel: '2025',
+    title: 'Finalistas nacionales FIRST LEGO League',
+    summary: 'El equipo del Guaviare llega a la final nacional en Cartagena, temporada SUBMERGED.',
+    category: 'competencias',
     featured: true,
-    expandedContent: 'Tatiana Muñoz Gonzalez es reconocida como uno de los 100 Nuevos Líderes de Colombia gracias al impacto de ScienceBot en el departamento del Guaviare. Con ScienceBot llegó a más de 3.000 estudiantes formados, 1.200 de ellos con beca completa, logrando que niños y niñas de la Amazonia colombiana encabecen por primera vez competencias nacionales e internacionales de tecnología y robótica. Un reconocimiento que posiciona al Guaviare como referente latinoamericano en educación STEM.'
+    place: 'Cartagena',
+    image: `${IMG}/fll-cartagena.webp`,
+    imageAlt: 'Equipo de ScienceBot en la final nacional FIRST LEGO League de Cartagena',
   },
-
-  // Historia - Dic 2025
   {
-    id: 'h-2025-aula-robotica',
+    id: 'washington-2025',
+    date: '2025-11-01',
+    dateLabel: '2025',
+    title: 'Encuentro Internacional de Mujeres Líderes',
+    summary: 'Tatiana representa a Colombia en Washington.',
+    category: 'reconocimientos',
+  },
+  {
+    id: 'cien-lideres-2025',
+    date: '2025-12-11',
+    title: 'Tatiana Muñoz, entre los 100 Nuevos Líderes de Colombia',
+    summary: 'Reconocimiento de El País por transformar la educación STEM en el Guaviare.',
+    category: 'reconocimientos',
+  },
+  {
+    id: 'aula-minciencias-2025',
     date: '2025-12-12',
-    title: 'Entrega de la primera Aula de Robótica',
-    description: 'El departamento del Guaviare recibe la primera Aula de Robótica Oficial.',
-    icon: '🏫',
+    title: 'Primera Aula de Robótica Oficial del Guaviare',
+    summary:
+      'Liderada por ScienceBot, con el apoyo del Ministerio de Ciencia, Tecnología e Innovación.',
     category: 'historia',
     featured: true,
-    expandedContent: 'El departamento del Guaviare recibió la primera Aula de Robótica Oficial, un espacio equipado con tecnología de última generación para fortalecer procesos educativos en ciencia, tecnología e innovación. Esta iniciativa está liderada por nuestra Escuela de Robótica "ScienceBot", y contó con el apoyo directo del Ministerio de Ciencia, Tecnología e Innovación.'
-  }
+    image: `${IMG}/aula-nasa.webp`,
+    imageAlt: 'Estudiantes trabajan bajo el mural de la NASA en el aula de robótica',
+  },
+  // ── 2026 ─────────────────────────────────────────────
+  {
+    id: 'academia-online-2026',
+    date: '2026-02-01',
+    title: 'Arranca el desarrollo de la Academia Online',
+    summary: 'Para que niños de zonas rurales y otros países aprendan con ScienceBot.',
+    category: 'proyectos',
+  },
+  {
+    id: 'espectador-2026',
+    date: '2026-09-07',
+    title: 'La historia llega a El Espectador',
+    summary:
+      'Colombia+20 cuenta cómo la robótica enseña a los niños del Guaviare a soñar con la paz.',
+    category: 'reconocimientos',
+    sourceUrl: ESPECTADOR,
+    sourceName: 'El Espectador',
+  },
 ];
 
-// Export helper function to get events by category
-export function getEventsByCategory(categoryId?: TimelineCategoryType | 'all'): TimelineEvent[] {
-  if (!categoryId || categoryId === 'all') {
-    return timelineEvents;
+export function eventYear(e: TimelineEvent): number {
+  return Number(e.date.slice(0, 4));
+}
+
+export function formatEventDate(e: TimelineEvent): string {
+  if (e.dateLabel) return e.dateLabel;
+  const d = new Date(`${e.date}T12:00:00`);
+  return new Intl.DateTimeFormat('es-CO', { day: 'numeric', month: 'short', year: 'numeric' }).format(d);
+}
+
+export function groupByYear(events: TimelineEvent[]): { year: number; events: TimelineEvent[] }[] {
+  const sorted = [...events].sort((a, b) => a.date.localeCompare(b.date));
+  const map = new Map<number, TimelineEvent[]>();
+  for (const e of sorted) {
+    const y = eventYear(e);
+    if (!map.has(y)) map.set(y, []);
+    map.get(y)!.push(e);
   }
-  return timelineEvents.filter(event => event.category === categoryId);
-}
-
-// Export helper function to get featured events
-export function getFeaturedEvents(): TimelineEvent[] {
-  return timelineEvents.filter(event => event.featured);
-}
-
-// Export helper function to get recent events (last 6 months)
-export function getRecentEvents(): TimelineEvent[] {
-  const sixMonthsAgo = new Date();
-  sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
-
-  return timelineEvents.filter(event => new Date(event.date) >= sixMonthsAgo);
-}
-
-// Format event date in Spanish locale
-export function formatEventDate(dateStr: string): string {
-  const date = new Date(dateStr);
-  return new Intl.DateTimeFormat('es-ES', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  }).format(date);
-}
-
-// Format event date in short format (MMM YYYY)
-export function formatEventDateShort(dateStr: string): string {
-  const date = new Date(dateStr);
-  return new Intl.DateTimeFormat('es-ES', {
-    year: 'numeric',
-    month: 'short'
-  }).format(date);
-}
-
-// Group events by year
-export function groupEventsByYear(): Map<number, TimelineEvent[]> {
-  const grouped = new Map<number, TimelineEvent[]>();
-
-  timelineEvents.forEach(event => {
-    const year = new Date(event.date).getFullYear();
-    if (!grouped.has(year)) {
-      grouped.set(year, []);
-    }
-    grouped.get(year)!.push(event);
-  });
-
-  // Sort events within each year by date (newest first)
-  grouped.forEach((events, year) => {
-    events.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  });
-
-  return grouped;
-}
-
-// Get events by date range
-export function getEventsByDateRange(startDate: Date, endDate: Date): TimelineEvent[] {
-  return timelineEvents.filter(event => {
-    const eventDate = new Date(event.date);
-    return eventDate >= startDate && eventDate <= endDate;
-  });
-}
-
-// Get timeline statistics
-export function getTimelineStats() {
-  const stats = {
-    total: timelineEvents.length,
-    byCategory: {} as Record<TimelineCategoryType, number>,
-    featured: timelineEvents.filter(e => e.featured).length,
-    years: new Set(timelineEvents.map(e => new Date(e.date).getFullYear())).size,
-    oldest: timelineEvents.reduce((oldest, event) =>
-      new Date(event.date) < new Date(oldest.date) ? event : oldest
-    ),
-    newest: timelineEvents.reduce((newest, event) =>
-      new Date(event.date) > new Date(newest.date) ? event : newest
-    )
-  };
-
-  // Count by category
-  timelineCategories.forEach(cat => {
-    stats.byCategory[cat.id] = timelineEvents.filter(e => e.category === cat.id).length;
-  });
-
-  return stats;
+  return [...map.entries()].map(([year, events]) => ({ year, events }));
 }

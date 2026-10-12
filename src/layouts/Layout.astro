@@ -8,8 +8,8 @@ interface Props {
 }
 
 const {
-  title = "ScienceBot | Robótica y Programación para Jóvenes",
-  description = "Academia online de robótica y programación para niños y adolescentes de 6 a 17 años. Aprende LEGO Robotics, Scratch, Python, Arduino y más.",
+  title = "ScienceBot | Escuela de robótica del Guaviare",
+  description = "Escuela de robótica de San José del Guaviare, Amazonía colombiana. Robótica, programación, impresión 3D y ciencia para niños y jóvenes de 6 a 17 años.",
 } = Astro.props;
 
 const siteUrl = "https://sciencebot.academy";
@@ -37,11 +37,11 @@ const ogImage = "/og-image.jpg";
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={siteUrl} />
+    <meta property="og:url" content={new URL(Astro.url.pathname, siteUrl).href} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:locale" content="es_ES" />
+    <meta property="og:locale" content="es_CO" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
@@ -59,8 +59,23 @@ const ogImage = "/og-image.jpg";
         name: "ScienceBot",
         description: description,
         url: siteUrl,
-        logo: `${siteUrl}/logo.svg`,
-        sameAs: [],
+        logo: `${siteUrl}/logo-sciencebot.png`,
+        email: "sciencebot2@gmail.com",
+        telephone: "+57 318 841 4774",
+        foundingDate: "2020",
+        founder: { "@type": "Person", name: "Angie Tatiana Muñoz González" },
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "San José del Guaviare",
+          addressRegion: "Guaviare",
+          addressCountry: "CO",
+        },
+        sameAs: [
+          "https://www.facebook.com/ScienceBot1/",
+          "https://www.instagram.com/science.bot/",
+          "https://www.youtube.com/@sciencebot3400",
+          "https://www.tiktok.com/@1sciencebot",
+        ],
         offers: {
           "@type": "Offer",
           category: "Cursos de Robótica y Programación",

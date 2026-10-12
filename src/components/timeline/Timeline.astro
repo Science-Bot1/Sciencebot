@@ -1,419 +1,203 @@
 ---
-import type { TimelineEvent, TimelineCategory } from "../../data/timeline.ts";
-import { groupEventsByYear } from "../../data/timeline.ts";
-import TimelineEventComponent from "./TimelineEvent.astro";
+/**
+ * Línea de tiempo agrupada por año.
+ * - Sin JS: se ve todo el contenido.
+ * - Con JS: filtros por categoría (aria-pressed, ?cat= en la URL) y
+ *   resaltado del año visible en el selector (IntersectionObserver).
+ */
+import {
+    timelineCategories,
+    groupByYear,
+    formatEventDate,
+    type TimelineEvent,
+} from "../../data/timeline";
 
 interface Props {
     events: TimelineEvent[];
-    categories: TimelineCategory[];
-    title?: string;
-    subtitle?: string;
-    showCategoryFilter?: boolean;
 }
+const { events } = Astro.props;
 
-const {
-    events,
-    categories,
-    title = "Nuestra Historia",
-    subtitle = "El viaje de ScienceBot a través del tiempo",
-    showCategoryFilter = true,
-} = Astro.props;
-
-// Group events by year for organized display
-const eventsByYear = groupEventsByYear();
-const years = Array.from(eventsByYear.keys()).sort((a, b) => a - b);
-
-// Helper to find category by id
-const getCategoryById = (categoryId: string) =>
-    categories.find((cat) => cat.id === categoryId) || categories[0];
+const groups = groupByYear(events);
+const colorOf = Object.fromEntries(timelineCategories.map((c) => [c.id, c.color]));
+const nameOf = Object.fromEntries(timelineCategories.map((c) => [c.id, c.name]));
+const counts = Object.fromEntries(
+    timelineCategories.map((c) => [c.id, events.filter((e) => e.category === c.id).length]),
+);
+const medalLabel = { 1: "1.er lugar", 2: "2.º lugar", 3: "3.er lugar" } as const;
 ---
 
-<section id="timeline" class="timeline-section section-padding">
-    <div class="container">
-        <!-- Section Header -->
-        <div class="timeline-header reveal">
-            <h2 class="timeline-heading">{title}</h2>
-            <p class="timeline-subheading">{subtitle}</p>
-        </div>
-
-        <!-- Category Filters -->
-        {
-            showCategoryFilter && (
-                <div
-                    class="timeline-filters reveal"
-                    style="animation-delay: 200ms;"
-                >
-                    <button
-                        class="filter-btn active"
-                        data-category="all"
-                        style="--filter-color: #2020E8;"
-                        aria-label="Mostrar todos los eventos"
-                    >
-                        <span class="filter-icon">🎯</span>
-                        <span class="filter-text">Todos</span>
+<div class="tl" data-tl>
+    <div class="tl__bar">
+        <div class="rd-wrap tl__bar-inner">
+            <nav class="tl__years" aria-label="Ir al año">
+                {groups.map((g) => (
+                    <a href={`#y${g.year}`} class="tl__year-link" data-year-link={g.year}>{g.year}</a>
+                ))}
+            </nav>
+            <div class="rd-chip-group" role="group" aria-label="Filtrar por categoría" data-tl-filters hidden>
+                <button type="button" class="rd-chip" data-cat="todas" aria-pressed="true">
+                    Todas <span class="tl__count">({events.length})</span>
+                </button>
+                {timelineCategories.map((c) => (
+                    <button type="button" class="rd-chip" data-cat={c.id} aria-pressed="false">
+                        <span class="tl__dot" style={`background:${c.color}`} aria-hidden="true"></span>
+                        {c.name} <span class="tl__count">({counts[c.id]})</span>
                     </button>
-                    {categories.map((category) => (
-                        <button
-                            class="filter-btn"
-                            data-category={category.id}
-                            style={`--filter-color: ${category.color};`}
-                            aria-label={`Filtrar por ${category.name}`}
-                        >
-                            <span class="filter-icon">{category.icon}</span>
-                            <span class="filter-text">{category.name}</span>
-                        </button>
-                    ))}
-                </div>
-            )
-        }
-
-        <!-- Timeline Container -->
-        <div class="timeline-container">
-            <!-- Central Timeline Line -->
-            <div class="timeline-line"></div>
-
-            <!-- Timeline Events -->
-            <div class="timeline-events stagger-children">
-                {
-                    events.map((event, index) => {
-                        const category = getCategoryById(event.category);
-                        const isLeft = index % 2 === 0;
-                        return (
-                            <TimelineEventComponent
-                                event={event}
-                                category={category}
-                                index={index}
-                                isLeft={isLeft}
-                            />
-                        );
-                    })
-                }
+                ))}
             </div>
         </div>
-
-        <!-- End Marker -->
-        <div class="timeline-end reveal">
-            <div class="timeline-end-icon">🚀</div>
-            <p class="timeline-end-text">El futuro continúa escribiéndose...</p>
-        </div>
     </div>
-</section>
+
+    <div class="rd-wrap tl__body">
+        {groups.map((g) => (
+            <section id={`y${g.year}`} class="tl__group" data-year={g.year} aria-labelledby={`yh${g.year}`}>
+                <div class="tl__year-col">
+                    <h2 id={`yh${g.year}`} class="tl__year">{g.year}</h2>
+                </div>
+                <ol class="tl__list">
+                    {g.events.map((e) => (
+                        <li class="tl__item" data-cat={e.category}>
+                            <span class="tl__node" style={`background:${colorOf[e.category]}`} aria-hidden="true"></span>
+                            <article class:list={["tl__card", { "tl__card--featured": e.featured && e.image }]}>
+                                {e.featured && e.image && (
+                                    <img src={e.image} alt={e.imageAlt ?? ""} class="tl__img" loading="lazy" />
+                                )}
+                                <div class="tl__content">
+                                    <div class="tl__meta">
+                                        <span class="tl__badge" style={`background:${colorOf[e.category]}`}>{nameOf[e.category]}</span>
+                                        <span class="tl__date">
+                                            <time datetime={e.date}>{formatEventDate(e)}</time>
+                                            {e.place && <> · {e.place}</>}
+                                        </span>
+                                        {e.medal && (
+                                            <span class={`tl__medal tl__medal--${e.medal}`}>
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="14" r="6"></circle><path d="M8.5 3 10 8.5M15.5 3 14 8.5"></path></svg>
+                                                {medalLabel[e.medal]}
+                                            </span>
+                                        )}
+                                    </div>
+                                    <h3 class="tl__title">{e.title}</h3>
+                                    <p class="tl__summary">{e.summary}</p>
+                                    {e.body && (
+                                        <details class="tl__more">
+                                            <summary>Ver más</summary>
+                                            <p>{e.body}</p>
+                                        </details>
+                                    )}
+                                    {e.sourceUrl && (
+                                        <a href={e.sourceUrl} class="tl__source" target="_blank" rel="noopener noreferrer">
+                                            Fuente: {e.sourceName ?? "prensa"} ↗
+                                        </a>
+                                    )}
+                                </div>
+                            </article>
+                        </li>
+                    ))}
+                </ol>
+            </section>
+        ))}
+    </div>
+</div>
 
 <script>
-    // Recalculate left/right alternation for visible events
-    function reorderSides(visibleEvents: HTMLElement[]) {
-        visibleEvents.forEach((event, i) => {
-            event.classList.remove(
-                "timeline-event-left",
-                "timeline-event-right",
+    const root = document.querySelector<HTMLElement>("[data-tl]");
+    if (root) {
+        const filters = root.querySelector<HTMLElement>("[data-tl-filters]")!;
+        const items = root.querySelectorAll<HTMLElement>(".tl__item");
+        const groups = root.querySelectorAll<HTMLElement>(".tl__group");
+        const links = root.querySelectorAll<HTMLAnchorElement>("[data-year-link]");
+        filters.hidden = false;
+
+        const apply = (cat: string, push = true) => {
+            filters.querySelectorAll("button").forEach((b) =>
+                b.setAttribute("aria-pressed", String(b.dataset.cat === cat)),
             );
-            event.classList.add(
-                i % 2 === 0 ? "timeline-event-left" : "timeline-event-right",
-            );
-        });
-    }
-
-    // Category filter functionality
-    function initTimelineFilters() {
-        const filterBtns = document.querySelectorAll(".filter-btn");
-        const timelineEvents =
-            document.querySelectorAll<HTMLElement>(".timeline-event");
-
-        // Apply correct alternation on first load
-        reorderSides(Array.from(timelineEvents));
-
-        filterBtns.forEach((btn) => {
-            btn.addEventListener("click", () => {
-                const category = btn.getAttribute("data-category");
-
-                // Update active state
-                filterBtns.forEach((b) => b.classList.remove("active"));
-                btn.classList.add("active");
-
-                // First hide all, then show matching and reorder sides
-                const visibleEvents: HTMLElement[] = [];
-
-                timelineEvents.forEach((event) => {
-                    const eventCategory = event.getAttribute("data-category");
-                    const shouldShow =
-                        category === "all" || eventCategory === category;
-
-                    if (!shouldShow) {
-                        event.classList.remove("active");
-                        setTimeout(() => {
-                            event.style.display = "none";
-                        }, 300);
-                    } else {
-                        event.style.display = "grid";
-                        visibleEvents.push(event);
-                    }
-                });
-
-                // Recalculate left/right for visible events and re-trigger animation
-                reorderSides(visibleEvents);
-                visibleEvents.forEach((event, index) => {
-                    setTimeout(() => {
-                        event.classList.add("active");
-                    }, index * 50);
-                });
+            items.forEach((it) => (it.hidden = cat !== "todas" && it.dataset.cat !== cat));
+            groups.forEach((g) => {
+                const visible = g.querySelectorAll(".tl__item:not([hidden])").length > 0;
+                g.hidden = !visible;
+                const link = root.querySelector<HTMLElement>(`[data-year-link="${g.dataset.year}"]`);
+                if (link) link.hidden = !visible;
             });
+            if (push) {
+                const url = new URL(location.href);
+                if (cat === "todas") url.searchParams.delete("cat");
+                else url.searchParams.set("cat", cat);
+                history.replaceState(null, "", url);
+            }
+        };
+
+        filters.addEventListener("click", (ev) => {
+            const btn = (ev.target as HTMLElement).closest<HTMLButtonElement>("button[data-cat]");
+            if (btn) apply(btn.dataset.cat!);
         });
-    }
 
-    // Initialize on page load
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", initTimelineFilters);
-    } else {
-        initTimelineFilters();
-    }
+        const initial = new URL(location.href).searchParams.get("cat");
+        if (initial && filters.querySelector(`[data-cat="${initial}"]`)) apply(initial, false);
 
-    // Re-initialize on Astro page transitions
-    document.addEventListener("astro:page-load", initTimelineFilters);
+        const io = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((en) => {
+                    if (!en.isIntersecting) return;
+                    const y = (en.target as HTMLElement).dataset.year;
+                    links.forEach((l) => l.classList.toggle("is-active", l.dataset.yearLink === y));
+                });
+            },
+            { rootMargin: "-45% 0px -50% 0px" },
+        );
+        groups.forEach((g) => io.observe(g));
+    }
 </script>
 
 <style>
-    .timeline-section {
-        position: relative;
-        background: linear-gradient(
-            180deg,
-            var(--color-light) 0%,
-            var(--color-neutral-100) 50%,
-            var(--color-light) 100%
-        );
-        overflow: hidden;
+    .tl__bar {
+        position: sticky;
+        top: var(--rd-header-h);
+        z-index: 20;
+        background: rgba(246, 247, 251, 0.96);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--rd-border);
     }
-
-    .timeline-section::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 200%;
-        height: 100%;
-        background: radial-gradient(
-            ellipse at center,
-            rgba(26, 26, 230, 0.05) 0%,
-            transparent 60%
-        );
-        pointer-events: none;
+    .tl__bar-inner { display: flex; flex-direction: column; gap: 12px; padding-top: 14px; padding-bottom: 14px; }
+    .tl__years { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: thin; }
+    .tl__year-link {
+        flex: none; min-height: 44px; min-width: 72px; display: inline-flex; align-items: center; justify-content: center;
+        border-radius: 12px; background: #fff; border: 1px solid #c9cedc; color: var(--rd-ink); font-weight: 800; font-size: 16px;
     }
+    .tl__year-link.is-active { background: var(--color-primary); border-color: var(--color-primary); color: #fff; }
+    .tl__dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+    .tl__count { opacity: 0.7; }
 
-    /* Section Header */
-    .timeline-header {
-        text-align: center;
-        margin-bottom: var(--space-16);
-        max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
-    }
+    .tl__body { padding-top: 48px; padding-bottom: 32px; }
+    .tl__group { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 24px; margin-bottom: 48px; scroll-margin-top: calc(var(--rd-header-h) + 140px); }
+    .tl__year { position: sticky; top: calc(var(--rd-header-h) + 150px); font-size: 40px; line-height: 1; font-weight: 800; color: var(--color-primary); }
+    .tl__list { list-style: none; padding-left: 28px; border-left: 3px solid #d7dde8; display: flex; flex-direction: column; gap: 18px; }
+    .tl__item { position: relative; }
+    .tl__node { position: absolute; left: -39px; top: 22px; width: 17px; height: 17px; border-radius: 50%; border: 3px solid var(--rd-bg); }
 
-    .timeline-heading {
-        font-size: clamp(var(--text-4xl), 5vw, var(--text-6xl));
-        font-weight: 800;
-        color: var(--color-dark);
-        margin-bottom: var(--space-4);
-    }
+    .tl__card { background: #fff; border: 1px solid var(--rd-border); border-radius: 18px; overflow: hidden; }
+    .tl__card--featured { display: flex; flex-wrap: wrap; border: 0; border-radius: 24px; box-shadow: 0 6px 20px rgba(20, 32, 46, 0.06); }
+    .tl__img { flex: 1 1 280px; min-width: 0; width: 280px; height: 260px; object-fit: cover; }
+    .tl__content { flex: 1.3 1 320px; padding: 18px 22px; display: flex; flex-direction: column; gap: 8px; }
+    .tl__card--featured .tl__content { padding: 24px 26px; gap: 10px; }
+    .tl__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+    .tl__badge { font-weight: 700; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: #fff; padding: 6px 10px; border-radius: 8px; }
+    .tl__date { font-weight: 700; font-size: 14px; color: var(--rd-muted); }
+    .tl__medal { display: inline-flex; align-items: center; gap: 6px; font-weight: 800; font-size: 13px; color: var(--rd-ink); padding: 5px 10px; border-radius: 999px; background: #e3e6ef; }
+    .tl__medal--1 { background: #e9b949; }
+    .tl__medal--2 { background: #c3cad2; }
+    .tl__medal--3 { background: #d29a6a; }
+    .tl__title { font-size: 18px; line-height: 1.3; font-weight: 700; }
+    .tl__card--featured .tl__title { font-size: 24px; line-height: 1.2; }
+    .tl__summary { font-size: 15px; line-height: 1.55; }
+    .tl__card--featured .tl__summary { font-size: 16px; }
+    .tl__more { background: none !important; padding: 0 !important; }
+    .tl__more summary { color: var(--color-primary); font-size: 15px; min-height: 32px; display: flex; align-items: center; }
+    .tl__source { font-weight: 700; font-size: 14px; }
 
-    .timeline-subheading {
-        font-size: var(--text-lg);
-        color: var(--color-neutral-600);
-        line-height: 1.6;
-    }
-
-    /* Category Filters */
-    .timeline-filters {
-        display: flex;
-        flex-wrap: wrap;
-        gap: var(--space-3);
-        justify-content: center;
-        margin-bottom: var(--space-16);
-        padding: var(--space-4);
-    }
-
-    .filter-btn {
-        display: flex;
-        align-items: center;
-        gap: var(--space-2);
-        padding: var(--space-3) var(--space-6);
-        background: white;
-        border: 2px solid var(--color-neutral-200);
-        border-radius: var(--radius-full);
-        font-family: var(--font-sans);
-        font-size: var(--text-sm);
-        font-weight: 600;
-        color: var(--color-neutral-700);
-        cursor: pointer;
-        transition: all var(--transition-base);
-        box-shadow: var(--shadow-sm);
-    }
-
-    .filter-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: var(--shadow-md);
-        border-color: var(--filter-color, var(--color-primary));
-        background: var(--color-light);
-    }
-
-    .filter-btn.active {
-        background: var(--filter-color, var(--color-primary));
-        border-color: var(--filter-color, var(--color-primary));
-        color: white;
-        box-shadow:
-            var(--shadow-lg),
-            0 0 20px rgba(26, 26, 230, 0.3);
-    }
-
-    .filter-icon {
-        font-size: 1.25rem;
-        transition: transform var(--transition-base);
-    }
-
-    .filter-btn:hover .filter-icon,
-    .filter-btn.active .filter-icon {
-        transform: scale(1.2) rotate(-5deg);
-    }
-
-    .filter-text {
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-
-    /* Timeline Container */
-    .timeline-container {
-        position: relative;
-        padding: var(--space-8) 0;
-        min-height: 200px;
-    }
-
-    /* Central Timeline Line */
-    .timeline-line {
-        position: absolute;
-        left: 50%;
-        top: 0;
-        bottom: 0;
-        width: 2px;
-        background: linear-gradient(
-            180deg,
-            transparent 0%,
-            var(--color-neutral-300) 5%,
-            var(--color-neutral-400) 50%,
-            var(--color-neutral-300) 95%,
-            transparent 100%
-        );
-        transform: translateX(-50%);
-        border-radius: var(--radius-full);
-        opacity: 0.5;
-        z-index: 1;
-    }
-
-    /* Timeline Events Container */
-    .timeline-events {
-        position: relative;
-        z-index: 2;
-    }
-
-    /* Timeline End Marker */
-    .timeline-end {
-        text-align: center;
-        margin-top: var(--space-16);
-        padding: var(--space-8);
-    }
-
-    .timeline-end-icon {
-        font-size: 4rem;
-        margin-bottom: var(--space-4);
-        animation: float 3s ease-in-out infinite;
-    }
-
-    .timeline-end-text {
-        font-size: var(--text-xl);
-        font-weight: 600;
-        color: var(--color-neutral-600);
-        font-style: italic;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 1024px) {
-        .timeline-header {
-            margin-bottom: var(--space-12);
-        }
-
-        .timeline-filters {
-            margin-bottom: var(--space-12);
-        }
-    }
-
-    @media (max-width: 768px) {
-        .timeline-line {
-            left: 16px;
-        }
-
-        .timeline-header {
-            margin-bottom: var(--space-10);
-        }
-
-        .timeline-filters {
-            gap: var(--space-2);
-            margin-bottom: var(--space-10);
-        }
-
-        .filter-btn {
-            padding: var(--space-2) var(--space-4);
-            font-size: var(--text-xs);
-        }
-
-        .filter-icon {
-            font-size: 1rem;
-        }
-
-        .timeline-container {
-            padding: var(--space-8) 0;
-        }
-
-        .timeline-end {
-            margin-top: var(--space-12);
-            padding: var(--space-6);
-        }
-
-        .timeline-end-icon {
-            font-size: 3rem;
-        }
-
-        .timeline-end-text {
-            font-size: var(--text-lg);
-        }
-    }
-
-    @media (max-width: 480px) {
-        .timeline-filters {
-            padding: var(--space-2);
-        }
-
-        .filter-btn {
-            flex: 1 1 calc(50% - var(--space-2));
-            min-width: 120px;
-            justify-content: center;
-        }
-
-        .timeline-heading {
-            font-size: var(--text-3xl);
-        }
-
-        .timeline-subheading {
-            font-size: var(--text-base);
-        }
-    }
-
-    /* Print Styles */
-    @media print {
-        .timeline-filters {
-            display: none;
-        }
-
-        .timeline-line {
-            -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
-        }
+    @media (max-width: 720px) {
+        .tl__group { grid-template-columns: 1fr; gap: 12px; }
+        .tl__year { position: static; font-size: 32px; }
+        .tl__img { width: 100%; height: 200px; }
     }
 </style>

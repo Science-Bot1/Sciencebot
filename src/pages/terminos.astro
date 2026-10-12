@@ -1,0 +1,38 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import "../styles/redesign.css";
+import { contact } from "../data/site";
+---
+
+<!-- BORRADOR LEGAL: debe revisarlo un abogado antes de publicarse. -->
+<Layout title="Términos y condiciones | ScienceBot" description="Términos y condiciones de uso del sitio y los servicios de ScienceBot.">
+    <Header />
+    <main class="rd legal">
+        <div class="rd-wrap legal__inner rd-stack">
+            <p class="rd-todo" style="align-self:flex-start">Borrador: pendiente de revisión legal</p>
+            <h1>Términos y condiciones</h1>
+            <p>Al usar este sitio y los servicios de ScienceBot aceptas estas condiciones.</p>
+            <h2>Servicios</h2>
+            <p>Cursos y talleres de robótica, programación e impresión 3D, presenciales y en línea, para niños y jóvenes.</p>
+            <h2>Inscripciones y pagos</h2>
+            <p>Las condiciones de cada curso, valores y becas se informan al momento de la inscripción.</p>
+            <h2>Uso de imágenes</h2>
+            <p>Las fotografías de estudiantes se publican solo con autorización de sus acudientes. Ver la <a href="/privacidad">política de datos</a>.</p>
+            <h2>Propiedad intelectual</h2>
+            <p>Los contenidos, el logo y las marcas de ScienceBot y Plastic Makers 3D no pueden usarse sin autorización.</p>
+            <h2>Contacto</h2>
+            <p><a href={`mailto:${contact.email}`}>{contact.email}</a> · <a href={contact.phoneHref}>{contact.phone}</a></p>
+        </div>
+    </main>
+    <Footer />
+</Layout>
+
+<style>
+    .legal { margin-top: var(--rd-header-h); }
+    .legal__inner { max-width: 760px; padding-top: 64px; padding-bottom: 96px; gap: 16px; }
+    .legal h1 { font-size: clamp(32px, 4vw, 44px); font-weight: 800; }
+    .legal h2 { font-size: 22px; font-weight: 700; margin-top: 12px; }
+    .legal p { font-size: 17px; line-height: 1.7; }
+</style>

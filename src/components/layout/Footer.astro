@@ -5,6 +5,7 @@ const quickLinks = [
     { label: "Inicio", href: "/" },
     { label: "Academia", href: "/academia" },
     { label: "Historia", href: "/historia" },
+    { label: "Plastic Makers 3D", href: "/plastic-makers-3d" },
     { label: "Contacto", href: "/contacto" },
 ];
 
@@ -49,12 +50,12 @@ const socialLinks = [
                     class="footer__logo"
                     aria-label="ScienceBot - Inicio"
                 >
-                    <span class="footer__logo-text">ScienceBot</span>
+                    <span class="footer__logo-chip"><img src="/logo-sciencebot.png" alt="ScienceBot" width="128" height="57" class="footer__logo-img" /></span>
                 </a>
                 <p class="footer__description">
-                    Academia de robótica y programación para niños y
-                    adolescentes. Formando a los innovadores del futuro desde
-                    los 6 hasta los 17 años.
+                    Escuela de robótica del Guaviare, Amazonía colombiana.
+                    Robótica, programación e impresión 3D para niños y jóvenes
+                    desde 2020.
                 </p>
                 <div class="footer__social">
                     {
@@ -156,7 +157,7 @@ const socialLinks = [
                             ></path>
                             <circle cx="12" cy="10" r="3"></circle>
                         </svg>
-                        <span>San Jose del Guaviare , Colombia</span>
+                        <span>San José del Guaviare, Colombia</span>
                     </li>
                 </ul>
             </div>
@@ -168,8 +169,8 @@ const socialLinks = [
                 © {currentYear} ScienceBot. Todos los derechos reservados.
             </p>
             <div class="footer__legal">
-                <a href="#">Política de Privacidad</a>
-                <a href="#">Términos de Servicio</a>
+                <a href="/privacidad">Política de Privacidad</a>
+                <a href="/terminos">Términos de Servicio</a>
             </div>
         </div>
     </div>
@@ -210,6 +211,19 @@ const socialLinks = [
             align-items: center;
             gap: var(--space-3);
             text-decoration: none;
+        }
+
+        .footer__logo-chip {
+            display: inline-flex;
+            background: white;
+            border-radius: 14px;
+            padding: 8px 12px;
+        }
+
+        .footer__logo-img {
+            height: 48px;
+            width: auto;
+            display: block;
         }
 
         .footer__logo-text {
