@@ -286,8 +286,7 @@ const filtros = ["Todos", "Competencias", "Reconocimientos", "Estudiantes"];
 		<section id="aliados" class="rd-section--white" style="padding: 72px 0">
 			<div class="rd-wrap rd-stack" style="gap: 24px">
 				<h2 style="font-size: 32px; font-weight: 800">Aliados</h2>
-			</div>
-			<div class="aliados" role="region" aria-label="Organizaciones aliadas">
+				<div class="aliados" role="region" aria-label="Organizaciones aliadas">
 				<ul class="aliados__track">
 					{[0, 1, 2, 3].map((copia) => (
 						<Fragment>
@@ -299,6 +298,7 @@ const filtros = ["Todos", "Competencias", "Reconocimientos", "Estudiantes"];
 						</Fragment>
 					))}
 				</ul>
+				</div>
 			</div>
 		</section>
 
@@ -476,7 +476,7 @@ const filtros = ["Todos", "Competencias", "Reconocimientos", "Estudiantes"];
 	.becas__num { font-weight: 800; font-size: 72px; line-height: 1; color: var(--rd-cta); }
 	.becas__img { flex: 1 1 360px; min-width: 0; min-height: 420px; object-fit: cover; border-radius: 32px; }
 
-	.aliados { margin-top: 24px; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+	.aliados { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
 	.aliados__track { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; width: max-content; animation: aliados-scroll 40s linear infinite; }
 	.aliados:hover .aliados__track { animation-play-state: paused; }
 	.aliados__track li { flex: none; height: 72px; display: flex; align-items: center; padding: 0 clamp(24px, 4vw, 48px); }
