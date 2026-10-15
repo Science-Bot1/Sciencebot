@@ -286,9 +286,18 @@ const filtros = ["Todos", "Competencias", "Reconocimientos", "Estudiantes"];
 		<section id="aliados" class="rd-section--white" style="padding: 72px 0">
 			<div class="rd-wrap rd-stack" style="gap: 24px">
 				<h2 style="font-size: 32px; font-weight: 800">Aliados</h2>
-				<!-- TODO: reemplazar por logos oficiales con permiso de uso -->
-				<ul class="aliados">
-					{aliados.map((a) => <li>{a}</li>)}
+			</div>
+			<div class="aliados" role="region" aria-label="Organizaciones aliadas">
+				<ul class="aliados__track">
+					{[0, 1, 2, 3].map((copia) => (
+						<Fragment>
+							{aliados.map((a) => (
+								<li aria-hidden={copia > 0 ? "true" : undefined}>
+									<img src={a.logo} alt={copia > 0 ? "" : a.nombre} loading="lazy" decoding="async" />
+								</li>
+							))}
+						</Fragment>
+					))}
 				</ul>
 			</div>
 		</section>
@@ -467,8 +476,17 @@ const filtros = ["Todos", "Competencias", "Reconocimientos", "Estudiantes"];
 	.becas__num { font-weight: 800; font-size: 72px; line-height: 1; color: var(--rd-cta); }
 	.becas__img { flex: 1 1 360px; min-width: 0; min-height: 420px; object-fit: cover; border-radius: 32px; }
 
-	.aliados { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; }
-	.aliados li { height: 84px; border: 1px solid var(--rd-border); border-radius: 16px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 10px; font-weight: 800; color: var(--rd-body); }
+	.aliados { margin-top: 24px; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+	.aliados__track { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; width: max-content; animation: aliados-scroll 40s linear infinite; }
+	.aliados:hover .aliados__track { animation-play-state: paused; }
+	.aliados__track li { flex: none; height: 72px; display: flex; align-items: center; padding: 0 clamp(24px, 4vw, 48px); }
+	.aliados__track img { height: 100%; width: auto; max-width: 240px; object-fit: contain; opacity: 0.75; transition: opacity 0.2s; }
+	.aliados__track li:hover img { opacity: 1; }
+	@keyframes aliados-scroll { to { transform: translateX(-25%); } }
+	@media (prefers-reduced-motion: reduce) {
+		.aliados { overflow-x: auto; }
+		.aliados__track { animation: none; }
+	}
 
 	.press { display: flex; flex-direction: column; gap: 6px; background: #fff; border: 1px solid var(--rd-border); border-radius: 18px; padding: 18px 20px; color: var(--rd-ink); }
 	.press:hover { border-color: var(--color-primary); color: var(--rd-ink); }

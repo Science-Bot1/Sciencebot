@@ -172,17 +172,17 @@ export const proyectos = [
   },
 ];
 
-/** Reemplazar por logos oficiales una vez haya permiso de uso. */
+/** Logos en blanco y negro (PNG con fondo transparente) en public/aliados. */
 export const aliados = [
-  'WRO Colombia',
-  'Fundación SHE IS',
-  'Hilfswerk',
-  'Naciones Unidas',
-  'UNAD',
-  'SENA',
-  'RoboJam',
-  'FIRST LEGO League',
-  'MinCiencias',
+  { nombre: 'WRO Colombia', logo: '/aliados/wro-colombia.png' },
+  { nombre: 'Fundación SHE IS', logo: '/aliados/she-is-foundation.png' },
+  { nombre: 'Hilfswerk', logo: '/aliados/hilfswerk.png' },
+  { nombre: 'Misión de Verificación de Naciones Unidas en Colombia', logo: '/aliados/onu-colombia.png' },
+  { nombre: 'UNAD', logo: '/aliados/unad.png' },
+  { nombre: 'SENA', logo: '/aliados/sena.png' },
+  { nombre: 'RoboJam', logo: '/aliados/robojam.png' },
+  { nombre: 'FIRST LEGO League', logo: '/aliados/first-lego-league.png' },
+  { nombre: 'MinCiencias', logo: '/aliados/minciencias.png' },
 ];
 
 export const prensa = [
