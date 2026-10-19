@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>ScienceBot · video 15 s</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --primary: #2020E8;
+    --cta: #C5302A;
+    --navy: #10173a;
+    --eco: #0b5e2e;
+    --maker: #f2a33a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--navy); font-family: 'Outfit', system-ui, sans-serif; color: #fff; }
+  #stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; }
+  .scene { position: absolute; inset: 0; opacity: 0; will-change: opacity, transform; }
+  .bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .blur { filter: blur(36px) brightness(.55); }
+  .fg { position: absolute; left: 0; top: 250px; width: 1080px; height: 1080px; object-fit: cover; }
+  .shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(16,23,58,.55) 0%, rgba(16,23,58,0) 28%, rgba(16,23,58,0) 45%, rgba(16,23,58,.92) 100%); }
+
+  .brand { position: absolute; top: 72px; left: 72px; background: #fff; border-radius: 28px; padding: 14px 26px; display: flex; align-items: center; }
+  .brand img { height: 86px; display: block; }
+  .pill { display: inline-block; background: rgba(255,255,255,.95); color: var(--navy); font-weight: 700; font-size: 34px; padding: 14px 28px; border-radius: 999px; }
+
+  /* S1 */
+  .s1 .copy { position: absolute; left: 72px; right: 72px; bottom: 150px; display: flex; flex-direction: column; gap: 36px; align-items: flex-start; }
+  .s1 h1 { font-weight: 900; font-size: 118px; line-height: 1.02; letter-spacing: -2px; }
+  .s1 h1 .w { display: inline-block; margin-right: 22px; opacity: 0; }
+  .s1 h1 .hl { color: var(--maker); }
+
+  /* S2 */
+  .s2 { background: var(--navy); }
+  .s2 .lines { position: absolute; inset: 0; opacity: .5; }
+  .s2 .inner { position: absolute; left: 72px; right: 72px; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; gap: 56px; }
+  .s2 .kicker { font-size: 40px; font-weight: 700; color: #8ee6b0; letter-spacing: 2px; text-transform: uppercase; }
+  .stat { display: flex; flex-direction: column; gap: 6px; border-left: 10px solid var(--primary); padding-left: 36px; opacity: 0; }
+  .stat--accent { border-color: var(--maker); }
+  .stat .v { font-weight: 900; font-size: 190px; line-height: 1; letter-spacing: -4px; }
+  .stat--accent .v { color: var(--maker); }
+  .stat .l { font-size: 54px; font-weight: 600; color: #dfe3f5; }
+
+  /* S3 */
+  .s3 .card { position: absolute; inset: 0; opacity: 0; }
+  .s3 .copy { position: absolute; left: 72px; right: 72px; bottom: 170px; display: flex; flex-direction: column; gap: 28px; align-items: flex-start; }
+  .s3 .meta { background: var(--maker); color: var(--navy); font-weight: 800; font-size: 38px; padding: 12px 26px; border-radius: 999px; }
+  .s3 h2 { font-weight: 900; font-size: 100px; line-height: 1.04; letter-spacing: -1.5px; }
+  .s3 p { font-size: 46px; line-height: 1.25; font-weight: 600; color: #e8ebf8; }
+  .dots { position: absolute; left: 72px; right: 72px; top: 72px; display: flex; gap: 14px; }
+  .dots i { flex: 1; height: 10px; border-radius: 6px; background: rgba(255,255,255,.35); overflow: hidden; }
+  .dots i b { display: block; height: 100%; width: 0%; background: #fff; }
+  .s3 .tag { position: absolute; top: 120px; left: 72px; font-weight: 800; font-size: 40px; letter-spacing: 2px; text-transform: uppercase; color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,.5); }
+
+  /* S4 */
+  .s4 { background: #fff; color: var(--navy); }
+  .s4 .inner { position: absolute; inset: 0; padding: 96px 72px; display: flex; flex-direction: column; gap: 40px; }
+  .s4 .kicker { font-size: 40px; font-weight: 800; color: var(--cta); letter-spacing: 2px; text-transform: uppercase; }
+  .s4 h2 { font-size: 104px; line-height: 1.02; font-weight: 900; letter-spacing: -2px; }
+  .grid { flex: 1; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 28px; }
+  .tile { position: relative; border-radius: 40px; overflow: hidden; opacity: 0; }
+  .tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(16,23,58,0) 45%, rgba(16,23,58,.85) 100%); }
+  .tile .t { color: #fff; position: absolute; left: 30px; right: 30px; bottom: 26px; z-index: 1; display: flex; flex-direction: column; gap: 4px; }
+  .tile .age { font-weight: 800; font-size: 34px; color: var(--maker); }
+  .tile .name { font-weight: 800; font-size: 46px; line-height: 1.05; }
+
+  /* S5 */
+  .s5 { background: var(--primary); }
+  .s5 .glow { position: absolute; width: 1400px; height: 1400px; left: -160px; top: 220px; border-radius: 50%; background: radial-gradient(closest-side, rgba(92,92,255,.9), rgba(92,92,255,0)); }
+  .s5 .inner { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 56px; padding: 0 72px; text-align: center; }
+  .s5 .logo { background: #fff; border-radius: 56px; padding: 48px 64px; box-shadow: 0 30px 80px rgba(0,0,0,.28); }
+  .s5 .logo img { width: 640px; display: block; }
+  .s5 h2 { font-weight: 900; font-size: 112px; line-height: 1.03; letter-spacing: -2px; }
+  .s5 .btn { background: var(--cta); color: #fff; font-weight: 800; font-size: 54px; padding: 34px 60px; border-radius: 999px; box-shadow: 0 14px 40px rgba(0,0,0,.25); }
+  .s5 .contact { font-size: 52px; font-weight: 700; line-height: 1.3; color: #e6e8ff; }
+  .s5 .contact small { display: block; font-size: 40px; font-weight: 600; opacity: .85; }
+</style>
+</head>
+<body>
+<div id="stage">
+
+  <!-- 1 · Hero (0 – 3.4 s) -->
+  <section class="scene s1" id="s1">
+    <img class="bg" id="s1bg" src="../public/img/rediseno/hero-equipo.webp" alt="" />
+    <div class="shade"></div>
+    <div class="brand"><img src="../public/logo-sciencebot.png" alt="ScienceBot" /></div>
+    <div class="copy">
+      <span class="pill" id="s1pill">San José del Guaviare · desde 2020</span>
+      <h1 id="s1h"></h1>
+    </div>
+  </section>
+
+  <!-- 2 · Cifras (3.2 – 6.6 s) -->
+  <section class="scene s2" id="s2">
+    <svg class="lines" viewBox="0 0 1080 1920" preserveAspectRatio="none" aria-hidden="true">
+      <g fill="none" stroke="#5FD38E" stroke-width="2">
+        <path d="M-20 1500 C 260 1400, 520 1640, 820 1500 S 1100 1400, 1120 1480"/>
+        <path d="M-20 1560 C 260 1460, 520 1700, 820 1560 S 1100 1460, 1120 1540"/>
+        <path d="M-20 300 C 260 220, 560 400, 820 290 S 1100 230, 1120 300"/>
+      </g>
+    </svg>
+    <div class="inner">
+      <span class="kicker">Cinco años en el Guaviare</span>
+      <div class="stat" data-to="6000" data-fmt="plus"><span class="v">0</span><span class="l">niños formados</span></div>
+      <div class="stat" data-to="3000" data-fmt="plain"><span class="v">0</span><span class="l">estudiantes activos</span></div>
+      <div class="stat stat--accent" data-to="1200" data-fmt="plain"><span class="v">0</span><span class="l">con beca</span></div>
+    </div>
+  </section>
+
+  <!-- 3 · Logros (6.4 – 11.4 s) -->
+  <section class="scene s3" id="s3">
+    <div class="card">
+      <img class="bg" src="../public/img/rediseno/fll-cartagena.webp" alt="" />
+      <div class="shade"></div>
+      <span class="tag">Logros</span>
+      <div class="copy"><span class="meta">2025 · Competencias</span><h2>Finalistas nacionales FIRST LEGO League</h2><p>El equipo del Guaviare llegó a la final nacional en Cartagena.</p></div>
+    </div>
+    <div class="card">
+      <img class="bg blur" src="../public/img/rediseno/nasa-guaviare.webp" alt="" />
+      <img class="fg" src="../public/img/rediseno/nasa-guaviare.webp" alt="" />
+      <div class="shade"></div>
+      <span class="tag">Logros</span>
+      <div class="copy"><span class="meta">2022 – 2025 · Estudiantes</span><h2>Ella es Astronauta</h2><p>Estudiantes del Guaviare viajaron al Space Center Houston.</p></div>
+    </div>
+    <div class="card">
+      <img class="bg" src="../public/img/rediseno/futbol-robotico.webp" alt="" />
+      <div class="shade"></div>
+      <span class="tag">Logros</span>
+      <div class="copy"><span class="meta">2023 · 1.º lugar</span><h2>Campeones nacionales, rumbo a México</h2><p>Ganamos RoboRally en Fútbol Robótico y representamos a Colombia.</p></div>
+    </div>
+    <div class="dots"><i><b></b></i><i><b></b></i><i><b></b></i></div>
+  </section>
+
+  <!-- 4 · Programas (11.2 – 13.6 s) -->
+  <section class="scene s4" id="s4">
+    <div class="inner">
+      <span class="kicker">Programas</span>
+      <h2>Robótica y ciencia para cada edad</h2>
+      <div class="grid">
+        <div class="tile"><img src="../public/img/rediseno/prog-6-8.webp" alt="" /><div class="t"><span class="age">6–8 años</span><span class="name">Pequeños constructores</span></div></div>
+        <div class="tile"><img src="../public/img/rediseno/prog-8-12.webp" alt="" /><div class="t"><span class="age">8–12 años</span><span class="name">Robótica creativa</span></div></div>
+        <div class="tile"><img src="../public/img/rediseno/prog-arduino.webp" alt="" /><div class="t"><span class="age">10–17 años</span><span class="name">Electrónica y Arduino</span></div></div>
+        <div class="tile"><img src="../public/img/rediseno/prog-scratch.webp" alt="" /><div class="t"><span class="age">12–17 años</span><span class="name">Python, web e impresión 3D</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · Cierre (13.4 – 15 s) -->
+  <section class="scene s5" id="s5">
+    <div class="glow"></div>
+    <div class="inner">
+      <div class="logo" id="s5logo"><img src="../public/logo-sciencebot.png" alt="ScienceBot" /></div>
+      <h2 id="s5h">Reserva tu clase de prueba gratis</h2>
+      <div class="btn" id="s5btn">Escríbenos por WhatsApp</div>
+      <div class="contact" id="s5c">+57 318 841 4774<small>San José del Guaviare</small></div>
+    </div>
+  </section>
+</div>
+
+<script>
+  const DURATION = 15;
+  const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+  const lerp = (a, b, k) => a + (b - a) * k;
+  const easeOut = (k) => 1 - Math.pow(1 - clamp(k), 3);
+  const easeInOut = (k) => { k = clamp(k); return k < .5 ? 4*k*k*k : 1 - Math.pow(-2*k + 2, 3) / 2; };
+  const seg = (t, a, b) => clamp((t - a) / (b - a));
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+  // Título del hero, palabra por palabra
+  const HEADLINE = [['Del',0],['Guaviare',1],['al',0],['mundo:',1],['niños',0],['que',0],['construyen',0],['el',0],['futuro',0],['con',0],['robots',1]];
+  $('#s1h').innerHTML = HEADLINE.map(([w, hl]) => `<span class="w${hl ? ' hl' : ''}">${w}</span>`).join('');
+  const words = $$('#s1h .w');
+
+  // Ventanas de cada escena (con 0,3 s de fundido)
+  const F = .3;
+  const SCENES = { s1: [0, 3.4], s2: [3.1, 6.7], s3: [6.4, 11.5], s4: [11.2, 13.7], s5: [13.4, 15.01] };
+  const vis = (t, [a, b], first, last) => {
+    const fin = first ? 1 : seg(t, a, a + F);
+    const fout = last ? 1 : 1 - seg(t, b - F, b);
+    return Math.min(fin, fout);
+  };
+
+  const fmt = (n, mode) => {
+    const s = Math.round(n).toLocaleString('es-CO');
+    return mode === 'plus' && Math.round(n) >= 6000 ? s + '+' : s;
+  };
+
+  function seek(t) {
+    // S1
+    {
+      const [a, b] = SCENES.s1;
+      const el = $('#s1'); el.style.opacity = vis(t, SCENES.s1, true, false);
+      $('#s1bg').style.transform = `scale(${lerp(1.04, 1.16, seg(t, a, b + .3))})`;
+      const p = easeOut(seg(t, .15, .7));
+      $('#s1pill').style.opacity = p; $('#s1pill').style.transform = `translateY(${(1 - p) * 30}px)`;
+      words.forEach((w, i) => {
+        const k = easeOut(seg(t, .45 + i * .12, .45 + i * .12 + .4));
+        w.style.opacity = k; w.style.transform = `translateY(${(1 - k) * 50}px)`;
+      });
+    }
+    // S2
+    {
+      const [a] = SCENES.s2;
+      $('#s2').style.opacity = vis(t, SCENES.s2);
+      $$('#s2 .stat').forEach((s, i) => {
+        const st = a + .25 + i * .5;
+        const k = easeOut(seg(t, st, st + .45));
+        s.style.opacity = k; s.style.transform = `translateX(${(1 - k) * -80}px)`;
+        const c = easeOut(seg(t, st, st + 1.0));
+        $('.v', s).textContent = fmt(+s.dataset.to * c, s.dataset.fmt);
+      });
+    }
+    // S3
+    {
+      const [a, b] = SCENES.s3;
+      $('#s3').style.opacity = vis(t, SCENES.s3);
+      const cards = $$('#s3 .card'), n = cards.length, len = (b - a) / n;
+      cards.forEach((c, i) => {
+        const s = a + i * len, e = s + len;
+        // Cada tarjeta entra encima de la anterior; la primera la cubre el fundido de la escena.
+        c.style.opacity = i === 0 ? 1 : seg(t, s - .15, s + .15);
+        const k = seg(t, s, e + .2);
+        $('.bg', c).style.transform = `scale(${lerp(1.04, 1.14, k)})`;
+        const fg = $('.fg', c); if (fg) fg.style.transform = `scale(${lerp(1, 1.05, k)})`;
+        const cp = easeOut(seg(t, s + .1, s + .6));
+        $('.copy', c).style.opacity = cp; $('.copy', c).style.transform = `translateY(${(1 - cp) * 60}px)`;
+        $$('.dots i b')[i].style.width = (seg(t, s, e) * 100) + '%';
+      });
+    }
+    // S4
+    {
+      const [a] = SCENES.s4;
+      $('#s4').style.opacity = vis(t, SCENES.s4);
+      $$('#s4 .tile').forEach((tl, i) => {
+        const k = easeOut(seg(t, a + .25 + i * .18, a + .25 + i * .18 + .5));
+        tl.style.opacity = k; tl.style.transform = `translateY(${(1 - k) * 70}px) scale(${lerp(.94, 1, k)})`;
+      });
+    }
+    // S5
+    {
+      const [a] = SCENES.s5;
+      $('#s5').style.opacity = vis(t, SCENES.s5, false, true);
+      const pop = (id, st, dy = 60) => { const k = easeOut(seg(t, a + st, a + st + .5)); const e = $(id); e.style.opacity = k; e.style.transform = `translateY(${(1 - k) * dy}px) scale(${lerp(.95, 1, k)})`; };
+      pop('#s5logo', .15); pop('#s5h', .4); pop('#s5btn', .65); pop('#s5c', .85, 40);
+    }
+  }
+  window.seek = seek; window.DURATION = DURATION;
+  seek(0);
+</script>
+</body>
+</html>
